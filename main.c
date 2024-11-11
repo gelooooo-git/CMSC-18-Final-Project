@@ -1,7 +1,142 @@
-#include <Stdio.h>
-int main(){
-    printf("naga work ka ba");
-    printf("hi stel");
-    printf("hi derder");
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_MEMBER_COUNT 200
+#define NAME_LENGTH 100
+
+// Arrays to keep track of members
+char members[MAX_MEMBER_COUNT][NAME_LENGTH];
+int active[MAX_MEMBER_COUNT]; 
+int member_count = 0;
+
+// Adding members
+void addMember() {
+    if (member_count >= MAX_MEMBER_COUNT) {
+        printf("Organization is currently full! Remove any inactive member if necessary.\n");
+        return;
+    }
+
+    printf("Enter the name of the member: ");
+    getchar();
+    fgets(members[member_count], NAME_LENGTH, stdin);
+
+    members[member_count][strcspn(members[member_count], "\n")] = 0;
+    active[member_count] = 1; 
+    member_count++;
+
+    printf("%s has been added to the org!\n", members[member_count - 1]);
+
+    char decision;
+    printf("Would you like to add another member? (y/n): ");
+    scanf(" %c", &decision);  
+    if (decision == 'y' || decision == 'Y') {
+        addMember();   
+    }
+}
+
+// Show current mebers
+void showMembers() {
+    printf("\nList of Current Org Members as of 2024:\n");
+    int count = 0;
+
+    for (int i = 0; i < member_count; i++) {
+        if (active[i]) {
+            printf("%d. %s\n", count + 1, members[i]);
+            count++;
+        }
+    }
+
+    if (count == 0) {
+        printf("No members :(.\n");
+    }
+}
+
+// Remove members
+void removeMember() {
+    char name[NAME_LENGTH];
+    printf("Enter the name of the member to remove: ");
+    getchar();
+    fgets(name, NAME_LENGTH, stdin);
+    name[strcspn(name, "\n")] = 0;
+
+    int member_check = 0;
+    
+    for (int i = 0; i < member_count; i++) {
+        if (active[i] && strcmp(members[i], name) == 0) {
+            active[i] = 0; 
+            printf("%s has been removed from the org!\n", name);
+            member_check = 1;
+            break;
+        }
+    }
+
+    if (!member_check) {
+        printf("%s is not found in the current member list.\n", name);
+    }
+
+    char decision;
+    printf("Would you like to remove another member? (y/n): ");
+    scanf(" %c", &decision); 
+    if (decision == 'y' || decision == 'Y') {
+        removeMember(); 
+    }
+}
+
+int main() {
+    int choice1, choice2, choice3, choice4;
+
+    while (1) {
+        printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
+        printf("1. Manage Organization Members\n");
+        printf("2. Post Announcements/Schedule Meetings\n");
+        printf("3. Update Org Requirements\n");
+        printf("4. Exit\n");
+        printf("What do you want to do? ");
+        scanf("%d", &choice1);
+
+            switch (choice1) {
+
+                case 1: 
+                    while (1) {
+                        printf("\nMANAGE ORGANIZATION MEMBERS\n");
+                        printf("1. Add Member\n");
+                        printf("2. Show Members\n");
+                        printf("3. Remove Member\n");
+                        printf("4. Exit\n");
+                        printf("What do you want to do? ");
+                        scanf("%d", &choice2);
+
+                        switch (choice2) {
+                            case 1:
+                                addMember();
+                                break;
+                            case 2:
+                                showMembers();
+                                break;
+                            case 3:
+                                removeMember();
+                                break;
+                            case 4:
+                                printf("Returning to main interface.\n");
+                                break;
+                            default:
+                                printf("Invalid choice! Choose among the options.\n");
+                        } 
+                        if (choice2 == 4) break;
+                    }
+                    break;
+                case 2:
+                    printf("Under construction pa bai :(\n");
+                    break;
+                case 3:
+                    printf("Under construction pa bai:(\n");
+                    break;
+                case 4:
+                    printf("Under construction pa bai:(\n");
+                    break;
+                default:
+                    printf("Invalid choice! Choose among the options.\n");
+                }
+        }
     return 0;
 }
