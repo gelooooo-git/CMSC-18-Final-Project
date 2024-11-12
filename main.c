@@ -85,6 +85,14 @@ void removeMember() {
 int main() {
     int choice1, choice2, choice3, choice4;
 
+    //For announcement
+    int pick_announce;
+    int max_announcement = 100;
+    char announcement_lenght = 500;
+    char announcement[announcement_lenght];
+    int event_date, event_time;
+    char event_name, event_venue;
+
     while (1) {
         printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
         printf("1. Manage Organization Members\n");
@@ -126,7 +134,46 @@ int main() {
                     }
                     break;
                 case 2:
-                    printf("Under construction pa bai :(\n");
+                    printf("What's on your mind?\n");
+                    printf("1. Post Announcement");
+                    printf("2. Schedule Event");
+                    printf("3. Schedule Meeting");
+                    scanf("%d", &pick_announce);
+                    switch(pick_announce) {
+                        case 1:
+                            printf("Post an announcement.");
+                            printf("What do you want to say?");
+                            getchar();
+                            fgets(announcement, announcement_lenght, stdin);
+
+                            size_t len = strlen(announcement);
+                            if (len > 0 && announcement[len - 1] == '\n')
+                            {
+                                announcement[len - 1] = '\0';
+                            }
+
+                            printf("Announcement posted:\n");
+                            printf("%s\n", announcement);
+                            break;
+                        case 2:
+                            printf("Schedule an Event.");
+                            printf("Event Name: ");
+                            scanf("%s", &event_name);
+                            printf("Date: ");
+                            scanf("%d", &event_date);
+                            printf("Time: ");
+                            scanf("%d", &event_time);
+                            printf("Venue: ");
+                            scanf("%s", &event_venue);
+                            
+                            break;
+                        case 3:
+
+                            break;
+
+                        default:
+                            break;
+                    }
                     break;
                 case 3:
                     printf("Under construction pa bai:(\n");
