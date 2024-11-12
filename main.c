@@ -82,8 +82,13 @@ void removeMember() {
     }
 }
 
+// minus expenses to current total funds
+void expenses() {
+
+}
+
 int main() {
-    int choice1, choice2, choice3, choice4;
+    int choice;
 
     //For announcement
     int pick_announce;
@@ -92,17 +97,19 @@ int main() {
     char announcement[announcement_lenght];
     int event_date, event_time;
     char event_name, event_venue;
+    int total_funds;
 
     while (1) {
         printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
         printf("1. Manage Organization Members\n");
         printf("2. Post Announcements/Schedule Meetings\n");
         printf("3. Update Org Requirements\n");
-        printf("4. Exit\n");
+        printf("4. Manage funds\n");
+        printf("5. Exit\n");
         printf("What do you want to do? ");
-        scanf("%d", &choice1);
+        scanf("%d", &choice);
 
-            switch (choice1) {
+            switch (choice) {
 
                 case 1: 
                     while (1) {
@@ -112,9 +119,9 @@ int main() {
                         printf("3. Remove Member\n");
                         printf("4. Exit\n");
                         printf("What do you want to do? ");
-                        scanf("%d", &choice2);
+                        scanf("%d", &choice);
 
-                        switch (choice2) {
+                        switch (choice) {
                             case 1:
                                 addMember();
                                 break;
@@ -130,7 +137,7 @@ int main() {
                             default:
                                 printf("Invalid choice! Choose among the options.\n");
                         } 
-                        if (choice2 == 4) break;
+                        if (choice == 4) break;
                     }
                     break;
                 case 2:
@@ -139,6 +146,7 @@ int main() {
                     printf("2. Schedule Event");
                     printf("3. Schedule Meeting");
                     scanf("%d", &pick_announce);
+
                     switch(pick_announce) {
                         case 1:
                             printf("Post an announcement.");
@@ -168,7 +176,6 @@ int main() {
                             
                             break;
                         case 3:
-
                             break;
 
                         default:
@@ -179,8 +186,33 @@ int main() {
                     printf("Under construction pa bai:(\n");
                     break;
                 case 4:
-                    printf("Under construction pa bai:(\n");
+                        printf("\nMANAGE FUNDS\n");
+                        printf("1. Current Total Funds\n");
+                        printf("2. Expenses\n");
+                        printf("3. Revenue\n");
+                        printf("4. Override Current Total Funds");
+                        printf("5. Exit\n");
+                        scanf("%d", &choice);
+                        switch (choice) {
+                            case 1:
+                                printf("Total Funds: %d", total_funds);
+                                break;
+                            case 2:
+                                showMembers();
+                                break;
+                            case 3:
+                                removeMember();
+                                break;
+                            case 4:
+                                printf("Returning to main interface.\n");
+                                break;
+                            default:
+                                printf("Invalid choice! Choose among the options.\n");
+                        } 
+                        if (choice == 5) break;                       
                     break;
+                case 5:
+                    printf("")
                 default:
                     printf("Invalid choice! Choose among the options.\n");
                 }
