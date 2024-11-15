@@ -1,0 +1,4 @@
+[Expenses] PHP 300 - Food
+[Expenses] PHP 500 - Materials
+[Contribution] PHP 1000 - Amot
+[Override] PHP 2000 - Funds override
