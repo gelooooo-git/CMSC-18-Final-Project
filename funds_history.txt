@@ -2,8 +2,3 @@
 [Expenses] PHP 500 - Materials
 [Contribution] PHP 1000 - Amot
 [Override] PHP 2000 - Funds override
-[Expenses] PHP 100 - i just feel like it
-[Contribution] PHP 100 - idk
-[Override] PHP 2000 - Funds override
-[Expenses] PHP 10 - nothing
-[Contribution] PHP 10 - hehe

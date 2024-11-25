@@ -38,23 +38,23 @@ int main() {
     start:
     while (1) {
         printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
-        printf("1. Manage Organization Members\n");
-        printf("2. Post Announcements/Schedule Meetings\n");
-        printf("3. Manage Funds\n");
-        printf("4. Exit\n");
+        printf("    [1] Manage Organization Members\n");
+        printf("    [2] Post Announcements/Schedule Meetings\n");
+        printf("    [3] Manage Funds\n");
+        printf("    [4] Exit\n");
         printf("What do you want to do? ");
         scanf("%d", &choice);
         system("cls");
 
         switch (choice) {
 
-            case 1: 
+            case 1:
                 while (1) {
                     printf("\nMANAGE ORGANIZATION MEMBERS\n");
-                    printf("1. Add Member\n");
-                    printf("2. Show Members\n");
-                    printf("3. Remove Member\n");
-                    printf("4. Exit\n");
+                    printf("    [1] Add Member\n");
+                    printf("    [2] Show Members\n");
+                    printf("    [3] Remove Member\n");
+                    printf("    [4] Exit\n");
                     printf("What do you want to do? ");
                     scanf("%d", &choice);
                     system("cls");
@@ -81,10 +81,30 @@ int main() {
                             printf("Invalid choice! Choose among the options.\n");
                     }
                 }
-                break; 
+                break;
             case 2:
                 while(2) {
-                    printf("");
+                    printf("What's on your mind?");
+                    printf("    [1] Post an announce\n");
+                    printf("    [2] Create a draft\n");
+                    printf("    [3] Schedule a meeting\n");
+                    printf("Choose: ");
+                    scanf("%d", &choice);
+                    system("cls");
+
+                    switch (choice) {
+                        case 1:
+                            postAnnouncement();
+                            break;
+                        case 2:
+                            createDraftAnnouncement();
+                            break;
+                        case 3:
+                            scheduleMeeting();
+                            break;
+                        default:
+                            printf("Invalide choice! Choose among the options.\n");
+                    }
                 }
                 printf("Under construction pa bai :(\n");
                 break;
@@ -92,11 +112,11 @@ int main() {
                 while (1){
                     printf("\nMANAGE FUNDS\n");
                     printf("Current Total Funds: %d PHP\n", total_funds);
-                    printf("1. Expenses\n");
-                    printf("2. Collections\n");
-                    printf("3. Check Funds Log\n");
-                    printf("4. Override Current Total Funds\n");
-                    printf("5. Exit\n");
+                    printf("    [1] Expenses\n");
+                    printf("    [2] Collections\n");
+                    printf("    [3] Check Funds Log\n");
+                    printf("    [4] Override Current Total Funds\n");
+                    printf("    [5] Exit\n");
                     printf("What do you want to do? ");
                     scanf("%d", &choice);
                     system("cls");
@@ -138,11 +158,11 @@ int main() {
 // Members Section
 void addMember() {
     if (member_count >= MAX_MEMBER_COUNT) {
-        printf("Organization is currently full! Remove any inactive member if necessary.\n");
+        printf("\nOrganization is currently full! Remove any inactive member if necessary.\n");
         return;
     }
 
-    printf("Enter the name of the member: ");
+    printf("\nEnter the name of the member: ");
     getchar(); // to clear newline from input buffer
     fgets(members[member_count], NAME_LENGTH, stdin);
 
@@ -150,12 +170,13 @@ void addMember() {
     active[member_count] = 1;  // Set the member as active
     member_count++;
 
-    printf("%s has been added to the org!\n", members[member_count - 1]);
+    printf("\n%s has been added to the org!\n", members[member_count - 1]);
 
     char decision;
-    printf("Would you like to add another member? (y/n): ");
+    printf("\nWould you like to add another member? (y/n): ");
     scanf(" %c", &decision);  
     if (tolower(decision) == 'y') {
+        system("cls");
         addMember();
     }
 }
@@ -182,7 +203,7 @@ void showMembers() {
 
 void removeMember() {
     char name[NAME_LENGTH];
-    printf("Enter the name of the member to remove: ");
+    printf("\nEnter the name of the member to remove: ");
     getchar();
     fgets(name, NAME_LENGTH, stdin);
     name[strcspn(name, "\n")] = 0;
@@ -192,20 +213,21 @@ void removeMember() {
     for (int i = 0; i < member_count; i++) {
         if (active[i] && strcmp(members[i], name) == 0) {
             active[i] = 0; 
-            printf("%s has been removed from the org!\n", name);
+            printf("\n%s has been removed from the org!\n", name);
             member_check = 1;
             break;
         }
     }
 
     if (!member_check) {
-        printf("%s is not found in the current member list.\n", name);
+        printf("\n%s is not found in the current member list.\n", name);
     }
 
     char decision;
-    printf("Would you like to remove another member? (y/n): ");
+    printf("\nWould you like to remove another member? (y/n): ");
     scanf(" %c", &decision); 
     if (tolower(decision) == 'y') {
+        system("cls");
         removeMember(); 
     }
 }
@@ -278,25 +300,26 @@ void expenses() {
     int expense;
     char reason[256];
 
-    printf("Enter the amount spent: ");
+    printf("\nEnter the amount spent: ");
     scanf("%d", &expense);
 
-    printf("Enter the reason for the expense: ");
+    printf("\nEnter the reason for the expense: ");
     getchar();
     fgets(reason, sizeof(reason), stdin);
 
     reason[strcspn(reason, "\n")] = 0; 
     total_funds -= expense;
-    printf("%d deducted successfully for '%s'!\n", expense, reason);
+    printf("\n%d deducted successfully for '%s'!\n", expense, reason);
 
     saveFunds();
     fundsHistory("Expenses", expense, reason);
 
     char decision;
-    printf("Would you like to audit more expenses? (y/n): ");
+    printf("\nWould you like to audit more expenses? (y/n): ");
     scanf(" %c", &decision);  
     if (tolower(decision) == 'y') {
-        expenses();   
+        system("cls");
+        expenses();
     }
 }
 
@@ -317,23 +340,24 @@ void collections(){
     int contribution;
     char reason[256];
 
-    printf("Enter the amount to be added: ");
+    printf("\nEnter the amount to be added: ");
     scanf("%d", &contribution);
     getchar(); 
-    printf("Enter the reason for the contribution: ");
+    printf("\nEnter the reason for the contribution: ");
     fgets(reason, sizeof(reason), stdin);
     reason[strcspn(reason, "\n")] = 0; 
 
     total_funds += contribution;
-    printf("Contribution of PHP %d added successfully for '%s'!\n", contribution, reason);
+    printf("\nContribution of PHP %d added successfully for '%s'!\n", contribution, reason);
 
     saveFunds();
     fundsHistory("Contribution", contribution, reason);
 
     char decision;
-    printf("Would you like to audit more collections? (y/n): ");
+    printf("\nWould you like to audit more collections? (y/n): ");
     scanf(" %c", &decision);  
     if (tolower(decision) == 'y') {
+        system("cls");
         collections();   
     }    
 }
@@ -341,11 +365,11 @@ void collections(){
 void overrideFunds() {
     int new_total_funds;
 
-    printf("Enter the new total funds amount: PHP ");
+    printf("\nEnter the new total funds amount: PHP ");
     scanf("%d", &new_total_funds);
 
     total_funds = new_total_funds;
-    printf("Total funds overridden to %d PHP!\n", new_total_funds);
+    printf("\nTotal funds overridden to %d PHP!\n", new_total_funds);
 
     saveFunds();
     fundsHistory("Override", new_total_funds, "Funds override");
