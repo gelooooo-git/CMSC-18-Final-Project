@@ -28,6 +28,10 @@ void expenses();
 void fundsLog();
 void collections();
 void overrideFunds();
+void postAnnouncement();
+void createDraftAnnouncement();
+void scheduleMeeting();
+void postedAnnouncements();
 
 int main() {
     int choice;
@@ -84,10 +88,11 @@ int main() {
                 break;
             case 2:
                 while(2) {
-                    printf("What's on your mind?");
+                    printf("What do you want to do?\n");
                     printf("    [1] Post an announce\n");
                     printf("    [2] Create a draft\n");
                     printf("    [3] Schedule a meeting\n");
+                    printf("    [4] See posted announcements\n");
                     printf("Choose: ");
                     scanf("%d", &choice);
                     system("cls");
@@ -95,12 +100,19 @@ int main() {
                     switch (choice) {
                         case 1:
                             postAnnouncement();
+                            system("cls");
                             break;
                         case 2:
                             createDraftAnnouncement();
+                            system("cls");
                             break;
                         case 3:
                             scheduleMeeting();
+                            system("cls");
+                            break;
+                        case 4:
+                            postedAnnouncements();
+                            system("cls");
                             break;
                         default:
                             printf("Invalide choice! Choose among the options.\n");
@@ -373,4 +385,29 @@ void overrideFunds() {
 
     saveFunds();
     fundsHistory("Override", new_total_funds, "Funds override");
+}
+
+
+
+//Announcements Section
+void postAnnouncement() {
+    char announcement_info[1000];
+
+    printf("What's on your mind?\n");
+    gets(announcement_info);
+
+    printf("Announcement Posted!");
+    return postAnnouncement(announcement_info);
+}
+
+void createDraftAnnouncement() {
+    printf("Under construction :(");
+}
+
+void scheduleMeeting() {
+    printf("Under construction :(");
+}
+
+void postedAnnouncements() {
+    printf("Under construction :(");
 }
