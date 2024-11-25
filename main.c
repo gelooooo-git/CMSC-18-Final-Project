@@ -271,6 +271,9 @@ int main() {
                 }
                 break; 
             case 2:
+                while(2) {
+                    printf("")
+                }
                 printf("Under construction pa bai :(\n");
                 break;
             case 3:
