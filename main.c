@@ -61,7 +61,7 @@ int main() {
                     scanf("%d", &choice);
                     system("cls");
 
-                    switch (choice) {
+                                switch (choice) {
 
                         case 1:
                             while (1) {
