@@ -45,7 +45,7 @@ int main() {
         printf("    [1] Manage Organization Members\n");
         printf("    [2] Post Announcements/Schedule Meetings\n");
         printf("    [3] Manage Funds\n");
-        printf("    [4] Exit\n");
+        printf("    [4] Exit Program\n");
         printf("What do you want to do? ");
         scanf("%d", &choice);
         system("cls");
@@ -58,7 +58,7 @@ int main() {
                     printf("    [1] Add Member\n");
                     printf("    [2] Show Members\n");
                     printf("    [3] Remove Member\n");
-                    printf("    [4] Exit\n");
+                    printf("    [4] Back to Main Menu\n");
                     printf("What do you want to do? ");
                     scanf("%d", &choice);
                     system("cls");
@@ -88,11 +88,12 @@ int main() {
                 break;
             case 2:
                 while(2) {
-                    printf("What do you want to do?\n");
-                    printf("    [1] Post an announce\n");
+                    printf("\nANNOUNCEMENTS AND IMPORTANT INFO\n");
+                    printf("    [1] Post an announcement\n");
                     printf("    [2] Create a draft\n");
                     printf("    [3] Schedule a meeting\n");
                     printf("    [4] See posted announcements\n");
+                    printf("    [5] Back to Main Menu\n");
                     printf("Choose: ");
                     scanf("%d", &choice);
                     system("cls");
@@ -114,6 +115,9 @@ int main() {
                             postedAnnouncements();
                             system("cls");
                             break;
+                        case 5:
+                            printf("Returning to main interface.\n");
+                            goto start;
                         default:
                             printf("Invalide choice! Choose among the options.\n");
                     }
