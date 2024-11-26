@@ -39,34 +39,164 @@ int main() {
     loadMembers();
     loadFunds();
 
-    start:
-    while (1) {
+    do {
         printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
-        printf("    [1] Manage Organization Members\n");
-        printf("    [2] Post Announcements/Schedule Meetings\n");
-        printf("    [3] Manage Funds\n");
-        printf("    [4] Exit Program\n");
-        printf("What do you want to do? ");
+        printf("    [1] Admin\n");
+        printf("    [2] Member\n");
+        printf("    [3] Log out\n");
+        printf("What is your position? ");
         scanf("%d", &choice);
         system("cls");
 
         switch (choice) {
-
-            case 1:
+            case 1: // admin options
+                start:
                 while (1) {
-                    printf("\nMANAGE ORGANIZATION MEMBERS\n");
-                    printf("    [1] Add Member\n");
+                    printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
+                    printf("    [1] Manage Organization Members\n");
+                    printf("    [2] Post Announcements/Schedule Meetings\n");
+                    printf("    [3] Manage Funds\n");
+                    printf("    [4] Log Out\n");
+                    printf("What do you want to do? ");
+                    scanf("%d", &choice);
+                    system("cls");
+
+                    switch (choice) {
+
+                        case 1:
+                            while (1) {
+                                printf("\nMANAGE ORGANIZATION MEMBERS\n");
+                                printf("    [1] Add Member\n");
+                                printf("    [2] Show Members\n");
+                                printf("    [3] Remove Member\n");
+                                printf("    [4] Return to Main Menu\n");
+                                printf("What do you want to do? ");
+                                scanf("%d", &choice);
+                                system("cls");
+
+                                switch (choice) {
+                                    case 1:
+                                        addMember();
+                                        saveMembers();
+                                        system("cls");
+                                        break;
+                                    case 2:
+                                        showMembers();
+                                        system("cls");
+                                        break;
+                                    case 3:
+                                        removeMember();
+                                        saveMembers();
+                                        system("cls");
+                                        break;
+                                    case 4:
+                                        printf("Returning to main interface.\n");
+                                        goto start;  // Break out of the main loop and return to the main menu
+                                    default:
+                                        printf("Invalid choice! Choose among the options.\n");
+                                }
+                            }
+                            break;
+                        case 2:
+                            while(2) {
+                                printf("ANNOUNCEMENTS AND MEETINGS\n");
+                                printf("    [1] Post an announce\n");
+                                printf("    [2] Create a draft\n");
+                                printf("    [3] Schedule a meeting\n");
+                                printf("    [4] See posted announcements\n");
+                                printf("    [5] Return to Main Menu\n");
+                                printf("Choose: ");
+                                scanf("%d", &choice);
+                                system("cls");
+
+                                switch (choice) {
+                                    case 1:
+                                        postAnnouncement();
+                                        system("cls");
+                                        break;
+                                    case 2:
+                                        createDraftAnnouncement();
+                                        system("cls");
+                                        break;
+                                    case 3:
+                                        scheduleMeeting();
+                                        system("cls");
+                                        break;
+                                    case 4:
+                                        postedAnnouncements();
+                                        system("cls");
+                                        break;
+                                    case 5:
+                                        printf("Returning to Main Menu.\n");
+                                        goto start;
+                                    default:
+                                        printf("Invalide choice! Choose among the options.\n");
+                                }
+                            }
+                            printf("Under construction pa bai :(\n");
+                            break;
+                        case 3:
+                            while (1){
+                                printf("\nFUND MANAGEMENT\n");
+                                printf("Current Total Funds: %d PHP\n", total_funds);
+                                printf("    [1] Expenses\n");
+                                printf("    [2] Collections\n");
+                                printf("    [3] Check Funds Log\n");
+                                printf("    [4] Override Current Total Funds\n");
+                                printf("    [5] Return to main interface\n");
+                                printf("What do you want to do? ");
+                                scanf("%d", &choice);
+                                system("cls");
+                                switch (choice) {
+                                    case 1:
+                                        expenses();
+                                        system("cls");
+                                        break;
+                                    case 2:
+                                        collections();
+                                        system("cls");
+                                        break;
+                                    case 3:
+                                        fundsLog();
+                                        system("cls");
+                                        break;
+                                    case 4:
+                                        overrideFunds();
+                                        system("cls");
+                                        break;
+                                    case 5:
+                                        printf("Returning to main interface.\n");
+                                        goto start;
+                                    default:
+                                        printf("Invalid choice! Choose among the options.\n");
+                                }
+                            }
+                            break;
+                        case 4:
+                            printf("\nClosing Program. Thank you!\n");
+                            return 0;
+                        default:
+                            printf("Invalid choice! Choose among the options.\n");
+                    }
+                }
+                break;
+            case 2: // member options
+                do {
+                    printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
+                    printf("    [1] Announcments\n");
                     printf("    [2] Show Members\n");
-                    printf("    [3] Remove Member\n");
-                    printf("    [4] Back to Main Menu\n");
+                    printf("    [3] Messages\n");
+                    printf("    [4] Log Out\n");
                     printf("What do you want to do? ");
                     scanf("%d", &choice);
                     system("cls");
 
                     switch (choice) {
                         case 1:
-                            addMember();
-                            saveMembers();
+                            printf("\nAnnouncements\n");
+                            printf("\nEnter to continue...\n");
+                            getchar();
+                            getchar();
                             system("cls");
                             break;
                         case 2:
@@ -74,100 +204,67 @@ int main() {
                             system("cls");
                             break;
                         case 3:
-                            removeMember();
-                            saveMembers();
-                            system("cls");
-                            break;
-                        case 4:
-                            printf("Returning to main interface.\n");
-                            goto start;  // Break out of the main loop and return to the main menu
-                        default:
-                            printf("Invalid choice! Choose among the options.\n");
-                    }
-                }
-                break;
-            case 2:
-                while(2) {
-                    printf("\nANNOUNCEMENTS AND IMPORTANT INFO\n");
-                    printf("    [1] Post an announcement\n");
-                    printf("    [2] Create a draft\n");
-                    printf("    [3] Schedule a meeting\n"); 
-                    printf("    [4] See posted announcements\n");
-                    printf("    [5] Back to Main Menu\n");
-                    printf("Choose: ");
-                    scanf("%d", &choice);
-                    system("cls");
+                            do {
+                                printf("\nMessages\n");
+                                printf("    [1] Inbox\n");
+                                printf("    [2] Send message\n");
+                                printf("    [3] Return\n");
+                                printf("What do you want to do? ");
+                                scanf("%d", &choice);
+                                system("cls");
 
-                    switch (choice) {
-                        case 1:
-                            postAnnouncement();
-                            system("cls");
-                            break;
-                        case 2:
-                            createDraftAnnouncement();
-                            system("cls");
-                            break;
-                        case 3:
-                            scheduleMeeting();
-                            system("cls");
+                                switch (choice) {
+                                    case 1:
+                                        //checkInbox();
+                                        printf("\nInbox\n");
+                                        printf("\nEnter to continue...\n");
+                                        getchar();
+                                        getchar();
+                                        system("cls");
+                                        break;
+                                    case 2:
+                                        //sendMessage();
+                                        printf("\nSend Messages\n");
+                                        printf("\nEnter to continue...\n");
+                                        getchar();
+                                        getchar();
+                                        system("cls");
+                                        break;
+                                    case 3:
+                                        printf("\nReturning...\n");
+                                        break;
+                                    default:
+                                        printf("\nInvalid option!\n");
+                                        getchar();
+                                        getchar();
+                                        system("cls");
+                                }
+                            } while (choice != 3);
                             break;
                         case 4:
-                            postedAnnouncements();
-                            system("cls");
+                            printf("\nReturning...\n");
                             break;
-                        case 5:
-                            printf("Returning to main interface.\n");
-                            goto start;
                         default:
-                            printf("Invalide choice! Choose among the options.\n");
+                            printf("\nInvalid option!\n");
+                            getchar();
+                            getchar();
+                            system("cls");
                     }
-                }
-                printf("Under construction pa bai :(\n");
+                } while (choice != 4);
                 break;
             case 3:
-                while (1){
-                    printf("\nMANAGE FUNDS\n");
-                    printf("Current Total Funds: %d PHP\n", total_funds);
-                    printf("    [1] Expenses\n");
-                    printf("    [2] Collections\n");
-                    printf("    [3] Check Funds Log\n");
-                    printf("    [4] Override Current Total Funds\n");
-                    printf("    [5] Exit\n");
-                    printf("What do you want to do? ");
-                    scanf("%d", &choice);
-                    system("cls");
-                    switch (choice) {
-                        case 1:
-                            expenses();
-                            system("cls");
-                            break;
-                        case 2:
-                            collections();
-                            system("cls");
-                            break;
-                        case 3:
-                            fundsLog();
-                            system("cls");
-                            break;
-                        case 4:
-                            overrideFunds();
-                            system("cls");
-                            break;
-                        case 5:
-                            printf("Returning to main interface.\n");
-                            goto start;
-                        default:
-                            printf("Invalid choice! Choose among the options.\n");
-                    }
-                }
-                break;
-            case 4:
-                printf("\nClosing Program. Thank you!\n");
+                printf("\nExiting Program...\n");
                 return 0;
             default:
-                printf("Invalid choice! Choose among the options.\n");
+                printf("\nInvalid option!\n");
+                getchar();
+                getchar();
+                system("cls");
+                break;
         }
-    }
+    } while (choice != 3);
+    
+    
     return 0;
 }
 
@@ -375,7 +472,7 @@ void collections(){
     if (tolower(decision) == 'y') {
         system("cls");
         collections();   
-    }    
+    }
 }
 
 void overrideFunds() {
