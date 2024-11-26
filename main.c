@@ -91,7 +91,7 @@ int main() {
                     printf("\nANNOUNCEMENTS AND IMPORTANT INFO\n");
                     printf("    [1] Post an announcement\n");
                     printf("    [2] Create a draft\n");
-                    printf("    [3] Schedule a meeting\n");
+                    printf("    [3] Schedule a meeting\n"); 
                     printf("    [4] See posted announcements\n");
                     printf("    [5] Back to Main Menu\n");
                     printf("Choose: ");
