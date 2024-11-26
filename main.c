@@ -467,7 +467,7 @@ void collections(){
     if (tolower(decision) == 'y') {
         system("cls");
         collections();   
-    }    
+    }
 }
 
 void overrideFunds() {
