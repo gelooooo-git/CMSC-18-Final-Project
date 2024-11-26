@@ -8,12 +8,16 @@
 #define MEMBERS_FILE "members_list.txt"
 #define FUNDS_FILE "total_funds.txt"
 #define FUNDS_HISTORY "funds_history.txt"
+#define MAX_ANNOUNCEMENTS 50
+#define MAX_ANNOUNCEMENT_LENGTH 256
 
 // Arrays
 char members[MAX_MEMBER_COUNT][NAME_LENGTH];
 int active[MAX_MEMBER_COUNT]; 
 int member_count = 0;
 int total_funds = 0;
+char ListPostedAnnouncements[MAX_ANNOUNCEMENTS][MAX_ANNOUNCEMENT_LENGTH];
+int announcement_counter = 0;
 
 //function prototypes
 void addMember();
@@ -133,8 +137,6 @@ int main() {
                                         printf("Invalide choice! Choose among the options.\n");
                                 }
                             }
-                            printf("Under construction pa bai :(\n");
-                            break;
                         case 3:
                             while (1){
                                 printf("\nFUND MANAGEMENT\n");
@@ -492,13 +494,10 @@ void overrideFunds() {
 
 //Announcements Section
 void postAnnouncement() {
-    char announcement_info[1000];
-
     printf("What's on your mind?\n");
-    gets(announcement_info);
+    gets(ListPostedAnnouncements[announcement_counter]);
 
     printf("Announcement Posted!");
-    return postAnnouncement(announcement_info);
 }
 
 void createDraftAnnouncement() {
@@ -510,5 +509,8 @@ void scheduleMeeting() {
 }
 
 void postedAnnouncements() {
-    printf("Under construction :(");
+    printf("\nAnnouncements:\n");
+    for(int i = 0; i < announcement_counter; i++) {
+        printf("%d. %s\n", i + 1, ListPostedAnnouncements[i]);
+    }
 }
