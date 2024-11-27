@@ -65,7 +65,7 @@ int main() {
                     scanf("%d", &choice);
                     system("cls");
 
-                                switch (choice) {
+                        switch (choice) {
 
                         case 1:
                             while (1) {
@@ -102,7 +102,7 @@ int main() {
                             }
                             break;
                         case 2:
-                            while(2) {
+                            while(1) {
                                 printf("ANNOUNCEMENTS AND MEETINGS\n");
                                 printf("    [1] Post an announce\n");
                                 printf("    [2] Create a draft\n");
@@ -137,6 +137,7 @@ int main() {
                                         printf("Invalide choice! Choose among the options.\n");
                                 }
                             }
+                            break;
                         case 3:
                             while (1){
                                 printf("\nFUND MANAGEMENT\n");
@@ -494,18 +495,30 @@ void overrideFunds() {
 
 //Announcements Section
 void postAnnouncement() {
-    printf("What's on your mind?\n");
-    gets(ListPostedAnnouncements[announcement_counter]);
+    printf("What's on your mind? ");
+    getchar();
+    fgets(ListPostedAnnouncements[announcement_counter], MAX_ANNOUNCEMENT_LENGTH, stdin);
 
     printf("Announcement Posted!");
+
+    printf("\n\nEnter to continue...");
+    getchar();
 }
 
 void createDraftAnnouncement() {
     printf("Under construction :(");
+
+    printf("\nEnter to continue...");
+    getchar();
+    getchar();
 }
 
 void scheduleMeeting() {
     printf("Under construction :(");
+
+    printf("\nEnter to continue...");
+    getchar();
+    getchar();
 }
 
 void postedAnnouncements() {
@@ -513,4 +526,8 @@ void postedAnnouncements() {
     for(int i = 0; i < announcement_counter; i++) {
         printf("%d. %s\n", i + 1, ListPostedAnnouncements[i]);
     }
+
+    printf("\nEnter to continue...");
+    getchar();
+    getchar();
 }
