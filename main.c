@@ -5,28 +5,39 @@
 #include <windows.h>
 #include <unistd.h>
 
+#define PASSWORD "admin123"
 #define MAX_MEMBER_COUNT 200
 #define NAME_LENGTH 100
+#define ROLE_COUNT 7
 #define MEMBERS_FILE "members_list.txt"
+#define OFFICERS_FILE "officers_list.txt"
 #define FUNDS_FILE "total_funds.txt"
 #define FUNDS_HISTORY "funds_history.txt"
 #define MAX_ANNOUNCEMENTS 50
 #define MAX_ANNOUNCEMENT_LENGTH 256
+#define ROLE_COUNT 7
 
 // Arrays
 char members[MAX_MEMBER_COUNT][NAME_LENGTH];
 int active[MAX_MEMBER_COUNT]; 
 int member_count = 0;
+char roles[ROLE_COUNT][NAME_LENGTH] = {"President", "Vice President", "Secretary", "Treasurer", "Auditor", "Event Coordinator", "Public Relations and Communications"};
+char officer_names[ROLE_COUNT][NAME_LENGTH] = {"Vacant", "Vacant", "Vacant", "Vacant", "Vacant", "Vacant", "Vacant"};
 int total_funds = 0;
 char ListPostedAnnouncements[MAX_ANNOUNCEMENTS][MAX_ANNOUNCEMENT_LENGTH];
 int announcement_counter = 0;
 
 //function prototypes
+void adminPassword();
 void addMember();
 void showMembers();
 void removeMember();
 void saveMembers();
 void loadMembers();
+void listOfficers();
+void replaceOfficer();
+void saveOfficers();
+void loadOfficers();
 void loadFunds();
 void saveFunds();
 void fundsHistory(const char *action, int amount, const char *reason);
@@ -40,29 +51,56 @@ void postedAnnouncements();
 
 int main() {
     int choice;
-    
+    char input[50]; 
+    int attempts = 3;
+
     loadMembers();
+    loadOfficers();
     loadFunds();
     
     do {
         login:
-        printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
-        printf("    [1] Admin\n");
-        printf("    [2] Member\n");
-        printf("    [3] Exit\n");
+        system("cls");
+        printf("Welcome to ORGanized! a C-based Organization Management System\n");
+        printf("    [1] Login as Admin\n");
+        printf("    [2] Login as Member\n");
+        printf("    [3] Close program\n");
         printf("What is your position? ");
         scanf("%d", &choice);
         system("cls");
 
         switch (choice) {
             case 1: // admin options
-                printf("Logging in...");
+                printf("Please enter the password to proceed:\n");
+                getchar();
+                while (attempts > 0) { 
+                    printf("Password: ");
+                    fgets(input, sizeof(input), stdin); 
+                    input[strcspn(input, "\n")] = 0;    
+
+                    if (strcmp(input, PASSWORD) == 0) { 
+                        printf("\nAccess granted! Welcome, admin!\n");
+                        break; 
+                    } else {
+                        attempts--;
+                        printf("\nIncorrect password. You only have %d attempt/s remaining before the program returns to the main interface.\n", attempts);
+                    }
+                    
+                if (attempts <= 0) {
+                    printf("\nAttempt limit reached. Returning to main interface...\n");
+                    sleep(2);
+                    attempts = 3;
+                    goto login;
+                }
+                }
+
+                printf("Logging in as Administrator...");
                 sleep(2);
                 system("cls");
                 start:
                 while (1) {
-                    printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
-                    printf("    [1] Manage Organization Members\n");
+                    printf("Welcome to ORGanized! Currently logged in as Administrator\n");
+                    printf("    [1] Manage Organization Members and Officers\n");
                     printf("    [2] Post Announcements/Schedule Meetings\n");
                     printf("    [3] Manage Funds\n");
                     printf("    [4] Log Out\n");
@@ -71,23 +109,24 @@ int main() {
                     system("cls");
 
                         switch (choice) {
-
                         case 1:
                             printf("Loading...");
                             sleep(2);
                             system("cls");
                             while (1) {
-                                printf("\nMANAGE ORGANIZATION MEMBERS\n");
+                                printf("MANAGE ORGANIZATION MEMBERS AND OFFICERS\n");
                                 printf("    [1] Add Member\n");
-                                printf("    [2] Show Members\n");
+                                printf("    [2] Show Members List\n");
                                 printf("    [3] Remove Member\n");
-                                printf("    [4] Return to Main Menu\n");
+                                printf("    [4] Show Officers List\n");
+                                printf("    [5] Replace Officers\n");
+                                printf("    [6] Return to Main Menu\n");
                                 printf("What do you want to do? ");
                                 scanf("%d", &choice);
                                 system("cls");
 
                                 switch (choice) {
-                                    case 1:
+                                    case 1: // add members
                                         printf("Loading...");
                                         sleep(2);
                                         system("cls");
@@ -95,14 +134,14 @@ int main() {
                                         saveMembers();
                                         system("cls");
                                         break;
-                                    case 2:
+                                    case 2: // show list of members
                                         printf("Loading...");
                                         sleep(2);
                                         system("cls");
                                         showMembers();
                                         system("cls");
                                         break;
-                                    case 3:
+                                    case 3: // remove members from org
                                         printf("Loading...");
                                         sleep(2);
                                         system("cls");
@@ -110,8 +149,23 @@ int main() {
                                         saveMembers();
                                         system("cls");
                                         break;
-                                    case 4:
-                                        printf("Returning to main interface.\n");
+                                    case 4: // show list of officers
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
+                                        listOfficers();
+                                        system("cls");
+                                        break;                                    
+                                    case 5: // replace officer
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
+                                        replaceOfficer();
+                                        saveOfficers();
+                                        system("cls");
+                                        break;
+                                    case 6:
+                                        printf("Returning to main interface...\n");
                                         sleep(2);
                                         goto start;  // Break out of the main loop and return to the main menu
                                     default:
@@ -156,7 +210,7 @@ int main() {
                                         system("cls");
                                         break;
                                     case 4:
-                                        printf("Returning to Main Menu.\n");
+                                        printf("Returning to Main Menu...\n");
                                         sleep(2);
                                         goto start;
                                     default:
@@ -169,7 +223,7 @@ int main() {
                                 sleep(2);
                                 system("cls");
                             while (1){
-                                printf("\nFUND MANAGEMENT\n");
+                                printf("FUND MANAGEMENT\n");
                                 printf("Current Total Funds: %d PHP\n", total_funds);
                                 printf("    [1] Expenses\n");
                                 printf("    [2] Collections\n");
@@ -209,8 +263,9 @@ int main() {
                                         system("cls");
                                         break;
                                     case 5:
-                                        printf("Returning to main interface.\n");
+                                        printf("Returning to main interface...\n");
                                         sleep(2);
+                                        system("cls");
                                         goto start;
                                     default:
                                         printf("Invalid choice! Choose among the options.\n");
@@ -218,7 +273,7 @@ int main() {
                             }
                             break;
                         case 4:
-                            printf("\nLoggin Out...\n");
+                            printf("\nLogging Out...\n");
                             sleep(2);
                             goto login;
                         default:
@@ -227,11 +282,11 @@ int main() {
                 }
                 break;
             case 2: // member options
-                printf("Logging in...");
+                printf("Logging in as Member...");
                 sleep(2);
                 system("cls");
                 do {
-                    printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
+                    printf("Welcome to ORGanized! Currently logged in as Member\n");
                     printf("    [1] Announcments\n");
                     printf("    [2] Show Members\n");
                     printf("    [3] Messages\n");
@@ -322,7 +377,7 @@ int main() {
                 } while (choice != 4);
                 break;
             case 3:
-                printf("\nExiting Program...\n");
+                printf("Thank you for using our program. Remember to keep it ORGanized!...\n");
                 sleep(2);
                 return 0;
             default:
@@ -338,14 +393,15 @@ int main() {
     return 0;
 }
 
+
 // Members Section
 void addMember() {
     if (member_count >= MAX_MEMBER_COUNT) {
-        printf("\nOrganization is currently full! Remove any inactive member if necessary.\n");
+        printf("Organization is currently full! Remove any inactive member if necessary.\n");
         return;
     }
 
-    printf("\nEnter the name of the member: ");
+    printf("Enter the name of the member to add: ");
     getchar(); // to clear newline from input buffer
     fgets(members[member_count], NAME_LENGTH, stdin);
 
@@ -353,40 +409,95 @@ void addMember() {
     active[member_count] = 1;  // Set the member as active
     member_count++;
 
-    printf("\n%s has been added to the org!\n", members[member_count - 1]);
+    printf("%s has been added to the org!\n", members[member_count - 1]);
 
     char decision;
-    printf("\nWould you like to add another member? (y/n): ");
-    scanf(" %c", &decision);  
-    if (tolower(decision) == 'y') {
-        system("cls");
-        addMember();
+    while (1) { 
+        printf("\nWould you like to add another member? (y/n): ");
+        scanf(" %c", &decision);  
+
+        decision = tolower(decision);
+        if (decision == 'y') {
+            system("cls"); 
+            addMember(); 
+            break;
+        } else if (decision == 'n') {
+            printf("Returning...");
+            sleep(2); 
+            system("cls"); 
+            break;
+        } else {
+            printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
+        }
     }
 }
 
 void showMembers() {
-    printf("\nList of Current Org Members as of 2024:\n");
-    int count = 0;
+    printf("CURRENT ORG MEMBERS\n\n");
+
+    // temp array to store active members
+    char sorted_members[MAX_MEMBER_COUNT][NAME_LENGTH];
+    int sorted_count = 0;
 
     for (int i = 0; i < member_count; i++) {
         if (active[i]) {
-            printf("%d. %s\n", count + 1, members[i]);
-            count++;
+            strcpy(sorted_members[sorted_count], members[i]); // Copy active members
+            sorted_count++;
         }
     }
 
-    if (count == 0) {
+    // sort the member list in alphabetical order (A-Z)
+    for (int i = 0; i < sorted_count - 1; i++) {
+        for (int j = i + 1; j < sorted_count; j++) {
+            if (strcmp(sorted_members[i], sorted_members[j]) > 0) {
+                // Swap
+                char temp[NAME_LENGTH];
+                strcpy(temp, sorted_members[i]);
+                strcpy(sorted_members[i], sorted_members[j]);
+                strcpy(sorted_members[j], temp);
+            }
+        }
+    }
+
+    // print the updated member list
+    if (sorted_count > 0) {
+        for (int i = 0; i < sorted_count; i++) {
+            printf("%d. %s\n", i + 1, sorted_members[i]);
+        }
+    } else {
         printf("No members :(.\n");
     }
 
-    printf("\nEnter to continue...");
-    getchar();
-    getchar();
+    // Pause before returning
+    printf("\nPress Enter to continue...");
+    getchar(); // Clear any leftover newline
+    getchar(); // Wait for Enter
+    printf("Returning...");
+    sleep(2); 
+    system("cls"); 
+    // OLD MEMBERS LIST (not sorted alphabetically, keeping incase I mess smth up)
+    // printf("CURRENT ORG MEMBERS\n\n");
+    // int count = 0;
+
+    // for (int i = 0; i < member_count; i++) {
+    //     if (active[i]) {
+    //         printf("%d. %s\n", count + 1, members[i]);
+    //         count++;
+    //     }
+    // }
+
+    // if (count == 0) {
+    //     printf("No members :(.\n");
+    // }
+
+    // printf("\nEnter to continue...");
+    // getchar();
+    // getchar();
 }
 
 void removeMember() {
     char name[NAME_LENGTH];
-    printf("\nEnter the name of the member to remove: ");
+    printf("Enter the name of the member to remove: ");
     getchar();
     fgets(name, NAME_LENGTH, stdin);
     name[strcspn(name, "\n")] = 0;
@@ -396,22 +507,34 @@ void removeMember() {
     for (int i = 0; i < member_count; i++) {
         if (active[i] && strcmp(members[i], name) == 0) {
             active[i] = 0; 
-            printf("\n%s has been removed from the org!\n", name);
+            printf("%s has been removed from the org!\n", name);
             member_check = 1;
             break;
         }
     }
 
     if (!member_check) {
-        printf("\n%s is not found in the current member list.\n", name);
+        printf("%s is not found in the current member list.\n", name);
     }
 
     char decision;
-    printf("\nWould you like to remove another member? (y/n): ");
-    scanf(" %c", &decision); 
-    if (tolower(decision) == 'y') {
-        system("cls");
-        removeMember(); 
+    while (1) { 
+        printf("\nWould you like to remove another member? (y/n): ");
+        scanf(" %c", &decision);  
+
+        decision = tolower(decision);
+        if (decision == 'y') {
+            system("cls"); 
+            removeMember(); 
+            break;
+        } else if (decision == 'n') {
+            printf("Returning...");
+            sleep(2); 
+            system("cls"); 
+            break;
+        } else {
+            printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
+        }
     }
 }
 
@@ -498,11 +621,23 @@ void expenses() {
     fundsHistory("Expenses", expense, reason);
 
     char decision;
-    printf("\nWould you like to audit more expenses? (y/n): ");
-    scanf(" %c", &decision);  
-    if (tolower(decision) == 'y') {
-        system("cls");
-        expenses();
+    while (1) { 
+        printf("\nWould you like to add another member? (y/n): ");
+        scanf(" %c", &decision);  
+
+        decision = tolower(decision);
+        if (decision == 'y') {
+            system("cls"); 
+            expenses(); 
+            break;
+        } else if (decision == 'n') {
+            printf("Returning...");
+            sleep(2); 
+            system("cls"); 
+            break;
+        } else {
+            printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
+        }
     }
 }
 
@@ -537,11 +672,23 @@ void collections(){
     fundsHistory("Contribution", contribution, reason);
 
     char decision;
-    printf("\nWould you like to audit more collections? (y/n): ");
-    scanf(" %c", &decision);  
-    if (tolower(decision) == 'y') {
-        system("cls");
-        collections();   
+    while (1) { 
+        printf("\nWould you like to add another member? (y/n): ");
+        scanf(" %c", &decision);  
+
+        decision = tolower(decision);
+        if (decision == 'y') {
+            system("cls"); 
+            collections(); 
+            break;
+        } else if (decision == 'n') {
+            printf("Returning...");
+            sleep(2); 
+            system("cls"); 
+            break;
+        } else {
+            printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
+        }
     }
 }
 
@@ -613,4 +760,97 @@ void postedAnnouncements() {
     printf("Returning...");
     sleep(2);
     system("cls");
+}
+
+void listOfficers() {
+    printf("CURRENT ORG OFFICERS\n\n");
+    for (int i = 0; i < ROLE_COUNT; i++) {
+        printf("%s: %s\n", roles[i], officer_names[i]);
+    }
+
+    printf("\n\nEnter to continue...");
+    getchar();
+    getchar();
+    printf("Returning...");
+    sleep(2);
+    system("cls");
+}
+
+void replaceOfficer() {
+    int choice;
+    char new_name[NAME_LENGTH];
+
+    printf("\nSelect the role to replace based on their number:\n");
+    for (int i = 0; i < ROLE_COUNT; i++) {
+        printf("%d. %s\n", i + 1, roles[i]);
+    }
+    printf("\nEnter your choice (1-%d): ", ROLE_COUNT);
+    scanf("%d", &choice);
+
+    // if statement to check if role is valid
+    if (choice < 1 || choice > ROLE_COUNT) {
+        printf("Invalid choice! Please select a valid/existing role.\n");
+        return;
+    }
+
+    // replace name of current officer of the specific role chosen
+    getchar();
+    printf("Enter the new name for %s: ", roles[choice - 1]);
+    fgets(new_name, NAME_LENGTH, stdin);
+
+    new_name[strcspn(new_name, "\n")] = 0;
+
+    strcpy(officer_names[choice - 1], new_name);
+    printf("%s has been assigned to the role of %s!\n", new_name, roles[choice - 1]);
+
+    char decision;
+    while (1) { 
+        printf("\nWould you like to assign another member to a role? (y/n): ");
+        scanf(" %c", &decision);  
+
+        decision = tolower(decision);
+        if (decision == 'y') {
+            system("cls"); 
+            replaceOfficer(); 
+            break;
+        } else if (decision == 'n') {
+            printf("Returning...");
+            sleep(2); 
+            system("cls"); 
+            break;
+        } else {
+            printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
+        }
+    }
+}
+
+void loadOfficers() {
+    FILE *file = fopen(OFFICERS_FILE, "r");
+    if (file == NULL) {
+        printf("Officers file empty.\n");
+        return;
+    }
+
+    for (int i = 0; i < ROLE_COUNT; i++) {
+        if (fgets(officer_names[i], NAME_LENGTH, file) != NULL) {
+            officer_names[i][strcspn(officer_names[i], "\n")] = 0; 
+        }
+    }
+
+    fclose(file);
+}
+
+void saveOfficers() {
+    FILE *file = fopen(OFFICERS_FILE, "w");
+    if (file == NULL) {
+        printf("Error saving officer information!\n");
+        return;
+    }
+
+    for (int i = 0; i < ROLE_COUNT; i++) {
+        fprintf(file, "%s\n", officer_names[i]);
+    }
+
+    fclose(file);
+    printf("Officer's name has been saved!\n");
 }
