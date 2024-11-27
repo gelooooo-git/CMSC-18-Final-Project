@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <windows.h>
+#include <unistd.h>
 
 #define MAX_MEMBER_COUNT 200
 #define NAME_LENGTH 100
@@ -34,7 +36,6 @@ void collections();
 void overrideFunds();
 void postAnnouncement();
 void createDraftAnnouncement();
-void scheduleMeeting();
 void postedAnnouncements();
 
 int main() {
@@ -42,18 +43,22 @@ int main() {
     
     loadMembers();
     loadFunds();
-
+    
     do {
+        login:
         printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
         printf("    [1] Admin\n");
         printf("    [2] Member\n");
-        printf("    [3] Log out\n");
+        printf("    [3] Exit\n");
         printf("What is your position? ");
         scanf("%d", &choice);
         system("cls");
 
         switch (choice) {
             case 1: // admin options
+                printf("Logging in...");
+                sleep(2);
+                system("cls");
                 start:
                 while (1) {
                     printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
@@ -68,6 +73,9 @@ int main() {
                         switch (choice) {
 
                         case 1:
+                            printf("Loading...");
+                            sleep(2);
+                            system("cls");
                             while (1) {
                                 printf("\nMANAGE ORGANIZATION MEMBERS\n");
                                 printf("    [1] Add Member\n");
@@ -80,21 +88,31 @@ int main() {
 
                                 switch (choice) {
                                     case 1:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         addMember();
                                         saveMembers();
                                         system("cls");
                                         break;
                                     case 2:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         showMembers();
                                         system("cls");
                                         break;
                                     case 3:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         removeMember();
                                         saveMembers();
                                         system("cls");
                                         break;
                                     case 4:
                                         printf("Returning to main interface.\n");
+                                        sleep(2);
                                         goto start;  // Break out of the main loop and return to the main menu
                                     default:
                                         printf("Invalid choice! Choose among the options.\n");
@@ -102,43 +120,54 @@ int main() {
                             }
                             break;
                         case 2:
-                            while(1) {
+                            printf("Loading...");
+                            sleep(2);
+                            system("cls");
+                            while(2) {
                                 printf("ANNOUNCEMENTS AND MEETINGS\n");
-                                printf("    [1] Post an announce\n");
+                                printf("    [1] Post an announcememt\n");
                                 printf("    [2] Create a draft\n");
-                                printf("    [3] Schedule a meeting\n");
-                                printf("    [4] See posted announcements\n");
-                                printf("    [5] Return to Main Menu\n");
+                                printf("    [3] See posted announcements\n");
+                                printf("    [4] Return to Main Menu\n");
                                 printf("Choose: ");
                                 scanf("%d", &choice);
                                 system("cls");
 
                                 switch (choice) {
                                     case 1:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         postAnnouncement();
                                         system("cls");
                                         break;
                                     case 2:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         createDraftAnnouncement();
                                         system("cls");
                                         break;
                                     case 3:
-                                        scheduleMeeting();
+                                        printf("Loading...");
+                                        sleep(2);
                                         system("cls");
-                                        break;
-                                    case 4:
                                         postedAnnouncements();
                                         system("cls");
                                         break;
-                                    case 5:
+                                    case 4:
                                         printf("Returning to Main Menu.\n");
+                                        sleep(2);
                                         goto start;
                                     default:
-                                        printf("Invalide choice! Choose among the options.\n");
+                                        printf("Invalid choice! Choose among the options.\n");
                                 }
                             }
                             break;
                         case 3:
+                            printf("Loading...");
+                                sleep(2);
+                                system("cls");
                             while (1){
                                 printf("\nFUND MANAGEMENT\n");
                                 printf("Current Total Funds: %d PHP\n", total_funds);
@@ -147,28 +176,41 @@ int main() {
                                 printf("    [3] Check Funds Log\n");
                                 printf("    [4] Override Current Total Funds\n");
                                 printf("    [5] Return to main interface\n");
-                                printf("What do you want to do? ");
+                                printf("Choose: ");
                                 scanf("%d", &choice);
                                 system("cls");
                                 switch (choice) {
                                     case 1:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         expenses();
                                         system("cls");
                                         break;
                                     case 2:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         collections();
                                         system("cls");
                                         break;
                                     case 3:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         fundsLog();
                                         system("cls");
                                         break;
                                     case 4:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         overrideFunds();
                                         system("cls");
                                         break;
                                     case 5:
                                         printf("Returning to main interface.\n");
+                                        sleep(2);
                                         goto start;
                                     default:
                                         printf("Invalid choice! Choose among the options.\n");
@@ -176,14 +218,18 @@ int main() {
                             }
                             break;
                         case 4:
-                            printf("\nClosing Program. Thank you!\n");
-                            return 0;
+                            printf("\nLoggin Out...\n");
+                            sleep(2);
+                            goto login;
                         default:
                             printf("Invalid choice! Choose among the options.\n");
                     }
                 }
                 break;
             case 2: // member options
+                printf("Logging in...");
+                sleep(2);
+                system("cls");
                 do {
                     printf("\nGROUP10TYPESHI - ORGANIZATION MANAGEMENT SYSTEM\n");
                     printf("    [1] Announcments\n");
@@ -196,45 +242,64 @@ int main() {
 
                     switch (choice) {
                         case 1:
-                            printf("\nAnnouncements\n");
+                            printf("Loading...");
+                            sleep(2);
+                            system("cls");
+                            postedAnnouncements();
                             printf("\nEnter to continue...\n");
                             getchar();
                             getchar();
+                            sleep(2);
                             system("cls");
                             break;
                         case 2:
+                            printf("Loading...");
+                            sleep(2);
+                            system("cls");
                             showMembers();
                             system("cls");
                             break;
                         case 3:
+                            printf("Loading...");
+                            sleep(2);
+                            system("cls");
                             do {
                                 printf("\nMessages\n");
                                 printf("    [1] Inbox\n");
                                 printf("    [2] Send message\n");
-                                printf("    [3] Return\n");
-                                printf("What do you want to do? ");
+                                printf("    [3] Return to main interface \n");
+                                printf("Choose: ");
                                 scanf("%d", &choice);
                                 system("cls");
 
                                 switch (choice) {
                                     case 1:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         //checkInbox();
                                         printf("\nInbox\n");
                                         printf("\nEnter to continue...\n");
                                         getchar();
                                         getchar();
+                                        sleep(2);
                                         system("cls");
                                         break;
                                     case 2:
+                                        printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
                                         //sendMessage();
                                         printf("\nSend Messages\n");
                                         printf("\nEnter to continue...\n");
                                         getchar();
                                         getchar();
+                                        sleep(2);
                                         system("cls");
                                         break;
                                     case 3:
                                         printf("\nReturning...\n");
+                                        sleep(2);
                                         break;
                                     default:
                                         printf("\nInvalid option!\n");
@@ -245,8 +310,9 @@ int main() {
                             } while (choice != 3);
                             break;
                         case 4:
-                            printf("\nReturning...\n");
-                            break;
+                            printf("\nLogging Out...\n");
+                            sleep(2);
+                            goto login;
                         default:
                             printf("\nInvalid option!\n");
                             getchar();
@@ -257,6 +323,7 @@ int main() {
                 break;
             case 3:
                 printf("\nExiting Program...\n");
+                sleep(2);
                 return 0;
             default:
                 printf("\nInvalid option!\n");
@@ -495,14 +562,18 @@ void overrideFunds() {
 
 //Announcements Section
 void postAnnouncement() {
-    printf("What's on your mind? ");
+    printf("What's on your mind?\n");
     getchar();
     fgets(ListPostedAnnouncements[announcement_counter], MAX_ANNOUNCEMENT_LENGTH, stdin);
+    announcement_counter++;
 
     printf("Announcement Posted!");
 
     printf("\n\nEnter to continue...");
     getchar();
+    printf("Returning...");
+    sleep(2);
+    system("cls");
 }
 
 void createDraftAnnouncement() {
@@ -513,21 +584,33 @@ void createDraftAnnouncement() {
     getchar();
 }
 
-void scheduleMeeting() {
-    printf("Under construction :(");
-
-    printf("\nEnter to continue...");
-    getchar();
-    getchar();
-}
-
 void postedAnnouncements() {
-    printf("\nAnnouncements:\n");
-    for(int i = 0; i < announcement_counter; i++) {
-        printf("%d. %s\n", i + 1, ListPostedAnnouncements[i]);
+    // printf("\nAnnouncements:\n");
+    // for(int i = 0; i < announcement_counter; i++) {
+    //     printf("%d. %s\n", i + 1, ListPostedAnnouncements[i]);
+    // }
+
+    FILE *announcements;
+    char ch[100];
+
+    announcements = fopen("announcements.txt", "r");
+    if(announcements == NULL) {
+        printf("Error in opening file.\n");
+        printf("Enter to continue...");
+        getchar();
+        return;
     }
 
+    printf("\nAnnouncements:\n");
+    while(fgets(ch, sizeof(ch), announcements) != NULL) {
+        printf("%s", ch);
+    }
+    
+    fclose(announcements);
+
     printf("\nEnter to continue...");
     getchar();
-    getchar();
+    printf("Returning...");
+    sleep(2);
+    system("cls");
 }
