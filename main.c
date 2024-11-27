@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <windows.h>
-#include <unistd.h>
+//#include <unistd.h>
 
 #define PASSWORD "admin123"
 #define MAX_MEMBER_COUNT 200
@@ -80,204 +80,204 @@ int main() {
 
                     if (strcmp(input, PASSWORD) == 0) { 
                         printf("\nAccess granted! Welcome, admin!\n");
-                        break; 
+                        printf("Logging in as Administrator...");
+                        sleep(2);
+                        system("cls");
+                        start:
+                        do {
+                            printf("Welcome to ORGanized! Currently logged in as Administrator\n");
+                            printf("    [1] Manage Organization Members and Officers\n");
+                            printf("    [2] Post Announcements/Schedule Meetings\n");
+                            printf("    [3] Manage Funds\n");
+                            printf("    [4] Log Out\n");
+                            printf("What do you want to do? ");
+                            scanf("%d", &choice);
+                            system("cls");
+
+                            switch (choice) {
+                                case 1:
+                                    printf("Loading...");
+                                    sleep(2);
+                                    system("cls");
+                                    do {
+                                        printf("MANAGE ORGANIZATION MEMBERS AND OFFICERS\n");
+                                        printf("    [1] Add Member\n");
+                                        printf("    [2] Show Members List\n");
+                                        printf("    [3] Remove Member\n");
+                                        printf("    [4] Show Officers List\n");
+                                        printf("    [5] Replace Officers\n");
+                                        printf("    [6] Return to Main Menu\n");
+                                        printf("What do you want to do? ");
+                                        scanf("%d", &choice);
+                                        system("cls");
+
+                                        switch (choice) {
+                                            case 1: // add members
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                addMember();
+                                                saveMembers();
+                                                system("cls");
+                                                break;
+                                            case 2: // show list of members
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                showMembers();
+                                                system("cls");
+                                                break;
+                                            case 3: // remove members from org
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                removeMember();
+                                                saveMembers();
+                                                system("cls");
+                                                break;
+                                            case 4: // show list of officers
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                listOfficers();
+                                                system("cls");
+                                                break;                                    
+                                            case 5: // replace officer
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                replaceOfficer();
+                                                saveOfficers();
+                                                system("cls");
+                                                break;
+                                            case 6:
+                                                printf("Returning to main interface...\n");
+                                                sleep(2);
+                                                break;  // Break out of the main loop and return to the main menu
+                                            default:
+                                                printf("Invalid choice! Choose among the options.\n");
+                                        }
+                                    } while (choice != 6);
+                                    break;
+                                case 2:
+                                    printf("Loading...");
+                                    sleep(2);
+                                    system("cls");
+                                    do {
+                                        printf("ANNOUNCEMENTS AND MEETINGS\n");
+                                        printf("    [1] Post an announcememt\n");
+                                        printf("    [2] Create a draft\n");
+                                        printf("    [3] See posted announcements\n");
+                                        printf("    [4] Return to Main Menu\n");
+                                        printf("Choose: ");
+                                        scanf("%d", &choice);
+                                        system("cls");
+
+                                        switch (choice) {
+                                            case 1:
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                postAnnouncement();
+                                                system("cls");
+                                                break;
+                                            case 2:
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                createDraftAnnouncement();
+                                                system("cls");
+                                                break;
+                                            case 3:
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                postedAnnouncements();
+                                                system("cls");
+                                                break;
+                                            case 4:
+                                                printf("Returning to Main Menu...\n");
+                                                sleep(2);
+                                                break;
+                                            default:
+                                                printf("Invalid choice! Choose among the options.\n");
+                                        }
+                                    } while (choice != 4);
+                                    choice = -1;
+                                    break;
+                                case 3:
+                                    printf("Loading...");
+                                        sleep(2);
+                                        system("cls");
+                                    do {
+                                        printf("FUND MANAGEMENT\n");
+                                        printf("Current Total Funds: %d PHP\n", total_funds);
+                                        printf("    [1] Expenses\n");
+                                        printf("    [2] Collections\n");
+                                        printf("    [3] Check Funds Log\n");
+                                        printf("    [4] Override Current Total Funds\n");
+                                        printf("    [5] Return to main interface\n");
+                                        printf("Choose: ");
+                                        scanf("%d", &choice);
+                                        system("cls");
+                                        switch (choice) {
+                                            case 1:
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                expenses();
+                                                system("cls");
+                                                break;
+                                            case 2:
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                collections();
+                                                system("cls");
+                                                break;
+                                            case 3:
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                fundsLog();
+                                                system("cls");
+                                                break;
+                                            case 4:
+                                                printf("Loading...");
+                                                sleep(2);
+                                                system("cls");
+                                                overrideFunds();
+                                                system("cls");
+                                                break;
+                                            case 5:
+                                                printf("Returning to main interface...\n");
+                                                sleep(2);
+                                                system("cls");
+                                                break;
+                                            default:
+                                                printf("Invalid choice! Choose among the options.\n");
+                                        }
+                                    } while (choice != 5);
+                                    break;
+                                case 4:
+                                    printf("\nLogging Out...\n");
+                                    sleep(2);
+                                    break;
+                                default:
+                                    printf("Invalid choice! Choose among the options.\n");
+                            }
+                        } while (choice != 4);
+                        break;
                     } else {
                         attempts--;
                         printf("\nIncorrect password. You only have %d attempt/s remaining before the program returns to the main interface.\n", attempts);
                     }
                     
-                if (attempts <= 0) {
-                    printf("\nAttempt limit reached. Returning to main interface...\n");
-                    sleep(2);
-                    attempts = 3;
-                    goto login;
-                }
-                }
-
-                printf("Logging in as Administrator...");
-                sleep(2);
-                system("cls");
-                start:
-                while (1) {
-                    printf("Welcome to ORGanized! Currently logged in as Administrator\n");
-                    printf("    [1] Manage Organization Members and Officers\n");
-                    printf("    [2] Post Announcements/Schedule Meetings\n");
-                    printf("    [3] Manage Funds\n");
-                    printf("    [4] Log Out\n");
-                    printf("What do you want to do? ");
-                    scanf("%d", &choice);
-                    system("cls");
-
-                        switch (choice) {
-                        case 1:
-                            printf("Loading...");
-                            sleep(2);
-                            system("cls");
-                            while (1) {
-                                printf("MANAGE ORGANIZATION MEMBERS AND OFFICERS\n");
-                                printf("    [1] Add Member\n");
-                                printf("    [2] Show Members List\n");
-                                printf("    [3] Remove Member\n");
-                                printf("    [4] Show Officers List\n");
-                                printf("    [5] Replace Officers\n");
-                                printf("    [6] Return to Main Menu\n");
-                                printf("What do you want to do? ");
-                                scanf("%d", &choice);
-                                system("cls");
-
-                                switch (choice) {
-                                    case 1: // add members
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        addMember();
-                                        saveMembers();
-                                        system("cls");
-                                        break;
-                                    case 2: // show list of members
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        showMembers();
-                                        system("cls");
-                                        break;
-                                    case 3: // remove members from org
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        removeMember();
-                                        saveMembers();
-                                        system("cls");
-                                        break;
-                                    case 4: // show list of officers
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        listOfficers();
-                                        system("cls");
-                                        break;                                    
-                                    case 5: // replace officer
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        replaceOfficer();
-                                        saveOfficers();
-                                        system("cls");
-                                        break;
-                                    case 6:
-                                        printf("Returning to main interface...\n");
-                                        sleep(2);
-                                        goto start;  // Break out of the main loop and return to the main menu
-                                    default:
-                                        printf("Invalid choice! Choose among the options.\n");
-                                }
-                            }
-                            break;
-                        case 2:
-                            printf("Loading...");
-                            sleep(2);
-                            system("cls");
-                            while(2) {
-                                printf("ANNOUNCEMENTS AND MEETINGS\n");
-                                printf("    [1] Post an announcememt\n");
-                                printf("    [2] Create a draft\n");
-                                printf("    [3] See posted announcements\n");
-                                printf("    [4] Return to Main Menu\n");
-                                printf("Choose: ");
-                                scanf("%d", &choice);
-                                system("cls");
-
-                                switch (choice) {
-                                    case 1:
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        postAnnouncement();
-                                        system("cls");
-                                        break;
-                                    case 2:
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        createDraftAnnouncement();
-                                        system("cls");
-                                        break;
-                                    case 3:
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        postedAnnouncements();
-                                        system("cls");
-                                        break;
-                                    case 4:
-                                        printf("Returning to Main Menu...\n");
-                                        sleep(2);
-                                        goto start;
-                                    default:
-                                        printf("Invalid choice! Choose among the options.\n");
-                                }
-                            }
-                            break;
-                        case 3:
-                            printf("Loading...");
-                                sleep(2);
-                                system("cls");
-                            while (1){
-                                printf("FUND MANAGEMENT\n");
-                                printf("Current Total Funds: %d PHP\n", total_funds);
-                                printf("    [1] Expenses\n");
-                                printf("    [2] Collections\n");
-                                printf("    [3] Check Funds Log\n");
-                                printf("    [4] Override Current Total Funds\n");
-                                printf("    [5] Return to main interface\n");
-                                printf("Choose: ");
-                                scanf("%d", &choice);
-                                system("cls");
-                                switch (choice) {
-                                    case 1:
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        expenses();
-                                        system("cls");
-                                        break;
-                                    case 2:
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        collections();
-                                        system("cls");
-                                        break;
-                                    case 3:
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        fundsLog();
-                                        system("cls");
-                                        break;
-                                    case 4:
-                                        printf("Loading...");
-                                        sleep(2);
-                                        system("cls");
-                                        overrideFunds();
-                                        system("cls");
-                                        break;
-                                    case 5:
-                                        printf("Returning to main interface...\n");
-                                        sleep(2);
-                                        system("cls");
-                                        goto start;
-                                    default:
-                                        printf("Invalid choice! Choose among the options.\n");
-                                }
-                            }
-                            break;
-                        case 4:
-                            printf("\nLogging Out...\n");
-                            sleep(2);
-                            goto login;
-                        default:
-                            printf("Invalid choice! Choose among the options.\n");
+                    if (attempts <= 0) {
+                        printf("\nAttempt limit reached. Returning to main interface...\n");
+                        sleep(2);
+                        attempts = 3;
+                        break;
                     }
                 }
                 break;
@@ -367,7 +367,7 @@ int main() {
                         case 4:
                             printf("\nLogging Out...\n");
                             sleep(2);
-                            goto login;
+                            break;
                         default:
                             printf("\nInvalid option!\n");
                             getchar();
