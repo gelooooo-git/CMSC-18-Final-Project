@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <windows.h>
-//#include <unistd.h>
+#include <unistd.h>
 
 #define PASSWORD "admin123"
 #define MAX_MEMBER_COUNT 200
@@ -18,7 +18,7 @@
 #define ROLE_COUNT 7
 
 // Arrays
-char members[MAX_MEMBER_COUNT][NAME_LENGTH];
+//char members[MAX_MEMBER_COUNT][NAME_LENGTH];
 int active[MAX_MEMBER_COUNT]; 
 int member_count = 0;
 char roles[ROLE_COUNT][NAME_LENGTH] = {"President", "Vice President", "Secretary", "Treasurer", "Auditor", "Event Coordinator", "Public Relations and Communications"};
@@ -48,6 +48,17 @@ void overrideFunds();
 void postAnnouncement();
 void createDraftAnnouncement();
 void postedAnnouncements();
+
+struct orgMember { 
+    char surname[50];
+    char firstname[50];
+    char midInitials[5]; 
+    int year; // 1-6 hanggang 6 yrs lnf diba tau asdjaskd
+    int age;
+    int active; // 1 for active and 0 for inactive
+};
+
+struct orgMember members[MAX_MEMBER_COUNT];
 
 int main() {
     int choice;
@@ -396,61 +407,154 @@ int main() {
 
 // Members Section
 void addMember() {
-    if (member_count >= MAX_MEMBER_COUNT) {
+    // if (member_count >= MAX_MEMBER_COUNT) {
+    //     printf("Organization is currently full! Remove any inactive member if necessary.\n");
+    //     return;
+    // }
+
+    // printf("Enter the name of the member to add: ");
+    // getchar(); // to clear newline from input buffer
+    // fgets(members[member_count], NAME_LENGTH, stdin);
+
+    // members[member_count][strcspn(members[member_count], "\n")] = 0;
+    // active[member_count] = 1;  // Set the member as active
+    // member_count++;
+
+    // printf("%s has been added to the org!\n", members[member_count - 1]);
+
+    // char decision;
+    // while (1) { 
+    //     printf("\nWould you like to add another member? (y/n): ");
+    //     scanf(" %c", &decision);  
+
+    //     decision = tolower(decision);
+    //     if (decision == 'y') {
+    //         system("cls"); 
+    //         addMember(); 
+    //         break;
+    //     } else if (decision == 'n') {
+    //         printf("Returning...");
+    //         sleep(2); 
+    //         system("cls"); 
+    //         break;
+    //     } else {
+    //         printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
+    //     }
+    // }
+     if (member_count >= MAX_MEMBER_COUNT) {
         printf("Organization is currently full! Remove any inactive member if necessary.\n");
         return;
     }
 
-    printf("Enter the name of the member to add: ");
-    getchar(); // to clear newline from input buffer
-    fgets(members[member_count], NAME_LENGTH, stdin);
+    struct orgMember newMember;
 
-    members[member_count][strcspn(members[member_count], "\n")] = 0;
-    active[member_count] = 1;  // Set the member as active
-    member_count++;
+    // lastnaem
+    printf("Enter the member's surname: ");
+    getchar(); 
+    fgets(newMember.surname, sizeof(newMember.surname), stdin);
+    newMember.surname[strcspn(newMember.surname, "\n")] = '\0';
 
-    printf("%s has been added to the org!\n", members[member_count - 1]);
+    // firstname
+    printf("Enter the member's first name: ");
+    fgets(newMember.firstname, sizeof(newMember.firstname), stdin);
+    newMember.firstname[strcspn(newMember.firstname, "\n")] = '\0';
 
+    // MI
+    printf("Enter the member's middle initials (if any, or leave blank): ");
+    fgets(newMember.midInitials, sizeof(newMember.midInitials), stdin);
+    newMember.midInitials[strcspn(newMember.midInitials, "\n")] = '\0';
+
+    //uearlvl
+    printf("Enter the member's year level (1-6): ");
+    while (scanf("%d", &newMember.year) != 1 || newMember.year < 1 || newMember.year > 6) {
+        printf("Invalid input! Please enter a number between 1 and 6: ");
+        while (getchar() != '\n'); // Clear invalid input
+    }
+
+    //age
+    printf("Enter the member's age: ");
+    while (scanf("%d", &newMember.age) != 1 || newMember.age <= 0) {
+        printf("Invalid age! Please enter a positive number: ");
+        while (getchar() != '\n');
+    }
+
+    newMember.active = 1;  // activememberstatus
+
+    members[member_count++] = newMember;
+    printf("%s %s has been added to the organization!\n", newMember.firstname, newMember.surname);
+
+    // prompt if user wants to add another memeber
     char decision;
-    while (1) { 
+    while (1) {
         printf("\nWould you like to add another member? (y/n): ");
-        scanf(" %c", &decision);  
+        scanf(" %c", &decision);
 
         decision = tolower(decision);
         if (decision == 'y') {
-            system("cls"); 
+            system("cls");
             addMember(); 
             break;
         } else if (decision == 'n') {
-            printf("Returning...");
-            sleep(2); 
-            system("cls"); 
+            printf("Returning...\n");
+            sleep(2);
+            system("cls");
             break;
         } else {
             printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
         }
     }
+    saveMembers();
 }
 
 void showMembers() {
     printf("CURRENT ORG MEMBERS\n\n");
 
-    // temp array to store active members
+    // // temp array to store active members
+    // char sorted_members[MAX_MEMBER_COUNT][NAME_LENGTH];
+    // int sorted_count = 0;
+
+    // for (int i = 0; i < member_count; i++) {
+    //     if (active[i]) {
+    //         strcpy(sorted_members[sorted_count], members[i]); // Copy active members
+    //         sorted_count++;
+    //     }
+    // }
+
+    // // sort the member list in alphabetical order (A-Z)
+    // for (int i = 0; i < sorted_count - 1; i++) {
+    //     for (int j = i + 1; j < sorted_count; j++) {
+    //         if (strcmp(sorted_members[i], sorted_members[j]) > 0) {
+    //             // Swap
+    //             char temp[NAME_LENGTH];
+    //             strcpy(temp, sorted_members[i]);
+    //             strcpy(sorted_members[i], sorted_members[j]);
+    //             strcpy(sorted_members[j], temp);
+    //         }
+    //     }
+    // }
+
+    // // print the updated member list
+    // if (sorted_count > 0) {
+    //     for (int i = 0; i < sorted_count; i++) {
+    //         printf("%d. %s\n", i + 1, sorted_members[i]);
+    //     }
+    // } else {
+    //     printf("No members :(.\n");
+    // }
+
     char sorted_members[MAX_MEMBER_COUNT][NAME_LENGTH];
     int sorted_count = 0;
 
     for (int i = 0; i < member_count; i++) {
-        if (active[i]) {
-            strcpy(sorted_members[sorted_count], members[i]); // Copy active members
+        if (members[i].active) {
+            snprintf(sorted_members[sorted_count], NAME_LENGTH, "%s %s", members[i].firstname, members[i].surname);
             sorted_count++;
         }
     }
 
-    // sort the member list in alphabetical order (A-Z)
     for (int i = 0; i < sorted_count - 1; i++) {
         for (int j = i + 1; j < sorted_count; j++) {
             if (strcmp(sorted_members[i], sorted_members[j]) > 0) {
-                // Swap
                 char temp[NAME_LENGTH];
                 strcpy(temp, sorted_members[i]);
                 strcpy(sorted_members[i], sorted_members[j]);
@@ -459,14 +563,16 @@ void showMembers() {
         }
     }
 
-    // print the updated member list
+    // Print the updated member list
     if (sorted_count > 0) {
         for (int i = 0; i < sorted_count; i++) {
             printf("%d. %s\n", i + 1, sorted_members[i]);
         }
     } else {
-        printf("No members :(.\n");
+        printf("No active members :(\n");
     }
+
+
 
     // Pause before returning
     printf("\nPress Enter to continue...");
@@ -496,47 +602,141 @@ void showMembers() {
 }
 
 void removeMember() {
-    char name[NAME_LENGTH];
-    printf("Enter the name of the member to remove: ");
-    getchar();
-    fgets(name, NAME_LENGTH, stdin);
-    name[strcspn(name, "\n")] = 0;
+    //char name[NAME_LENGTH];
+    // printf("Enter the name of the member to remove: ");
+    // getchar();
+    // fgets(name, NAME_LENGTH, stdin);
+    // name[strcspn(name, "\n")] = 0;
 
-    int member_check = 0;
+    // int member_check = 0;
     
+    // for (int i = 0; i < member_count; i++) {
+    //     if (active[i] && strcmp(members[i], name) == 0) {
+    //         active[i] = 0; 
+    //         printf("%s has been removed from the org!\n", name);
+    //         member_check = 1;
+    //         break;
+    //     }
+    // }
+
+    // if (!member_check) {
+    //     printf("%s is not found in the current member list.\n", name);
+    // }
+
+    // char decision;
+    // while (1) { 
+    //     printf("\nWould you like to remove another member? (y/n): ");
+    //     scanf(" %c", &decision);  
+
+    //     decision = tolower(decision);
+    //     if (decision == 'y') {
+    //         system("cls"); 
+    //         removeMember(); 
+    //         break;
+    //     } else if (decision == 'n') {
+    //         printf("Returning...");
+    //         sleep(2); 
+    //         system("cls"); 
+    //         break;
+    //     } else {
+    //         printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
+    //     }
+    // }
+    printf("CURRENT ACTIVE MEMBERS\n\n");
+
+    // list of active members with numbers, murag katong show list ra
+    int active_count = 0;
     for (int i = 0; i < member_count; i++) {
-        if (active[i] && strcmp(members[i], name) == 0) {
-            active[i] = 0; 
-            printf("%s has been removed from the org!\n", name);
-            member_check = 1;
-            break;
+        if (members[i].active) {
+            printf("%d. %s %s\n", active_count + 1, members[i].firstname, members[i].surname);
+            active_count++;
         }
     }
 
-    if (!member_check) {
-        printf("%s is not found in the current member list.\n", name);
+    if (active_count == 0) {
+        printf("No active members to remove.\n");
+        return;
+    }
+
+    int member_to_remove;
+    printf("\nEnter the number of the member to remove: ");
+    scanf("%d", &member_to_remove);
+
+    if (member_to_remove < 1 || member_to_remove > active_count) {
+        printf("Invalid number! Please enter a valid number from the list.\n");
+        return;
+    }
+
+    int index = -1;
+    active_count = 0;
+    for (int i = 0; i < member_count; i++) {
+        if (members[i].active) {
+            active_count++;
+            if (active_count == member_to_remove) {
+                index = i;
+                break;
+            }
+        }
+    }
+
+    if (index != -1) {
+        members[index].active = 0;
+        printf("%s %s has been removed from the org!\n", members[index].firstname, members[index].surname);
     }
 
     char decision;
-    while (1) { 
+    while (1) {
         printf("\nWould you like to remove another member? (y/n): ");
-        scanf(" %c", &decision);  
+        scanf(" %c", &decision);
 
         decision = tolower(decision);
         if (decision == 'y') {
-            system("cls"); 
-            removeMember(); 
+            system("cls");
+            removeMember(); // Recursively call removeMember to remove another member
             break;
         } else if (decision == 'n') {
-            printf("Returning...");
-            sleep(2); 
-            system("cls"); 
+            printf("Returning...\n");
+            sleep(2);
+            system("cls");
             break;
         } else {
             printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
         }
     }
+    saveMembers();
 }
+
+// void saveMembers() {
+//     FILE *file = fopen(MEMBERS_FILE, "w");
+//     if (file == NULL) {
+//         printf("Error saving members to file.\n");
+//         return;
+//     }
+
+//     for (int i = 0; i < member_count; i++) {
+//         if (active[i]) {
+//             fprintf(file, "%s\n", members[i]);
+//         }
+//     }
+
+//     fclose(file);
+// }
+
+// void loadMembers() {
+//     FILE *file = fopen(MEMBERS_FILE, "r");
+//     if (file == NULL) {
+//         printf("No members file found.\n");
+//         return;
+//     }
+
+//     while (fgets(members[member_count], NAME_LENGTH, file)) {
+//         members[member_count][strcspn(members[member_count], "\n")] = 0; 
+//         active[member_count] = 1;  
+//         member_count++;
+//     }
+
+//     fclose(file);
+// }
 
 void saveMembers() {
     FILE *file = fopen(MEMBERS_FILE, "w");
@@ -546,8 +746,14 @@ void saveMembers() {
     }
 
     for (int i = 0; i < member_count; i++) {
-        if (active[i]) {
-            fprintf(file, "%s\n", members[i]);
+        if (members[i].active) {
+            // Save each field of the member to the file
+            fprintf(file, "%s\n", members[i].surname);
+            fprintf(file, "%s\n", members[i].firstname);
+            fprintf(file, "%s\n", members[i].midInitials);
+            fprintf(file, "%d\n", members[i].year);
+            fprintf(file, "%d\n", members[i].age);
+            fprintf(file, "%d\n", members[i].active);
         }
     }
 
@@ -561,14 +767,20 @@ void loadMembers() {
         return;
     }
 
-    while (fgets(members[member_count], NAME_LENGTH, file)) {
-        members[member_count][strcspn(members[member_count], "\n")] = 0; 
-        active[member_count] = 1;  
+    while (fscanf(file, "%49s %49s %4s %d %d %d\n", 
+            members[member_count].surname, 
+            members[member_count].firstname, 
+            members[member_count].midInitials, 
+            &members[member_count].year, 
+            &members[member_count].age, 
+            &members[member_count].active) == 6) {
+        
         member_count++;
     }
 
     fclose(file);
 }
+
 
 // Funds Section
 void loadFunds() {
