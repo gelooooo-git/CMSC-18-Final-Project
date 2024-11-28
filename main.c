@@ -407,10 +407,10 @@ int main() {
 
 // Members Section
 void addMember() {
-    // if (member_count >= MAX_MEMBER_COUNT) {
-    //     printf("Organization is currently full! Remove any inactive member if necessary.\n");
-    //     return;
-    // }
+    if (member_count >= MAX_MEMBER_COUNT) {
+        printf("Organization is currently full! Remove any inactive member if necessary.\n");
+        return;
+    }
 
     // printf("Enter the name of the member to add: ");
     // getchar(); // to clear newline from input buffer
@@ -441,10 +441,6 @@ void addMember() {
     //         printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
     //     }
     // }
-     if (member_count >= MAX_MEMBER_COUNT) {
-        printf("Organization is currently full! Remove any inactive member if necessary.\n");
-        return;
-    }
 
     struct orgMember newMember;
 
@@ -509,9 +505,9 @@ void addMember() {
 void showMembers() {
     printf("CURRENT ORG MEMBERS\n\n");
 
-    // // temp array to store active members
-    // char sorted_members[MAX_MEMBER_COUNT][NAME_LENGTH];
-    // int sorted_count = 0;
+    // temp array to store active members
+    char sorted_members[MAX_MEMBER_COUNT][NAME_LENGTH];
+    int sorted_count = 0;
 
     // for (int i = 0; i < member_count; i++) {
     //     if (active[i]) {
@@ -519,31 +515,6 @@ void showMembers() {
     //         sorted_count++;
     //     }
     // }
-
-    // // sort the member list in alphabetical order (A-Z)
-    // for (int i = 0; i < sorted_count - 1; i++) {
-    //     for (int j = i + 1; j < sorted_count; j++) {
-    //         if (strcmp(sorted_members[i], sorted_members[j]) > 0) {
-    //             // Swap
-    //             char temp[NAME_LENGTH];
-    //             strcpy(temp, sorted_members[i]);
-    //             strcpy(sorted_members[i], sorted_members[j]);
-    //             strcpy(sorted_members[j], temp);
-    //         }
-    //     }
-    // }
-
-    // // print the updated member list
-    // if (sorted_count > 0) {
-    //     for (int i = 0; i < sorted_count; i++) {
-    //         printf("%d. %s\n", i + 1, sorted_members[i]);
-    //     }
-    // } else {
-    //     printf("No members :(.\n");
-    // }
-
-    char sorted_members[MAX_MEMBER_COUNT][NAME_LENGTH];
-    int sorted_count = 0;
 
     for (int i = 0; i < member_count; i++) {
         if (members[i].active) {
@@ -563,7 +534,6 @@ void showMembers() {
         }
     }
 
-    // Print the updated member list
     if (sorted_count > 0) {
         for (int i = 0; i < sorted_count; i++) {
             printf("%d. %s\n", i + 1, sorted_members[i]);
@@ -571,8 +541,6 @@ void showMembers() {
     } else {
         printf("No active members :(\n");
     }
-
-
 
     // Pause before returning
     printf("\nPress Enter to continue...");
@@ -773,8 +741,7 @@ void loadMembers() {
             members[member_count].midInitials, 
             &members[member_count].year, 
             &members[member_count].age, 
-            &members[member_count].active) == 6) {
-        
+            &members[member_count].active) != EOF ) {
         member_count++;
     }
 
@@ -916,8 +883,6 @@ void overrideFunds() {
     saveFunds();
     fundsHistory("Override", new_total_funds, "Funds override");
 }
-
-
 
 //Announcements Section
 void postAnnouncement() {
