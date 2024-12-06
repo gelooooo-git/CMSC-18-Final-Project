@@ -46,7 +46,6 @@ void fundsLog();
 void collections();
 void overrideFunds();
 void postAnnouncement();
-void createDraftAnnouncement();
 void postedAnnouncements();
 
 struct orgMember { 
@@ -70,7 +69,7 @@ int main() {
     loadFunds();
     
     do {
-        login:
+        
         system("cls");
         printf("Welcome to ORGanized! a C-based Organization Management System\n");
         printf("    [1] Login as Admin\n");
@@ -94,7 +93,7 @@ int main() {
                         printf("Logging in as Administrator...");
                         sleep(2);
                         system("cls");
-                        start:
+                        
                         do {
                             printf("Welcome to ORGanized! Currently logged in as Administrator\n");
                             printf("    [1] Manage Organization Members and Officers\n");
@@ -177,9 +176,8 @@ int main() {
                                     do {
                                         printf("ANNOUNCEMENTS AND MEETINGS\n");
                                         printf("    [1] Post an announcememt\n");
-                                        printf("    [2] Create a draft\n");
-                                        printf("    [3] See posted announcements\n");
-                                        printf("    [4] Return to Main Menu\n");
+                                        printf("    [2] See posted announcements\n");
+                                        printf("    [3] Return to Main Menu\n");
                                         printf("Choose: ");
                                         scanf("%d", &choice);
                                         system("cls");
@@ -196,17 +194,10 @@ int main() {
                                                 printf("Loading...");
                                                 sleep(2);
                                                 system("cls");
-                                                createDraftAnnouncement();
-                                                system("cls");
-                                                break;
-                                            case 3:
-                                                printf("Loading...");
-                                                sleep(2);
-                                                system("cls");
                                                 postedAnnouncements();
                                                 system("cls");
                                                 break;
-                                            case 4:
+                                            case 3:
                                                 printf("Returning to Main Menu...\n");
                                                 sleep(2);
                                                 break;
@@ -893,19 +884,26 @@ void postAnnouncement() {
 
     printf("Announcement Posted!");
 
+    FILE *post_announcement;
+
+    post_announcement = fopen("announcements.txt", "a+");
+    if(post_announcement == NULL) {
+        printf("Unable to open file.");
+        printf("Enter to continue...");
+        getchar();
+        return;
+    }
+
+    fprintf(post_announcement, "%d. %s\n", announcement_counter + 1, ListPostedAnnouncements[announcement_counter]);
+
+    fclose(post_announcement);
+
+
     printf("\n\nEnter to continue...");
     getchar();
-    printf("Returning...");
+    printf("\nReturning...");
     sleep(2);
     system("cls");
-}
-
-void createDraftAnnouncement() {
-    printf("Under construction :(");
-
-    printf("\nEnter to continue...");
-    getchar();
-    getchar();
 }
 
 void postedAnnouncements() {
@@ -929,12 +927,11 @@ void postedAnnouncements() {
     while(fgets(ch, sizeof(ch), announcements) != NULL) {
         printf("%s", ch);
     }
-    
     fclose(announcements);
 
     printf("\nEnter to continue...");
     getchar();
-    printf("Returning...");
+    printf("\nReturning...");
     sleep(2);
     system("cls");
 }
