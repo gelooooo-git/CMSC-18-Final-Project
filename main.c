@@ -97,7 +97,7 @@ int main() {
                         do {
                             printf("Welcome to ORGanized! Currently logged in as Administrator\n");
                             printf("    [1] Manage Organization Members and Officers\n");
-                            printf("    [2] Post Announcements/Schedule Meetings\n");
+                            printf("    [2] Manage Announcements\n");
                             printf("    [3] Manage Funds\n");
                             printf("    [4] Log Out\n");
                             printf("What do you want to do? ");
@@ -175,8 +175,8 @@ int main() {
                                     system("cls");
                                     do {
                                         printf("ANNOUNCEMENTS AND MEETINGS\n");
-                                        printf("    [1] Post an announcememt\n");
-                                        printf("    [2] See posted announcements\n");
+                                        printf("    [1] See posted announcements\n");
+                                        printf("    [2] Post an announcement\n");
                                         printf("    [3] Return to Main Menu\n");
                                         printf("Choose: ");
                                         scanf("%d", &choice);
@@ -187,24 +187,25 @@ int main() {
                                                 printf("Loading...");
                                                 sleep(2);
                                                 system("cls");
-                                                postAnnouncement();
+                                                postedAnnouncements();
                                                 system("cls");
                                                 break;
                                             case 2:
                                                 printf("Loading...");
                                                 sleep(2);
                                                 system("cls");
-                                                postedAnnouncements();
+                                                postAnnouncement();
                                                 system("cls");
                                                 break;
                                             case 3:
                                                 printf("Returning to Main Menu...\n");
                                                 sleep(2);
+                                                system("cls");
                                                 break;
                                             default:
                                                 printf("Invalid choice! Choose among the options.\n");
                                         }
-                                    } while (choice != 4);
+                                    } while (choice != 3);
                                     choice = -1;
                                     break;
                                 case 3:
@@ -880,11 +881,13 @@ void postAnnouncement() {
     printf("What's on your mind?\n");
     getchar();
     fgets(ListPostedAnnouncements[announcement_counter], MAX_ANNOUNCEMENT_LENGTH, stdin);
-    announcement_counter++;
+    
 
     printf("Announcement Posted!");
 
     FILE *post_announcement;
+    char ch[100];
+    int announcement_num = 1;
 
     post_announcement = fopen("announcements.txt", "a+");
     if(post_announcement == NULL) {
@@ -894,14 +897,19 @@ void postAnnouncement() {
         return;
     }
 
-    fprintf(post_announcement, "%d. %s\n", announcement_counter + 1, ListPostedAnnouncements[announcement_counter]);
+    while (fgets(ch, sizeof(ch), post_announcement) != NULL) {
+        announcement_num++;
+    }
+
+    fprintf(post_announcement, "%d. %s", announcement_num, ListPostedAnnouncements[announcement_counter]);
 
     fclose(post_announcement);
-
+    announcement_counter++;
 
     printf("\n\nEnter to continue...");
     getchar();
-    printf("\nReturning...");
+    system("cls");
+    printf("Returning...");
     sleep(2);
     system("cls");
 }
@@ -923,14 +931,16 @@ void postedAnnouncements() {
         return;
     }
 
-    printf("\nAnnouncements:\n");
+    printf("Announcements:\n");
     while(fgets(ch, sizeof(ch), announcements) != NULL) {
         printf("%s", ch);
     }
     fclose(announcements);
 
-    printf("\nEnter to continue...");
+    printf("\n\nEnter to continue...");
     getchar();
+    getchar();
+    system("cls");
     printf("\nReturning...");
     sleep(2);
     system("cls");
