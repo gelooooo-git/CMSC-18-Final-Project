@@ -881,8 +881,6 @@ void postAnnouncement() {
     printf("What's on your mind?\n");
     getchar();
     fgets(ListPostedAnnouncements[announcement_counter], MAX_ANNOUNCEMENT_LENGTH, stdin);
-    
-
     printf("Announcement Posted!");
 
     FILE *post_announcement;
@@ -902,7 +900,6 @@ void postAnnouncement() {
     }
 
     fprintf(post_announcement, "%d. %s", announcement_num, ListPostedAnnouncements[announcement_counter]);
-
     fclose(post_announcement);
     announcement_counter++;
 
@@ -915,11 +912,6 @@ void postAnnouncement() {
 }
 
 void postedAnnouncements() {
-    // printf("\nAnnouncements:\n");
-    // for(int i = 0; i < announcement_counter; i++) {
-    //     printf("%d. %s\n", i + 1, ListPostedAnnouncements[i]);
-    // }
-
     FILE *announcements;
     char ch[100];
 
