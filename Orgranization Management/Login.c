@@ -1,5 +1,12 @@
 // thing to do next time, organization info, funds, options for each positions, announcements, edit members, promote members, 
 
+//Members functions: Profile, Messages, See Announcements, About Organization, 
+//President and Vice-President Functions: All
+//Secretary: Member Access, Announcements, Edit About Oganization
+//Treasurer: Funds Access
+//Auditor: Funds Access
+
+
 // ask for name part,
 
 #include <stdio.h>
@@ -9,14 +16,16 @@
 #include <conio.h>
 #include <ctype.h>
 
-#define NAME_LENGTH 100
+#define MAX_INFO_LENGTH 100
 #define MAX_MEMBERS 20
+#define MAX_ABOUT_LENGTH 2000
 #define MAX_ANNOUNCEMENTS 100
-#define PASSWORD_TRIES 4
-#define MESSAGE_LENGTH 1000
-#define MESSAGE_COUNT 100
-#define ABOUT_LENGTH 2000
-#define DELIMITER "="
+#define MAX_ANNOUNCEMENT_LENGTH 256
+#define MAX_MESSAGES 100
+#define MAX_MESSAGE_LENGTH 1000
+#define MAX_PASSWORD_TRIES 4
+
+#define ACCOUNT_DELIMITER "="
 #define END_CHARACTER '~'
 
 #define MEMBERS_FILE "c-files/accounts.txt"
@@ -26,19 +35,19 @@
 #define ANNOUNCEMENTS_FILE "c-files/announcements.txt"
 
 typedef struct {
-    char sender[NAME_LENGTH];
-    char message[NAME_LENGTH];
+    char sender[MAX_INFO_LENGTH];
+    char message[MAX_INFO_LENGTH];
 } Inbox;
 
 typedef struct {
-    char username[NAME_LENGTH];
-    char password[NAME_LENGTH];
-    Inbox inbox[MESSAGE_COUNT];
-    char studentNumber[NAME_LENGTH];
-    char position[NAME_LENGTH];
-    char program[NAME_LENGTH];
-    char year[NAME_LENGTH];
-    char birthday[NAME_LENGTH];
+    char username[MAX_INFO_LENGTH];
+    char password[MAX_INFO_LENGTH];
+    Inbox inbox[MAX_MESSAGES];
+    char studentNumber[MAX_INFO_LENGTH];
+    char position[MAX_INFO_LENGTH];
+    char program[MAX_INFO_LENGTH];
+    char year[MAX_INFO_LENGTH];
+    char birthday[MAX_INFO_LENGTH];
 } Member;
 
 Member member[MAX_MEMBERS];
@@ -47,19 +56,24 @@ int membersCount;
 int currentUser;
 int pendingCount;
 
-char orgAbout[ABOUT_LENGTH] = "";
+char orgAbout[MAX_ABOUT_LENGTH] = "";
 
 typedef struct {
     int amount;
-    char purpose[NAME_LENGTH];
+    char purpose[MAX_INFO_LENGTH];
 } Funds;
 
-char announcements[MAX_ANNOUNCEMENTS][MESSAGE_LENGTH];
+char announcements[MAX_ANNOUNCEMENTS][MAX_MESSAGE_LENGTH];
 int announcementsCount;
+
+char ListPostedAnnouncements[MAX_ANNOUNCEMENTS][MAX_ANNOUNCEMENT_LENGTH];
+int announcement_counter = 0;
 
 int sortAlphabetically();
 char *inputPassword();
 
+
+// Function Prototypes
 void loadMembers();
 void saveMembers();
 void loadMessages();
@@ -68,24 +82,14 @@ void loadPending();
 void savePending();
 void loadAbout();
 void saveAbout();
+void loadAnnouncements();
+void saveAnnouncements();
 
 bool login();
 void signUp();
 
-void adminOptions();
-void organizationOptions();
-void organizationAbout();
-void membersOptions();
-void pendingRequests();
-void deleteMember(Member array[], int *size, int index);
-
-void membersDelete();
-void showPositions();
-void editPositions(char position[]);
-void transferPosition(char position[]);
-
-void mainOptions();
-void showMembers();
+void presidentOptions();
+void memberOptions();
 
 void profileOptions();
 void viewProfile(int index);
@@ -96,11 +100,31 @@ void messageOptions();
 void showInbox();
 void sendMessage();
 
+void organizationOptions();
+void organizationAbout();
+
+void announcementsOptions();
+void showAnnouncements();
+void postAnnouncements();
+void removeAnnouncements();
+
+void editMembersOptions();
+void showMembers();
+void pendingRequests();
+void membersDelete();
+void showPositions();
+void editPositions(char position[]);
+void transferPosition(char position[]);
+void removeMember(Member array[], int *size, int index);
+
+
+// main function
 int main() {
     loadMembers();
     loadPending();
     loadMessages();
     loadAbout();
+    loadAnnouncements();
 
     int choice;
     bool isLogin = false;
@@ -119,9 +143,9 @@ int main() {
                 isLogin = login();
                 if (isLogin) {
                     if (!strcmp(member[currentUser].position, "President")) {
-                        adminOptions();
+                        presidentOptions();
                     } else {
-                        mainOptions();
+                        memberOptions();
                     }
                 }
                 break;
@@ -134,12 +158,16 @@ int main() {
     return 0;
 }
 
+
+// for sorting
 int sortAlphabetically(const void *a, const void *b) {
     const Member *personA = (const Member *)a;
     const Member *personB = (const Member *)b;
     return strcmp(personA->username, personB->username);
 }
 
+
+// load/save stuff
 void loadMembers() {
     FILE *membersFile = fopen(MEMBERS_FILE, "r");
     membersCount = 0;
@@ -149,16 +177,16 @@ void loadMembers() {
         exit(0);
     }
 
-    char currentLine[NAME_LENGTH];
-    for (int i = 0; fgets(currentLine, NAME_LENGTH, membersFile); i++) {
+    char currentLine[MAX_INFO_LENGTH];
+    for (int i = 0; fgets(currentLine, MAX_INFO_LENGTH, membersFile); i++) {
         currentLine[strcspn(currentLine, "\n")] = '\0';
-        char *fileUsername = strtok(currentLine, DELIMITER);
-        char *filePassword = strtok(NULL, DELIMITER);
-        char *fileStudentNumber = strtok(NULL, DELIMITER);
-        char *filePosition = strtok(NULL, DELIMITER);
-        char *fileProgram = strtok(NULL, DELIMITER);
-        char *fileYear = strtok(NULL, DELIMITER);
-        char *fileBirthday = strtok(NULL, DELIMITER);
+        char *fileUsername = strtok(currentLine, ACCOUNT_DELIMITER);
+        char *filePassword = strtok(NULL, ACCOUNT_DELIMITER);
+        char *fileStudentNumber = strtok(NULL, ACCOUNT_DELIMITER);
+        char *filePosition = strtok(NULL, ACCOUNT_DELIMITER);
+        char *fileProgram = strtok(NULL, ACCOUNT_DELIMITER);
+        char *fileYear = strtok(NULL, ACCOUNT_DELIMITER);
+        char *fileBirthday = strtok(NULL, ACCOUNT_DELIMITER);
         strcpy(member[i].username, fileUsername);
         strcpy(member[i].password, filePassword);
         strcpy(member[i].studentNumber, fileStudentNumber);
@@ -185,7 +213,7 @@ void saveMembers() {
     qsort(member, membersCount, sizeof(Member), sortAlphabetically);
 
     for (int i = 0; i < membersCount; i++) {
-        fprintf(membersFile, "%s%s%s%s%s%s%s%s%s%s%s%s%s\n", member[i].username, DELIMITER, member[i].password, DELIMITER, member[i].studentNumber, DELIMITER, member[i].position, DELIMITER, member[i].program, DELIMITER, member[i].year, DELIMITER, member[i].birthday);
+        fprintf(membersFile, "%s%s%s%s%s%s%s%s%s%s%s%s%s\n", member[i].username, ACCOUNT_DELIMITER, member[i].password, ACCOUNT_DELIMITER, member[i].studentNumber, ACCOUNT_DELIMITER, member[i].position, ACCOUNT_DELIMITER, member[i].program, ACCOUNT_DELIMITER, member[i].year, ACCOUNT_DELIMITER, member[i].birthday);
     }
 
     fclose(membersFile);
@@ -200,16 +228,16 @@ void loadPending() {
         exit(0);
     }
 
-    char currentLine[NAME_LENGTH];
-    for (int i = 0; fgets(currentLine, NAME_LENGTH, pendingFile); i++) {
+    char currentLine[MAX_INFO_LENGTH];
+    for (int i = 0; fgets(currentLine, MAX_INFO_LENGTH, pendingFile); i++) {
         currentLine[strcspn(currentLine, "\n")] = '\0';
-        char *fileUsername = strtok(currentLine, DELIMITER);
-        char *filePassword = strtok(NULL, DELIMITER);
-        char *fileStudentNumber = strtok(NULL, DELIMITER);
-        char *filePosition = strtok(NULL, DELIMITER);
-        char *fileProgram = strtok(NULL, DELIMITER);
-        char *fileYear = strtok(NULL, DELIMITER);
-        char *fileBirthday = strtok(NULL, DELIMITER);
+        char *fileUsername = strtok(currentLine, ACCOUNT_DELIMITER);
+        char *filePassword = strtok(NULL, ACCOUNT_DELIMITER);
+        char *fileStudentNumber = strtok(NULL, ACCOUNT_DELIMITER);
+        char *filePosition = strtok(NULL, ACCOUNT_DELIMITER);
+        char *fileProgram = strtok(NULL, ACCOUNT_DELIMITER);
+        char *fileYear = strtok(NULL, ACCOUNT_DELIMITER);
+        char *fileBirthday = strtok(NULL, ACCOUNT_DELIMITER);
         strcpy(pendingAccount[i].username, fileUsername);
         strcpy(pendingAccount[i].password, filePassword);
         strcpy(pendingAccount[i].studentNumber, fileStudentNumber);
@@ -236,7 +264,7 @@ void savePending() {
     qsort(pendingAccount, pendingCount, sizeof(Member), sortAlphabetically);
 
     for (int i = 0; i < pendingCount; i++) {
-        fprintf(pendingFile, "%s%s%s%s%s%s%s%s%s%s%s%s%s\n", pendingAccount[i].username, DELIMITER, pendingAccount[i].password, DELIMITER, pendingAccount[i].studentNumber, DELIMITER, pendingAccount[i].position, DELIMITER, pendingAccount[i].program, DELIMITER, pendingAccount[i].year, DELIMITER, pendingAccount[i].birthday);
+        fprintf(pendingFile, "%s%s%s%s%s%s%s%s%s%s%s%s%s\n", pendingAccount[i].username, ACCOUNT_DELIMITER, pendingAccount[i].password, ACCOUNT_DELIMITER, pendingAccount[i].studentNumber, ACCOUNT_DELIMITER, pendingAccount[i].position, ACCOUNT_DELIMITER, pendingAccount[i].program, ACCOUNT_DELIMITER, pendingAccount[i].year, ACCOUNT_DELIMITER, pendingAccount[i].birthday);
     }
 
     fclose(pendingFile);
@@ -250,8 +278,8 @@ void loadAbout() {
         exit(0);
     }
 
-    char currentLine[MESSAGE_LENGTH];
-    for (int i = 0; fgets(currentLine, MESSAGE_LENGTH, aboutFile); i++) {
+    char currentLine[MAX_MESSAGE_LENGTH];
+    for (int i = 0; fgets(currentLine, MAX_MESSAGE_LENGTH, aboutFile); i++) {
         strcat(orgAbout, currentLine);
     }
     
@@ -279,8 +307,8 @@ void loadMessages() {
         exit(0);
     }
 
-    char currentLine[MESSAGE_LENGTH];
-    for (int i = 0; fgets(currentLine, MESSAGE_LENGTH, messagesFile); i++) {
+    char currentLine[MAX_MESSAGE_LENGTH];
+    for (int i = 0; fgets(currentLine, MAX_MESSAGE_LENGTH, messagesFile); i++) {
         currentLine[strcspn(currentLine, "\n")] = '\0';
         char *fileUsername = strtok(currentLine, "|");
 
@@ -307,18 +335,18 @@ void saveMessages() {
     for (int i = 0; i < membersCount; i++) {
         fprintf(messagesFile, "%s|", member[i].username);
 
-        for (int j = 0; j < MESSAGE_COUNT; j++) {
+        for (int j = 0; j < MAX_MESSAGES; j++) {
             if (!strlen(member[i].inbox[j].sender)||!strlen(member[i].inbox[j].message)) continue;
             fprintf(messagesFile, "%s`%s^", member[i].inbox[j].sender, member[i].inbox[j].message);
         }
         fprintf(messagesFile, "\n");
-    }
+    } 
 
     fclose(messagesFile);
 }
 
 void loadAnnouncements() {
-    FILE *announcementsFile = fopen(ABOUT_FILE, "r");
+    FILE *announcementsFile = fopen(ANNOUNCEMENTS_FILE, "r");
 
     if (!announcementsFile) {
         printf("\nThere was an error opening files.\n");
@@ -327,7 +355,7 @@ void loadAnnouncements() {
 
     announcementsCount = 0;
 
-    while (fgets(announcements[announcementsCount], MESSAGE_LENGTH, announcementsFile)) {
+    while (fgets(announcements[announcementsCount], MAX_ANNOUNCEMENT_LENGTH, announcementsFile)) {
         announcements[announcementsCount][strcspn(announcements[announcementsCount], "\n")] = '\0';
         announcementsCount++;
     }
@@ -336,7 +364,7 @@ void loadAnnouncements() {
 }
 
 void saveAnnouncements() {
-    FILE *announcementsFile = fopen(ABOUT_FILE, "w");
+    FILE *announcementsFile = fopen(ANNOUNCEMENTS_FILE, "w");
 
     if (!announcementsFile) {
         printf("\nThere was an error opening files.\n");
@@ -350,14 +378,19 @@ void saveAnnouncements() {
     fclose(announcementsFile);
 }
 
+void loadFunds() {
 
+}
+
+
+// Sign up/ login
 void signUp() {
-    char username[NAME_LENGTH];
-    char password[NAME_LENGTH];
-    char studentNumber[NAME_LENGTH];
-    char program[NAME_LENGTH];
-    char year[NAME_LENGTH];
-    char birthday[NAME_LENGTH];
+    char username[MAX_INFO_LENGTH];
+    char password[MAX_INFO_LENGTH];
+    char studentNumber[MAX_INFO_LENGTH];
+    char program[MAX_INFO_LENGTH];
+    char year[MAX_INFO_LENGTH];
+    char birthday[MAX_INFO_LENGTH];
 
     bool isTaken;
 
@@ -365,7 +398,7 @@ void signUp() {
     do {
         isTaken = false;
         printf("Enter username: ");
-        fgets(username, NAME_LENGTH, stdin);
+        fgets(username, MAX_INFO_LENGTH, stdin);
         username[strcspn(username, "\n")] = '\0';
         for (int i = 0; i < pendingCount; i++) {
             if (!strcmp(pendingAccount[i].username, username)) {
@@ -388,28 +421,28 @@ void signUp() {
     } while (isTaken);
 
     do {
-        if (strstr(password, DELIMITER)){
-            printf("\nPassword should not contain '%s'\n", DELIMITER);
+        if (strstr(password, ACCOUNT_DELIMITER)){
+            printf("\nPassword should not contain '%s'\n", ACCOUNT_DELIMITER);
         }
         printf("Enter password: ");
-        fgets(password, NAME_LENGTH, stdin);
+        fgets(password, MAX_INFO_LENGTH, stdin);
         password[strlen(password)-1] = '\0';
-    } while (strstr(password, DELIMITER));
+    } while (strstr(password, ACCOUNT_DELIMITER));
     
     printf("Enter your student number: ");
-    fgets(studentNumber, NAME_LENGTH, stdin);
+    fgets(studentNumber, MAX_INFO_LENGTH, stdin);
     studentNumber[strcspn(studentNumber, "\n")] = '\0';
 
     printf("Enter your program: ");
-    fgets(program, NAME_LENGTH, stdin);
+    fgets(program, MAX_INFO_LENGTH, stdin);
     program[strcspn(program, "\n")] = '\0';
 
     printf("Enter your year: ");
-    fgets(year, NAME_LENGTH, stdin);
+    fgets(year, MAX_INFO_LENGTH, stdin);
     year[strcspn(year, "\n")] = '\0';
 
     printf("Enter your birthday: ");
-    fgets(birthday, NAME_LENGTH, stdin);
+    fgets(birthday, MAX_INFO_LENGTH, stdin);
     birthday[strcspn(birthday, "\n")] = '\0';
 
     strcpy(pendingAccount[pendingCount].username, username);
@@ -432,18 +465,18 @@ void signUp() {
 bool login() {
     bool isLogin = false;
     bool isFound;
-    char username[NAME_LENGTH];
-    char password[NAME_LENGTH];
+    char username[MAX_INFO_LENGTH];
+    char password[MAX_INFO_LENGTH];
 
     getchar();
-    for (int i = PASSWORD_TRIES - 1; i >= 0; i--) {
+    for (int i = MAX_PASSWORD_TRIES - 1; i >= 0; i--) {
         isFound = false;
         printf("Enter username: ");
-        fgets(username, NAME_LENGTH, stdin);
+        fgets(username, MAX_INFO_LENGTH, stdin);
         username[strlen(username)-1] = '\0';
 
         printf("Enter password: ");
-        fgets(password, NAME_LENGTH, stdin);
+        fgets(password, MAX_INFO_LENGTH, stdin);
         password[strlen(password)-1] = '\0';
 
         for (int j = 0; j < membersCount; j++) {
@@ -482,41 +515,8 @@ bool login() {
 }
 
 
-void mainOptions() {
-    int choice;
-    printf("\nWelcome!\n");
-    do {
-        printf("[1] Profile\n");
-        printf("[2] Change Password\n");
-        printf("[3] Messages\n");
-        printf("[4] Log out\n");
-        printf(">> ");
-        scanf("%d", &choice);
-        system("cls");
-        switch (choice) {
-            case 1:
-                profileOptions();
-                break;
-            case 2:
-                changePassword();
-                break;
-            case 3:
-                messageOptions();
-                break;
-            case 4:
-                printf("\nLogged out\n");
-                printf("\nPress Enter to continue...");
-                getchar();
-                getchar();
-                system("cls");
-                break;
-            default:
-                printf("\nInvalid option!\n");
-        }
-    } while (choice != 4);
-}
-
-void adminOptions() {
+// Options for each positions
+void presidentOptions() {
     int choice;
     printf("\nWelcome!\n");
     do {
@@ -550,7 +550,292 @@ void adminOptions() {
     } while (choice != 4);
 }
 
+void memberOptions() {
+    int choice;
+    printf("\nWelcome!\n");
+    do {
+        printf("[1] Profile\n");
+        printf("[2] Change Password\n");
+        printf("[3] Messages\n");
+        printf("[4] Log out\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        system("cls");
+        switch (choice) {
+            case 1:
+                profileOptions();
+                break;
+            case 2:
+                changePassword();
+                break;
+            case 3:
+                messageOptions();
+                break;
+            case 4:
+                printf("\nLogged out\n");
+                printf("\nPress Enter to continue...");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            default:
+                printf("\nInvalid option!\n");
+        }
+    } while (choice != 4);
+}
 
+
+// DEFAULT OPTIONS
+
+// Profile Options
+void profileOptions() {
+    int choice;
+    do {
+        printf("[1] View Profile\n");
+        printf("[2] Edit Information\n");
+        printf("[3] Change Password\n");
+        printf("[4] Return to main menu\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        system("cls");
+        switch (choice) {
+            case 1:
+                viewProfile(currentUser);
+                break;
+            case 2:
+                editInformation();
+                break;
+            case 3:
+                changePassword();
+                break;
+            case 4:
+                system("cls");
+                break;
+            default:
+                printf("\nInvalid option!\n");
+        }
+    } while (choice != 4);
+}
+
+void viewProfile(int index) {
+    printf("\nUsername: %s\n", member[index].username);
+    printf("Position: %s\n", member[index].position);
+    printf("Program: %s\n", member[index].program);
+    printf("Year: %s\n", member[index].year);
+    printf("Birthday: %s\n", member[index].birthday);
+    
+    printf("\nPress Enter to continue...");
+    getchar();
+    getchar();
+    system("cls");
+}
+
+void editInformation() {
+    int choice;
+    bool isTaken;
+    char newUsername[MAX_INFO_LENGTH];
+    char newProgram[MAX_INFO_LENGTH];
+    char newYear[MAX_INFO_LENGTH];
+    char newBirthday[MAX_INFO_LENGTH];
+    do {
+        printf("\n[EDIT INFORMATION]\n");
+        printf("[1] Name\n");
+        printf("[2] Program\n");
+        printf("[3] Year\n");
+        printf("[4] Birthday\n");
+        printf("[5] Return\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        system("cls");
+        switch (choice) {
+            case 1:
+                do {
+                    getchar();
+                    isTaken = false;
+                    printf("Enter your new username: ");
+                    fgets(newUsername, MAX_INFO_LENGTH, stdin);
+                    newUsername[strcspn(newUsername, "\n")] = '\0';
+                    for (int i = 0; i < membersCount; i++) {
+                        if (!strcmp(member[currentUser].username, newUsername)) {
+                            printf("\nUsername is already taken.\n");
+                            isTaken = true;
+                            printf("\nPress Enter to continue...");
+                            getchar();
+                            system("cls");
+                        }
+                    }
+                } while (isTaken);
+                strcpy(member[currentUser].username, newUsername);
+                printf("\nYour name has been changed successfully...");
+                getchar();
+                system("cls");
+                break;
+            case 2:
+                getchar();
+                printf("Enter your new program: ");
+                fgets(newProgram, MAX_INFO_LENGTH, stdin);
+                newProgram[strcspn(newProgram, "\n")] = '\0';
+                strcpy(member[currentUser].program, newProgram);
+                printf("\nYour program has been changed successfully...");
+                getchar();
+                system("cls");
+                break;
+            case 3:
+                getchar();
+                printf("Enter your new year: ");
+                fgets(newYear, MAX_INFO_LENGTH, stdin);
+                newYear[strcspn(newYear, "\n")] = '\0';
+                strcpy(member[currentUser].year, newYear);
+                printf("\nYour year has been changed successfully...");
+                getchar();
+                system("cls");
+                break;
+            case 4:
+                getchar();
+                printf("Enter your new birthday: ");
+                fgets(newBirthday, MAX_INFO_LENGTH, stdin);
+                newBirthday[strcspn(newBirthday, "\n")] = '\0';
+                strcpy(member[currentUser].birthday, newBirthday);
+                printf("\nYour birthday has been changed successfully...");
+                getchar();
+                system("cls");
+                break;
+            case 5:
+                break;
+            default:
+                printf("\nInvalid option!\n");
+        }
+    } while (choice != 5);
+}
+
+void changePassword() {
+    char oldPassword[MAX_INFO_LENGTH];
+    char newPassword[MAX_INFO_LENGTH];
+
+    getchar();
+    printf("Enter your current password: ");
+    fgets(oldPassword, MAX_INFO_LENGTH, stdin);
+    oldPassword[strlen(oldPassword)-1] = '\0';
+
+    if (!strcmp(oldPassword, member[currentUser].password)) {
+        do {
+            if (strstr(newPassword, ACCOUNT_DELIMITER)){
+                printf("\nPassword should not contain '%s'\n", ACCOUNT_DELIMITER);
+            }
+            printf("Enter your new password: ");
+            fgets(newPassword, MAX_INFO_LENGTH, stdin);
+            newPassword[strlen(newPassword)-1] = '\0';
+        } while (strstr(newPassword, ACCOUNT_DELIMITER));
+
+        strcpy(member[currentUser].password, newPassword);
+        printf("\nPassword change was successful!\n");
+        saveMembers();
+    } else {
+        printf("\nIncorrect Password!\n");
+    }
+    printf("\nPress Enter to continue...");
+    getchar();
+    system("cls");
+}
+
+// Messaging Options
+void messageOptions() {
+    int choice;
+    do {
+        printf("\n[MESSAGES]\n");
+        printf("[1] Inbox\n");
+        printf("[2] Send Message\n");
+        printf("[3] Back to main menu\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        system("cls");
+
+        switch (choice) {
+            case 1:
+                showInbox();
+                break;
+            case 2:
+                sendMessage();
+                break;
+            case 3:
+                break;
+            default:
+                printf("\nInvalid option!\n");
+        }
+    } while (choice != 3);
+}
+
+void showInbox() {
+    int messageCount = 0;
+    printf("\n[INBOX]\n");
+    for (; messageCount < MAX_MESSAGES && strlen(member[currentUser].inbox[messageCount].sender); messageCount++){}
+    for (int i = 0; i < messageCount; i++) {
+        printf("\n%s: %s\n", member[currentUser].inbox[i].sender, member[currentUser].inbox[i].message);
+    }
+    printf("\nPress Enter to continue...");
+    getchar();
+    getchar();
+    system("cls");
+}
+
+void sendMessage() {
+    int choice;
+    char message[MAX_MESSAGE_LENGTH];
+    int index = 0;
+
+    printf("\n[MEMBERS]\n");
+    for (int i = 0; i < membersCount; i++) {
+        if (member[i].username == member[currentUser].username) {
+            continue;
+        } else {
+            index++;
+            printf("[%d]: %s\n", index, member[i].username);
+        }
+    }
+
+    printf("\nSend to: \n");
+    printf(">> ");
+
+    if (scanf("%d", &choice) && choice < 0 || choice > membersCount) {
+        printf("\nInvalid option!\n");
+        printf("\nPress Enter to continue...");
+        getchar();
+        getchar();
+        system("cls");
+        return;
+    }
+
+    if (choice > currentUser) {
+        choice++;
+    }
+
+    int messageCount = 0;
+    for (; messageCount < MAX_MESSAGES && strlen(member[choice-1].inbox[messageCount].sender); messageCount++)
+    if (MAX_MESSAGES == messageCount) {
+        printf("This person's inbox is full!"); 
+        return;
+    }
+
+    getchar();
+    printf("\nWrite the message: \n");
+    printf(">> ");
+    fgets(message, MAX_MESSAGE_LENGTH, stdin);
+    message[strcspn(message, "\n")] = '\0';
+
+    strcpy(member[choice-1].inbox[messageCount].sender, member[currentUser].username);
+    strcpy(member[choice-1].inbox[messageCount].message, message);
+    saveMessages();
+
+    printf("\nMessage sent!\n");
+    printf("\nPress Enter to continue...");
+    getchar();
+    system("cls");
+}
+
+
+// OFFICER OPTIONS
+
+// Main options for editing the organization
 void organizationOptions() {
     int choice;
     do {
@@ -568,10 +853,10 @@ void organizationOptions() {
                 organizationAbout();
                 break;
             case 2:
-                membersOptions();
+                editMembersOptions();
                 break;
             case 3:
-                // announcementOption();
+                announcementsOptions();
                 break;
             case 4:
                 // fundsOption();
@@ -584,9 +869,11 @@ void organizationOptions() {
     } while (choice != 5);
 }
 
+
+// About the organization
 void organizationAbout() {
     int choice;
-    char input[ABOUT_LENGTH];
+    char input[MAX_ABOUT_LENGTH];
     int index;
     char ch;
     do {
@@ -606,7 +893,7 @@ void organizationAbout() {
                     if (ch == END_CHARACTER) {
                         break;
                     }
-                    if (index < ABOUT_LENGTH - 1) {
+                    if (index < MAX_ABOUT_LENGTH - 1) {
                         input[index++] = ch;
                     } else {
                         printf("Input reached maximum length. Stopping.\n");
@@ -631,7 +918,110 @@ void organizationAbout() {
     } while (choice != 2);
 }
 
-void membersOptions() {
+
+// Announcements Options
+void announcementsOptions() {
+    int choice;
+    do {
+        printf("[1] Show Announcement\n");
+        printf("[2] Post Announcement\n");
+        printf("[3] Remove Announcement\n");
+        printf("[4] Return\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        system("cls");
+        switch (choice) {
+            case 1:
+                showAnnouncements();
+                break;
+            case 2:
+                postAnnouncements();
+                break;
+            case 3:
+                removeAnnouncements();
+                break;
+            case 4:
+                break;
+            default:
+                printf("\nInvalid option!\n");
+        }
+    } while (choice != 4);
+}
+
+void showAnnouncements() {
+    bool isNoAnnouncements = true;
+    for (int i = 0; i < announcementsCount; i++) {
+        printf("\n[%d] %s\n", i+1, announcements[i]);
+        isNoAnnouncements = false;
+    }
+
+    if (isNoAnnouncements) printf("\nThere are no annoucements currently\n");
+
+    printf("\nPress Enter to continue...");
+    getchar();
+    getchar();
+    system("cls");
+}
+
+void postAnnouncements() {
+    printf("\nPost Announcement\n");
+    printf(">> ");
+    getchar();
+    fgets(announcements[announcementsCount], MAX_ANNOUNCEMENT_LENGTH, stdin);
+    announcements[announcementsCount][strcspn(announcements[announcementsCount], "\n")] = '\0';
+    announcementsCount++;
+
+    saveAnnouncements();
+    printf("\nMessage successfully announced\n");
+    printf("\nPress Enter to continue...");
+    getchar();
+    system("cls");
+}
+
+void removeAnnouncements() {
+    bool isNoAnnouncements = true;
+    int index;
+    int choice;
+
+    for (int i = 0; i < announcementsCount; i++) {
+        printf("\n[%d] %s\n", i+1, announcements[i]);
+        isNoAnnouncements = false;
+    }
+
+    if (isNoAnnouncements) {
+        printf("\nThere are no annoucements currently\n");
+        return;
+        printf("\nPress Enter to continue...");
+        getchar();
+        getchar();
+        system("cls");
+    }
+
+
+    printf("\nRemove announcement:\n");
+    printf(">> ");
+    scanf("%d", &choice);
+
+    index = choice - 1;
+
+    for (int i = index; i < announcementsCount - 1; i++) {
+        strcpy(announcements[i], announcements[i + 1]);
+    }
+
+    strcpy(announcements[announcementsCount - 1], "\0");
+
+    announcementsCount--;
+    saveAnnouncements();
+    printf("\nAnnouncement has been successfully removed\n");
+    printf("\nPress Enter to continue...");
+    getchar();
+    getchar();
+    system("cls");
+}
+
+
+// Options for editing members 
+void editMembersOptions() {
     int choice;
     do {
         printf("[MEMBER OPTIONS]\n");
@@ -716,12 +1106,12 @@ void pendingRequests() {
                 strcpy(member[membersCount].birthday, pendingAccount[index].birthday);
                 printf("\n%s has been added successfully\n", pendingAccount[index].username);
                 membersCount++;
-                deleteMember(pendingAccount, &pendingCount, index);
+                removeMember(pendingAccount, &pendingCount, index);
                 savePending();
                 saveMembers();
                 break;         
             case 2:
-                deleteMember(pendingAccount, &pendingCount, index);
+                removeMember(pendingAccount, &pendingCount, index);
                 printf("\n%s has been deleted successfully\n", pendingAccount[index].username);
                 savePending();
                 break;
@@ -761,7 +1151,7 @@ void membersDelete() {
         scanf("%d", &choice);
         switch(choice) {
             case 1:
-                deleteMember(member, &membersCount, index);
+                removeMember(member, &membersCount, index);
                 break;         
             case 2:
                 system("cls");
@@ -961,7 +1351,7 @@ void transferPosition(char position[]) {
     system("cls");
 }
 
-void deleteMember(Member array[], int *size, int index) {
+void removeMember(Member array[], int *size, int index) {
     for (int i = index; i < *size - 1; i++) {
         array[i] = array[i + 1];
     }
@@ -978,250 +1368,6 @@ void deleteMember(Member array[], int *size, int index) {
     saveMembers();
 }
 
-
-void profileOptions() {
-    int choice;
-    do {
-        printf("[1] View Profile\n");
-        printf("[2] Edit Information\n");
-        printf("[3] Change Password\n");
-        printf("[4] Return to main menu\n");
-        printf(">> ");
-        scanf("%d", &choice);
-        system("cls");
-        switch (choice) {
-            case 1:
-                viewProfile(currentUser);
-                break;
-            case 2:
-                editInformation();
-                break;
-            case 3:
-                changePassword();
-                break;
-            case 4:
-                system("cls");
-                break;
-            default:
-                printf("\nInvalid option!\n");
-        }
-    } while (choice != 4);
-}
-
-void viewProfile(int index) {
-    printf("\nUsername: %s\n", member[index].username);
-    printf("Position: %s\n", member[index].position);
-    printf("Program: %s\n", member[index].program);
-    printf("Year: %s\n", member[index].year);
-    printf("Birthday: %s\n", member[index].birthday);
-    
-    printf("\nPress Enter to continue...");
-    getchar();
-    getchar();
-    system("cls");
-}
-
-void editInformation() {
-    int choice;
-    bool isTaken;
-    char newUsername[NAME_LENGTH];
-    char newProgram[NAME_LENGTH];
-    char newYear[NAME_LENGTH];
-    char newBirthday[NAME_LENGTH];
-    do {
-        printf("\n[EDIT INFORMATION]\n");
-        printf("[1] Name\n");
-        printf("[2] Program\n");
-        printf("[3] Year\n");
-        printf("[4] Birthday\n");
-        printf("[5] Return\n");
-        printf(">> ");
-        scanf("%d", &choice);
-        system("cls");
-        switch (choice) {
-            case 1:
-                do {
-                    getchar();
-                    isTaken = false;
-                    printf("Enter your new username: ");
-                    fgets(newUsername, NAME_LENGTH, stdin);
-                    newUsername[strcspn(newUsername, "\n")] = '\0';
-                    for (int i = 0; i < membersCount; i++) {
-                        if (!strcmp(member[currentUser].username, newUsername)) {
-                            printf("\nUsername is already taken.\n");
-                            isTaken = true;
-                            printf("\nPress Enter to continue...");
-                            getchar();
-                            system("cls");
-                        }
-                    }
-                } while (isTaken);
-                strcpy(member[currentUser].username, newUsername);
-                printf("\nYour name has been changed successfully...");
-                getchar();
-                system("cls");
-                break;
-            case 2:
-                getchar();
-                printf("Enter your new program: ");
-                fgets(newProgram, NAME_LENGTH, stdin);
-                newProgram[strcspn(newProgram, "\n")] = '\0';
-                strcpy(member[currentUser].program, newProgram);
-                printf("\nYour program has been changed successfully...");
-                getchar();
-                system("cls");
-                break;
-            case 3:
-                getchar();
-                printf("Enter your new year: ");
-                fgets(newYear, NAME_LENGTH, stdin);
-                newYear[strcspn(newYear, "\n")] = '\0';
-                strcpy(member[currentUser].year, newYear);
-                printf("\nYour year has been changed successfully...");
-                getchar();
-                system("cls");
-                break;
-            case 4:
-                getchar();
-                printf("Enter your new birthday: ");
-                fgets(newBirthday, NAME_LENGTH, stdin);
-                newBirthday[strcspn(newBirthday, "\n")] = '\0';
-                strcpy(member[currentUser].birthday, newBirthday);
-                printf("\nYour birthday has been changed successfully...");
-                getchar();
-                system("cls");
-                break;
-            case 5:
-                break;
-            default:
-                printf("\nInvalid option!\n");
-        }
-    } while (choice != 5);
-}
-
-void changePassword() {
-    char oldPassword[NAME_LENGTH];
-    char newPassword[NAME_LENGTH];
-
-    getchar();
-    printf("Enter your current password: ");
-    fgets(oldPassword, NAME_LENGTH, stdin);
-    oldPassword[strlen(oldPassword)-1] = '\0';
-
-    if (!strcmp(oldPassword, member[currentUser].password)) {
-        do {
-            if (strstr(newPassword, DELIMITER)){
-                printf("\nPassword should not contain '%s'\n", DELIMITER);
-            }
-            printf("Enter your new password: ");
-            fgets(newPassword, NAME_LENGTH, stdin);
-            newPassword[strlen(newPassword)-1] = '\0';
-        } while (strstr(newPassword, DELIMITER));
-
-        strcpy(member[currentUser].password, newPassword);
-        printf("\nPassword change was successful!\n");
-        saveMembers();
-    } else {
-        printf("\nIncorrect Password!\n");
-    }
-    printf("\nPress Enter to continue...");
-    getchar();
-    system("cls");
-}
-
-
-void messageOptions() {
-    int choice;
-    do {
-        printf("\n[MESSAGES]\n");
-        printf("[1] Inbox\n");
-        printf("[2] Send Message\n");
-        printf("[3] Back to main menu\n");
-        printf(">> ");
-        scanf("%d", &choice);
-        system("cls");
-
-        switch (choice) {
-            case 1:
-                showInbox();
-                break;
-            case 2:
-                sendMessage();
-                break;
-            case 3:
-                break;
-            default:
-                printf("\nInvalid option!\n");
-        }
-    } while (choice != 3);
-}
-
-void showInbox() {
-    int messageCount = 0;
-    printf("\n[INBOX]\n");
-    for (; messageCount < MESSAGE_COUNT && strlen(member[currentUser].inbox[messageCount].sender); messageCount++){}
-    for (int i = 0; i < messageCount; i++) {
-        printf("\n%s: %s\n", member[currentUser].inbox[i].sender, member[currentUser].inbox[i].message);
-    }
-    printf("\nPress Enter to continue...");
-    getchar();
-    getchar();
-    system("cls");
-}
-
-void sendMessage() {
-    int choice;
-    char message[MESSAGE_LENGTH];
-    int index = 0;
-
-    printf("\n[MEMBERS]\n");
-    for (int i = 0; i < membersCount; i++) {
-        if (member[i].username == member[currentUser].username) {
-            continue;
-        } else {
-            index++;
-            printf("[%d]: %s\n", index, member[i].username);
-        }
-    }
-
-    printf("\nSend to: \n");
-    printf(">> ");
-
-    if (scanf("%d", &choice) && choice < 0 || choice > membersCount) {
-        printf("\nInvalid option!\n");
-        printf("\nPress Enter to continue...");
-        getchar();
-        getchar();
-        system("cls");
-        return;
-    }
-
-    if (choice > currentUser) {
-        choice++;
-    }
-
-    int messageCount = 0;
-    for (; messageCount < MESSAGE_COUNT && strlen(member[choice-1].inbox[messageCount].sender); messageCount++)
-    if (MESSAGE_COUNT == messageCount) {
-        printf("This person's inbox is full!"); 
-        return;
-    }
-
-    getchar();
-    printf("\nWrite the message: \n");
-    printf(">> ");
-    fgets(message, MESSAGE_LENGTH, stdin);
-    message[strcspn(message, "\n")] = '\0';
-
-    strcpy(member[choice-1].inbox[messageCount].sender, member[currentUser].username);
-    strcpy(member[choice-1].inbox[messageCount].message, message);
-    saveMessages();
-
-    printf("\nMessage sent!\n");
-    printf("\nPress Enter to continue...");
-    getchar();
-    system("cls");
-}
 
 // void enterPassword(Member *member) {
 //     char input;
@@ -1252,7 +1398,7 @@ void sendMessage() {
 // }
 
 // char *inputPassword() {
-//     char password[NAME_LENGTH];
+//     char password[MAX_INFO_LENGTH];
 //     int index = 0;
 //     char input;
 
@@ -1267,7 +1413,7 @@ void sendMessage() {
 //                 index--;
 //             }
 //         } else {
-//             if (index < NAME_LENGTH) {
+//             if (index < MAX_INFO_LENGTH) {
 //                 password[index++] = input;
 //                 printf("*");
 //             }
@@ -1278,4 +1424,67 @@ void sendMessage() {
 //     printf("\n");
 
 //     return password;
+// }
+
+
+//Announcements Section
+// void postAnnouncement() {
+//     printf("What's on your mind?\n");
+//     getchar();
+//     fgets(ListPostedAnnouncements[announcement_counter], MAX_ANNOUNCEMENT_LENGTH, stdin);
+//     printf("Announcement Posted!");
+
+//     FILE *post_announcement;
+//     char ch[100];
+//     int announcement_num = 1;
+
+//     post_announcement = fopen("announcements.txt", "a+");
+//     if(post_announcement == NULL) {
+//         printf("Unable to open file.");
+//         printf("Enter to continue...");
+//         getchar();
+//         return;
+//     }
+
+//     while (fgets(ch, sizeof(ch), post_announcement) != NULL) {
+//         announcement_num++;
+//     }
+
+//     fprintf(post_announcement, "%d. %s", announcement_num, ListPostedAnnouncements[announcement_counter]);
+//     fclose(post_announcement);
+//     announcement_counter++;
+
+//     printf("\n\nEnter to continue...");
+//     getchar();
+//     system("cls");
+//     printf("Returning...");
+//     // sleep(2);
+//     system("cls");
+// }
+
+// void postedAnnouncements() {
+//     FILE *announcements;
+//     char ch[100];
+
+//     announcements = fopen("announcements.txt", "r");
+//     if(announcements == NULL) {
+//         printf("Error in opening file.\n");
+//         printf("Enter to continue...");
+//         getchar();
+//         return;
+//     }
+
+//     printf("Announcements:\n");
+//     while(fgets(ch, sizeof(ch), announcements) != NULL) {
+//         printf("%s", ch);
+//     }
+//     fclose(announcements);
+
+//     printf("\n\nEnter to continue...");
+//     getchar();
+//     getchar();
+//     system("cls");
+//     printf("\nReturning...");
+//     // sleep(2);
+//     system("cls");
 // }
