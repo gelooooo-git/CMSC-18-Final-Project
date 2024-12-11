@@ -668,7 +668,7 @@ void expenses() {
 
     char decision;
     while (1) { 
-        printf("\nWould you like to add another member? (y/n): ");
+        printf("\nWould you like to add another expense? (y/n): ");
         scanf(" %c", &decision);  
 
         decision = tolower(decision);
@@ -719,7 +719,7 @@ void collections(){
 
     char decision;
     while (1) { 
-        printf("\nWould you like to add another member? (y/n): ");
+        printf("\nWould you like to add another contribution? (y/n): ");
         scanf(" %c", &decision);  
 
         decision = tolower(decision);
