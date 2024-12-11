@@ -404,35 +404,6 @@ void addMember() {
         return;
     }
 
-    // printf("Enter the name of the member to add: ");
-    // getchar(); // to clear newline from input buffer
-    // fgets(members[member_count], NAME_LENGTH, stdin);
-
-    // members[member_count][strcspn(members[member_count], "\n")] = 0;
-    // active[member_count] = 1;  // Set the member as active
-    // member_count++;
-
-    // printf("%s has been added to the org!\n", members[member_count - 1]);
-
-    // char decision;
-    // while (1) { 
-    //     printf("\nWould you like to add another member? (y/n): ");
-    //     scanf(" %c", &decision);  
-
-    //     decision = tolower(decision);
-    //     if (decision == 'y') {
-    //         system("cls"); 
-    //         addMember(); 
-    //         break;
-    //     } else if (decision == 'n') {
-    //         printf("Returning...");
-    //         sleep(2); 
-    //         system("cls"); 
-    //         break;
-    //     } else {
-    //         printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
-    //     }
-    // }
 
     struct orgMember newMember;
 
@@ -501,13 +472,6 @@ void showMembers() {
     char sorted_members[MAX_MEMBER_COUNT][NAME_LENGTH];
     int sorted_count = 0;
 
-    // for (int i = 0; i < member_count; i++) {
-    //     if (active[i]) {
-    //         strcpy(sorted_members[sorted_count], members[i]); // Copy active members
-    //         sorted_count++;
-    //     }
-    // }
-
     for (int i = 0; i < member_count; i++) {
         if (members[i].active) {
             snprintf(sorted_members[sorted_count], NAME_LENGTH, "%s %s", members[i].firstname, members[i].surname);
@@ -541,67 +505,9 @@ void showMembers() {
     printf("Returning...");
     sleep(2); 
     system("cls"); 
-    // OLD MEMBERS LIST (not sorted alphabetically, keeping incase I mess smth up)
-    // printf("CURRENT ORG MEMBERS\n\n");
-    // int count = 0;
-
-    // for (int i = 0; i < member_count; i++) {
-    //     if (active[i]) {
-    //         printf("%d. %s\n", count + 1, members[i]);
-    //         count++;
-    //     }
-    // }
-
-    // if (count == 0) {
-    //     printf("No members :(.\n");
-    // }
-
-    // printf("\nEnter to continue...");
-    // getchar();
-    // getchar();
 }
 
 void removeMember() {
-    //char name[NAME_LENGTH];
-    // printf("Enter the name of the member to remove: ");
-    // getchar();
-    // fgets(name, NAME_LENGTH, stdin);
-    // name[strcspn(name, "\n")] = 0;
-
-    // int member_check = 0;
-    
-    // for (int i = 0; i < member_count; i++) {
-    //     if (active[i] && strcmp(members[i], name) == 0) {
-    //         active[i] = 0; 
-    //         printf("%s has been removed from the org!\n", name);
-    //         member_check = 1;
-    //         break;
-    //     }
-    // }
-
-    // if (!member_check) {
-    //     printf("%s is not found in the current member list.\n", name);
-    // }
-
-    // char decision;
-    // while (1) { 
-    //     printf("\nWould you like to remove another member? (y/n): ");
-    //     scanf(" %c", &decision);  
-
-    //     decision = tolower(decision);
-    //     if (decision == 'y') {
-    //         system("cls"); 
-    //         removeMember(); 
-    //         break;
-    //     } else if (decision == 'n') {
-    //         printf("Returning...");
-    //         sleep(2); 
-    //         system("cls"); 
-    //         break;
-    //     } else {
-    //         printf("Invalid input! Please enter 'y' for yes or 'n' for no ONLY.\n");
-    //     }
-    // }
     printf("CURRENT ACTIVE MEMBERS\n\n");
 
     // list of active members with numbers, murag katong show list ra
@@ -666,37 +572,6 @@ void removeMember() {
     saveMembers();
 }
 
-// void saveMembers() {
-//     FILE *file = fopen(MEMBERS_FILE, "w");
-//     if (file == NULL) {
-//         printf("Error saving members to file.\n");
-//         return;
-//     }
-
-//     for (int i = 0; i < member_count; i++) {
-//         if (active[i]) {
-//             fprintf(file, "%s\n", members[i]);
-//         }
-//     }
-
-//     fclose(file);
-// }
-
-// void loadMembers() {
-//     FILE *file = fopen(MEMBERS_FILE, "r");
-//     if (file == NULL) {
-//         printf("No members file found.\n");
-//         return;
-//     }
-
-//     while (fgets(members[member_count], NAME_LENGTH, file)) {
-//         members[member_count][strcspn(members[member_count], "\n")] = 0; 
-//         active[member_count] = 1;  
-//         member_count++;
-//     }
-
-//     fclose(file);
-// }
 
 void saveMembers() {
     FILE *file = fopen(MEMBERS_FILE, "w");
