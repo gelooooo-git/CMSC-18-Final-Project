@@ -460,7 +460,6 @@ void signUp() {
 }
 
 bool login() {
-    bool isLogin = false;
     bool isFound;
     char studentNumber[MAX_INFO_LENGTH];
     char password[MAX_INFO_LENGTH];
@@ -479,8 +478,9 @@ bool login() {
         for (int j = 0; j < membersCount; j++) {
             if (!strcmp(member[j].studentNumber, studentNumber)) {
                 if (!strcmp(member[j].password, password)) {
-                    isLogin = true;
                     currentUser = j;
+                    system("cls");
+                    return true;
                 } else {
                     isFound = true;
                 }
@@ -488,9 +488,7 @@ bool login() {
             }
         }
 
-        if (isLogin) {
-            break;
-        } else if (isFound) {
+        if (isFound) {
             printf("\nWrong password!\n");
         } else {
             printf("\nNo accounts found!\n");
@@ -508,7 +506,7 @@ bool login() {
     }
     
     system("cls");
-    return isLogin;
+    return false;
 }
 
 
@@ -517,6 +515,7 @@ void presidentOptions() {
     int choice;
     printf("\nWelcome!\n");
     do {
+        printf("\nCurrent user: %s\n", member[currentUser].name);
         printf("[1] Profile\n");
         printf("[2] Organization Info\n");
         printf("[3] Messages\n");
@@ -551,6 +550,7 @@ void memberOptions() {
     int choice;
     printf("\nWelcome!\n");
     do {
+        printf("\nCurrent user: %s\n", member[currentUser].name);
         printf("[1] Profile\n");
         printf("[2] Change Password\n");
         printf("[3] Messages\n");
@@ -588,6 +588,7 @@ void memberOptions() {
 void profileOptions() {
     int choice;
     do {
+        printf("\n[PROFILE]\n");
         printf("[1] View Profile\n");
         printf("[2] Edit Information\n");
         printf("[3] Change Password\n");
