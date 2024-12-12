@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="XAoJey2u4x2klX6sisZq" name="Save and Load Functions">
-        <mxGraphModel dx="569" dy="427" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="752" dy="563" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -944,85 +944,85 @@
         </mxGraphModel>
     </diagram>
     <diagram id="a-8qad7gtAGPb7AzLj4C" name="Login and Signup">
-        <mxGraphModel dx="1220" dy="891" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1367" dy="1024" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-3" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-1" target="De_aStg3Vl7LTB7A-mpr-2">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-3" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-1" target="De_aStg3Vl7LTB7A-mpr-2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-1" value="signUp()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-1" value="signUp()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
                     <mxGeometry x="265" y="30" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-7" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-2" target="De_aStg3Vl7LTB7A-mpr-6">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-7" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-2" target="De_aStg3Vl7LTB7A-mpr-6" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-2" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; char username[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char password[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char studentNumber[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char program[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char year[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char birthday[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; bool isTaken = False;&lt;/div&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-2" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; char username[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char password[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char studentNumber[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char program[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char year[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; char birthday[MAX_INFO_LENGTH];&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; bool isTaken = False;&lt;/div&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="190" y="110" width="270" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-19" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-4" target="De_aStg3Vl7LTB7A-mpr-18">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-19" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-4" target="De_aStg3Vl7LTB7A-mpr-18" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-28" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-4" target="De_aStg3Vl7LTB7A-mpr-27">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-28" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-4" target="De_aStg3Vl7LTB7A-mpr-27" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-4" value="is (!strcmp(pendingAccount[i].&lt;br&gt;username, username))?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-4" value="is (!strcmp(pendingAccount[i].&lt;br&gt;username, username))?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="203" y="530" width="245" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-12" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-6" target="De_aStg3Vl7LTB7A-mpr-11">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-12" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-6" target="De_aStg3Vl7LTB7A-mpr-11" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-6" value="print &quot;Enter username:&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-6" value="print &quot;Enter username:&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="235" y="250" width="180" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-14" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-11" target="De_aStg3Vl7LTB7A-mpr-13">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-14" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-11" target="De_aStg3Vl7LTB7A-mpr-13" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-11" value="fgets(username, MAX_INFO_LENGTH, stdin)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-11" value="fgets(username, MAX_INFO_LENGTH, stdin)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="230" y="300" width="190" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-16" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-13" target="De_aStg3Vl7LTB7A-mpr-15">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-16" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-13" target="De_aStg3Vl7LTB7A-mpr-15" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-13" value="i = 0" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-13" value="i = 0" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="265" y="360" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-17" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-15" target="De_aStg3Vl7LTB7A-mpr-4">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-17" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-15" target="De_aStg3Vl7LTB7A-mpr-4" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-35" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-15" target="De_aStg3Vl7LTB7A-mpr-48">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-35" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-15" target="De_aStg3Vl7LTB7A-mpr-48" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="450" y="460" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-15" value="is (i &amp;lt; pendingCount)?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-15" value="is (i &amp;lt; pendingCount)?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="243" y="420" width="165" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-21" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-18" target="De_aStg3Vl7LTB7A-mpr-20">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-21" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-18" target="De_aStg3Vl7LTB7A-mpr-20" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-18" value="print &quot;Username is already taken&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-18" value="print &quot;Username is already taken&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="238" y="630" width="175" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-23" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-20" target="De_aStg3Vl7LTB7A-mpr-22">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-23" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-20" target="De_aStg3Vl7LTB7A-mpr-22" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-20" value="isTaken = True" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-20" value="isTaken = True" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="265.5" y="690" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-31" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-22" target="De_aStg3Vl7LTB7A-mpr-30">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-31" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-22" target="De_aStg3Vl7LTB7A-mpr-30" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-22" value="print &quot;Enter to continue...&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-22" value="print &quot;Enter to continue...&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="265" y="740" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-24" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-24" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="250" y="600" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-25" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-25" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="325" y="500" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-29" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-27">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-29" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-27" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="325" y="400" as="targetPoint"/>
                         <Array as="points">
@@ -1030,10 +1030,10 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-27" value="i++" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-27" value="i++" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="110" y="560" width="70.5" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-32" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-30" target="De_aStg3Vl7LTB7A-mpr-11">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-32" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-30" target="De_aStg3Vl7LTB7A-mpr-11" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="553" y="820"/>
@@ -1042,19 +1042,19 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-63" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-30" target="De_aStg3Vl7LTB7A-mpr-62">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-63" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-30" target="De_aStg3Vl7LTB7A-mpr-62" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-30" value="is (isTaken == True)?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-30" value="is (isTaken == True)?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="480" y="720" width="145" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-33" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-33" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="170" y="535" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-38" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-34" target="De_aStg3Vl7LTB7A-mpr-37">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-38" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-34" target="De_aStg3Vl7LTB7A-mpr-37" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-56" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-34">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-56" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-34" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="420" y="760" as="targetPoint"/>
                         <Array as="points">
@@ -1064,13 +1064,13 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-34" value="is (i &amp;lt; membersCount)?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-34" value="is (i &amp;lt; membersCount)?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="570" y="420" width="165" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-36" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-36" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="400" y="420" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-41" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-37">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-41" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-37" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="330" y="620" as="targetPoint"/>
                         <Array as="points">
@@ -1078,24 +1078,24 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-52" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-37" target="De_aStg3Vl7LTB7A-mpr-51">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-52" value="" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-37" target="De_aStg3Vl7LTB7A-mpr-51" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="800" y="570" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-37" value="is (!strcmp(pendingAccount[i].&lt;br&gt;username, username))?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-37" value="is (!strcmp(pendingAccount[i].&lt;br&gt;username, username))?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="530" y="530" width="245" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-49" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-48" target="De_aStg3Vl7LTB7A-mpr-34">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-49" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-48" target="De_aStg3Vl7LTB7A-mpr-34" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-48" value="i = 0" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-48" value="i = 0" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="450" y="445" width="65.5" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-50" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-50" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="550" y="590" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-53" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-51">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-53" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-51" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="540" y="460" as="targetPoint"/>
                         <Array as="points">
@@ -1104,176 +1104,176 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-51" value="i++" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-51" value="i++" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="465.5" y="560" width="50" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-54" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-54" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="500" y="535" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-55" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-55" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="480" y="790" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-58" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-58" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="610" y="725" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-59" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-59" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="740" y="420" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-60" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-60" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="660" y="500" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-65" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-62" target="De_aStg3Vl7LTB7A-mpr-64">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-65" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-62" target="De_aStg3Vl7LTB7A-mpr-64" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-62" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; printf(&quot;Enter your student number: &quot;);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; fgets(studentNumber, MAX_INFO_LENGTH, stdin);&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-62" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; printf(&quot;Enter your student number: &quot;);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; fgets(studentNumber, MAX_INFO_LENGTH, stdin);&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="655" y="720" width="185" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-67" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-64" target="De_aStg3Vl7LTB7A-mpr-66">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-67" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-64" target="De_aStg3Vl7LTB7A-mpr-66" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-64" value="studentNumber[strcspn&lt;br&gt;(studentNumber, &quot;\n&quot;)] = '\0'" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-64" value="studentNumber[strcspn&lt;br&gt;(studentNumber, &quot;\n&quot;)] = '\0'" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="663.75" y="830" width="167.5" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-69" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-66" target="De_aStg3Vl7LTB7A-mpr-68">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-69" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-66" target="De_aStg3Vl7LTB7A-mpr-68" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-66" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; printf(&quot;Enter your program: &quot;);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; fgets(program,&lt;/div&gt;&lt;div&gt;&amp;nbsp;MAX_INFO_LENGTH, stdin);&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-66" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; printf(&quot;Enter your program: &quot;);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; fgets(program,&lt;/div&gt;&lt;div&gt;&amp;nbsp;MAX_INFO_LENGTH, stdin);&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="655" y="900" width="185" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-71" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-68" target="De_aStg3Vl7LTB7A-mpr-70">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-71" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-68" target="De_aStg3Vl7LTB7A-mpr-70" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-68" value="program[strcspn(program, &quot;\n&quot;)] = '\0'" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-68" value="program[strcspn(program, &quot;\n&quot;)] = '\0'" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="460" y="920" width="167.5" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-73" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-70" target="De_aStg3Vl7LTB7A-mpr-72">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-73" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-70" target="De_aStg3Vl7LTB7A-mpr-72" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-70" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; printf(&quot;Enter your year: &quot;);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; fgets(year, MAX_INFO_LENGTH, stdin);&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-70" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; printf(&quot;Enter your year: &quot;);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; fgets(year, MAX_INFO_LENGTH, stdin);&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="250" y="900" width="185" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-75" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-72" target="De_aStg3Vl7LTB7A-mpr-74">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-75" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-72" target="De_aStg3Vl7LTB7A-mpr-74" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-72" value="year[strcspn(year, &quot;\n&quot;)] = '\0'" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-72" value="year[strcspn(year, &quot;\n&quot;)] = '\0'" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="50" y="920" width="167.5" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-77" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-74" target="De_aStg3Vl7LTB7A-mpr-76">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-77" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-74" target="De_aStg3Vl7LTB7A-mpr-76" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-74" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; printf(&quot;Enter your birthday: &quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp;fgets(birthday, MAX_INFO_LENGTH, stdin);&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-74" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; printf(&quot;Enter your birthday: &quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp;fgets(birthday, MAX_INFO_LENGTH, stdin);&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="45" y="1010" width="185" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-80" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-76" target="De_aStg3Vl7LTB7A-mpr-79">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-80" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-76" target="De_aStg3Vl7LTB7A-mpr-79" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="446" y="1050"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-76" value="birthday[strcspn(birthday, &quot;\n&quot;)] = '\0'" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-76" value="birthday[strcspn(birthday, &quot;\n&quot;)] = '\0'" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="258.75" y="1030" width="167.5" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-82" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-79" target="De_aStg3Vl7LTB7A-mpr-81">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-82" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-79" target="De_aStg3Vl7LTB7A-mpr-81" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-79" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].username, username);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].password, password);&lt;/div&gt;&lt;div&gt;&amp;nbsp;strcpy(pendingAccount[pendingCount].studentNumber, studentNumber);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].position, &quot;Pending&quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].program, program);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].year, year);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].birthday, birthday);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; pendingCount++;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-79" value="&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].username, username);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].password, password);&lt;/div&gt;&lt;div&gt;&amp;nbsp;strcpy(pendingAccount[pendingCount].studentNumber, studentNumber);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].position, &quot;Pending&quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].program, program);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].year, year);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; strcpy(pendingAccount[pendingCount].birthday, birthday);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; pendingCount++;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="250" y="1130" width="395.5" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-84" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-81" target="De_aStg3Vl7LTB7A-mpr-83">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-84" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-81" target="De_aStg3Vl7LTB7A-mpr-83" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-81" value="print &quot;&lt;span style=&quot;background-color: initial;&quot;&gt;Your account is successfully created&quot;&lt;/span&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-81" value="print &quot;&lt;span style=&quot;background-color: initial;&quot;&gt;Your account is successfully created&quot;&lt;/span&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="356.63" y="1300" width="182.25" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-86" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-83" target="De_aStg3Vl7LTB7A-mpr-85">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-86" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-83" target="De_aStg3Vl7LTB7A-mpr-85" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-83" value="print &quot;&lt;span style=&quot;background-color: initial;&quot;&gt;Press Enter to&lt;br&gt;continue...&quot;&lt;/span&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-83" value="print &quot;&lt;span style=&quot;background-color: initial;&quot;&gt;Press Enter to&lt;br&gt;continue...&quot;&lt;/span&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="356.63" y="1360" width="182.25" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-85" value="savePending()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-85" value="savePending()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="387.76" y="1430" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-89" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-87" target="De_aStg3Vl7LTB7A-mpr-88">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-89" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-87" target="De_aStg3Vl7LTB7A-mpr-88" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-87" value="login()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-87" value="login()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
                     <mxGeometry x="365" y="1510" width="120" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-91" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-88" target="De_aStg3Vl7LTB7A-mpr-90">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-91" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-88" target="De_aStg3Vl7LTB7A-mpr-90" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-88" value="&lt;p data-pm-slice=&quot;0 0 []&quot;&gt;&amp;nbsp; &amp;nbsp; bool isLogin = false;&lt;br&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;bool isFound;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;char username[MAX_INFO_LENGTH];&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;char password[MAX_INFO_LENGTH];&lt;/span&gt;&lt;/p&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-88" value="&lt;p data-pm-slice=&quot;0 0 []&quot;&gt;&amp;nbsp; &amp;nbsp; bool isLogin = false;&lt;br&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;bool isFound;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;char username[MAX_INFO_LENGTH];&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;char password[MAX_INFO_LENGTH];&lt;/span&gt;&lt;/p&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="315" y="1580" width="220" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-93" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-90" target="De_aStg3Vl7LTB7A-mpr-92">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-93" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-90" target="De_aStg3Vl7LTB7A-mpr-92" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-90" value="i = MAX_PASSWORD_TRIES" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-90" value="i = MAX_PASSWORD_TRIES" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="333" y="1690" width="185" height="25" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-95" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-92" target="De_aStg3Vl7LTB7A-mpr-94">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-95" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-92" target="De_aStg3Vl7LTB7A-mpr-94" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-92" value="is (i &amp;gt;= 0)?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-92" value="is (i &amp;gt;= 0)?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="385.5" y="1740" width="80" height="62.5" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-106" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-94" target="De_aStg3Vl7LTB7A-mpr-105">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-106" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-94" target="De_aStg3Vl7LTB7A-mpr-105" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-94" value="isFound = False" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-94" value="isFound = False" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="365.5" y="1820" width="120" height="26.25" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-99" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-99" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="425" y="1790" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-108" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-105" target="De_aStg3Vl7LTB7A-mpr-107">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-108" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-105" target="De_aStg3Vl7LTB7A-mpr-107" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-105" value="print &quot;Enter username:&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-105" value="print &quot;Enter username:&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="365.5" y="1870" width="120" height="40.63" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-110" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-107" target="De_aStg3Vl7LTB7A-mpr-109">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-110" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-107" target="De_aStg3Vl7LTB7A-mpr-109" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-107" value="fgets(username, MAX_INFO_LENGTH, stdin)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-107" value="fgets(username, MAX_INFO_LENGTH, stdin)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="325" y="1930" width="200" height="39.05" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-116" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-109" target="De_aStg3Vl7LTB7A-mpr-112">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-116" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-109" target="De_aStg3Vl7LTB7A-mpr-112" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-109" value="&lt;p data-pm-slice=&quot;0 0 []&quot;&gt;username[strlen(username)-1] = '\0'&lt;/p&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-109" value="&lt;p data-pm-slice=&quot;0 0 []&quot;&gt;username[strlen(username)-1] = '\0'&lt;/p&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="310" y="1990" width="230" height="31.42" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-111" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-112" target="De_aStg3Vl7LTB7A-mpr-114">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-111" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-112" target="De_aStg3Vl7LTB7A-mpr-114" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-112" value="print &quot;Enter password:&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-112" value="print &quot;Enter password:&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="366" y="2049" width="120" height="40.63" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-113" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-114" target="De_aStg3Vl7LTB7A-mpr-115">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-113" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-114" target="De_aStg3Vl7LTB7A-mpr-115" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-114" value="fgets(password, MAX_INFO_LENGTH, stdin)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-114" value="fgets(password, MAX_INFO_LENGTH, stdin)" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="325.5" y="2109" width="200" height="39.05" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-118" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-115" target="De_aStg3Vl7LTB7A-mpr-117">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-118" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-115" target="De_aStg3Vl7LTB7A-mpr-117" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-115" value="&lt;p data-pm-slice=&quot;0 0 []&quot;&gt;password[strlen(password)-1] = '\0'&lt;/p&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-115" value="&lt;p data-pm-slice=&quot;0 0 []&quot;&gt;password[strlen(password)-1] = '\0'&lt;/p&gt;" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="310.5" y="2169" width="230" height="31.42" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-120" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-117" target="De_aStg3Vl7LTB7A-mpr-119">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-120" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-117" target="De_aStg3Vl7LTB7A-mpr-119" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-117" value="j = 0" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-117" value="j = 0" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="365.5" y="2230" width="120" height="23.87" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-122" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-119" target="De_aStg3Vl7LTB7A-mpr-121">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-122" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-119" target="De_aStg3Vl7LTB7A-mpr-121" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-138" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-119" target="De_aStg3Vl7LTB7A-mpr-92">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-138" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-119" target="De_aStg3Vl7LTB7A-mpr-92" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="620" y="2320"/>
@@ -1281,77 +1281,77 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-119" value="is (j &amp;lt;membersCount)?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-119" value="is (j &amp;lt;membersCount)?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="342" y="2280" width="165.5" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-125" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-121" target="De_aStg3Vl7LTB7A-mpr-124">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-125" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-121" target="De_aStg3Vl7LTB7A-mpr-124" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-130" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-121" target="De_aStg3Vl7LTB7A-mpr-129">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-130" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-121" target="De_aStg3Vl7LTB7A-mpr-129" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-121" value="is&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;(!strcmp(member[j].&lt;br&gt;username, username))?&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-121" value="is&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;(!strcmp(member[j].&lt;br&gt;username, username))?&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="311" y="2390" width="230" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-128" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-124" target="De_aStg3Vl7LTB7A-mpr-119">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-128" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-124" target="De_aStg3Vl7LTB7A-mpr-119" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="199" y="2320"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-124" value="j++" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-124" value="j++" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="138.75" y="2415" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-126" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-126" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="258.75" y="2400" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-127" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-127" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="435" y="2360" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-133" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-129" target="De_aStg3Vl7LTB7A-mpr-132">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-133" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-129" target="De_aStg3Vl7LTB7A-mpr-132" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-136" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-129" target="De_aStg3Vl7LTB7A-mpr-135">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-136" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-129" target="De_aStg3Vl7LTB7A-mpr-135" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-129" value="is&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;(!strcmp(member[j].&lt;br&gt;password, password))?&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-129" value="is&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;(!strcmp(member[j].&lt;br&gt;password, password))?&lt;/span&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="311" y="2500" width="230" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-131" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-131" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="426" y="2470" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-156" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-132" target="De_aStg3Vl7LTB7A-mpr-155">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-156" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-132" target="De_aStg3Vl7LTB7A-mpr-155" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-132" value="isLogin = True&lt;br&gt;&lt;br&gt;currentUser = j" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-132" value="isLogin = True&lt;br&gt;&lt;br&gt;currentUser = j" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="366" y="2610" width="120" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-134" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-134" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="426.25" y="2580" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-147" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-135" target="De_aStg3Vl7LTB7A-mpr-146">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-147" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-135" target="De_aStg3Vl7LTB7A-mpr-146" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-135" value="isFound = True" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-135" value="isFound = True" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="592.5" y="2525" width="120" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-137" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-137" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="525.5" y="2510" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-139" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-139" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="500" y="2290" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-149" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-146" target="De_aStg3Vl7LTB7A-mpr-148">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-149" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-146" target="De_aStg3Vl7LTB7A-mpr-148" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-146" value="print &quot;Wrong password!&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-146" value="print &quot;Wrong password!&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="592.5" y="2620" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-151" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-148" target="De_aStg3Vl7LTB7A-mpr-150">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-151" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-148" target="De_aStg3Vl7LTB7A-mpr-150" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-161" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-148">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-161" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-148" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="430" y="2680" as="targetPoint"/>
                         <Array as="points">
@@ -1360,10 +1360,10 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-148" value="if (i)?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-148" value="if (i)?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="612.5" y="2700" width="80" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-152" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-150">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-152" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="De_aStg3Vl7LTB7A-mpr-150" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="620" y="2100" as="targetPoint"/>
                         <Array as="points">
@@ -1371,31 +1371,31 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-150" value="&lt;p data-pm-slice=&quot;0 0 []&quot;&gt;printf(&quot;\nYou have %d&amp;nbsp;&lt;br&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;tries left\n&quot;, i)&lt;/span&gt;&lt;/p&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-150" value="&lt;p data-pm-slice=&quot;0 0 []&quot;&gt;printf(&quot;\nYou have %d&amp;nbsp;&lt;br&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;tries left\n&quot;, i)&lt;/span&gt;&lt;/p&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="710" y="2710" width="140" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-153" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-153" value="Yes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="670" y="2700" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-160" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-155" target="De_aStg3Vl7LTB7A-mpr-159">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-160" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-155" target="De_aStg3Vl7LTB7A-mpr-159" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-155" value="print &quot;Enter to continue...&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-155" value="print &quot;Enter to continue...&quot;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="365" y="2710" width="120" height="45" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-164" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="De_aStg3Vl7LTB7A-mpr-159" target="De_aStg3Vl7LTB7A-mpr-163">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-164" value="" style="edgeStyle=none;html=1;" parent="1" source="De_aStg3Vl7LTB7A-mpr-159" target="De_aStg3Vl7LTB7A-mpr-163" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-159" value="getchar()" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-159" value="getchar()" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="366" y="2790" width="120" height="32.5" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-162" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-162" value="No" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="565" y="2690" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-163" value="return isLogin" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-163" value="return isLogin" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
                     <mxGeometry x="365" y="2870" width="120" height="41.25" as="geometry"/>
                 </mxCell>
-                <mxCell id="De_aStg3Vl7LTB7A-mpr-165" value="" style="endArrow=none;html=1;" edge="1" parent="1">
+                <mxCell id="De_aStg3Vl7LTB7A-mpr-165" value="" style="endArrow=none;html=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="6" y="1490" as="sourcePoint"/>
                         <mxPoint x="846" y="1490" as="targetPoint"/>
@@ -1405,7 +1405,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="BLQopwRQOGGzpPEEjVt3" name="President and Member Options">
-        <mxGraphModel dx="569" dy="427" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="752" dy="563" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -1688,7 +1688,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="jDeZtSG5Jb2WsxIN27j4" name="Profile functions">
-        <mxGraphModel dx="1035" dy="776" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="752" dy="563" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -2092,7 +2092,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="2VTTUFFHnc3gYv33dlr4" name="Messaging Options">
-        <mxGraphModel dx="495" dy="-729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="752" dy="-537" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>

@@ -1,4 +1,5 @@
-// thing to do next time, organization info, funds, options for each positions, announcements, edit members, promote members, 
+// prio: options for each positions, transfer positions
+// minor: potential bugs, specific max values
 
 //Members functions: Profile, Messages, See Announcements, About Organization, 
 //President and Vice-President Functions: All
@@ -23,6 +24,7 @@
 #define MAX_ANNOUNCEMENT_LENGTH 256
 #define MAX_MESSAGES 100
 #define MAX_MESSAGE_LENGTH 1000
+#define MAX_FUNDS 100
 #define MAX_PASSWORD_TRIES 4
 
 #define ACCOUNT_DELIMITER "="
@@ -36,6 +38,7 @@
 #define PENDING_FILE "c-files/pending-accounts.txt"
 #define ABOUT_FILE "c-files/about.txt"
 #define ANNOUNCEMENTS_FILE "c-files/announcements.txt"
+#define FUNDS_FILE "c-files/funds.txt"
 
 typedef struct {
     char sender[MAX_INFO_LENGTH];
@@ -61,16 +64,21 @@ int pendingCount;
 
 char orgAbout[MAX_ABOUT_LENGTH] = "";
 
+char announcements[MAX_ANNOUNCEMENTS][MAX_MESSAGE_LENGTH];
+int announcementsCount;
+
 typedef struct {
+    char category[MAX_INFO_LENGTH];
     int amount;
     char purpose[MAX_INFO_LENGTH];
 } Funds;
 
-char announcements[MAX_ANNOUNCEMENTS][MAX_MESSAGE_LENGTH];
-int announcementsCount;
+Funds fund[MAX_FUNDS];
+int fundsCount;
+int fundsTotal = 0;
 
-char ListPostedAnnouncements[MAX_ANNOUNCEMENTS][MAX_ANNOUNCEMENT_LENGTH];
-int announcement_counter = 0;
+// char ListPostedAnnouncements[MAX_ANNOUNCEMENTS][MAX_ANNOUNCEMENT_LENGTH];
+// int announcement_counter = 0;
 
 int sortAlphabetically();
 // char *inputPassword();
@@ -86,6 +94,8 @@ void loadAbout();
 void saveAbout();
 void loadAnnouncements();
 void saveAnnouncements();
+void loadFunds();
+void saveFunds();
 
 bool login();
 void signUp();
@@ -119,6 +129,12 @@ void editPositions(char position[]);
 void transferPosition(char position[]);
 void removeMember(Member array[], int *size, int index);
 
+void fundsOptions();
+void fundsHistory();
+void addFunds();
+void addExpense();
+void deleteExpense();
+void overrideFunds();
 
 // main function
 int main() {
@@ -127,6 +143,7 @@ int main() {
     loadMessages();
     loadAbout();
     loadAnnouncements();
+    loadFunds();
 
     int choice;
     bool isLogin = false;
@@ -379,6 +396,53 @@ void saveAnnouncements() {
     fclose(announcementsFile);
 }
 
+void loadFunds() {
+    FILE *fundsFile = fopen(FUNDS_FILE, "r");
+
+    if (!fundsFile) {
+        printf("\nThere was an error opening files.\n");
+        exit(0);
+    }
+
+    fundsCount = 0;
+
+    char currentLine[MAX_INFO_LENGTH];
+
+    fgets(currentLine, MAX_INFO_LENGTH, fundsFile);
+    currentLine[strcspn(currentLine, "\n")] = '\0';
+    fundsTotal = atof(currentLine);
+
+    while (fgets(currentLine, MAX_INFO_LENGTH, fundsFile)) {
+        currentLine[strcspn(currentLine, "\n")] = '\0';
+        char *category = strtok(currentLine, ACCOUNT_DELIMITER);
+        char *amount = strtok(NULL, ACCOUNT_DELIMITER);
+        char *purpose = strtok(NULL, ACCOUNT_DELIMITER);
+
+        strcpy(fund[fundsCount].category, category);
+        fund[fundsCount].amount = atof(amount);
+        strcpy(fund[fundsCount].purpose, purpose);
+        fundsCount++;
+    }
+    
+    fclose(fundsFile);
+}
+
+void saveFunds() {
+    FILE *fundsFile = fopen(FUNDS_FILE, "w");
+
+    if (!fundsFile) {
+        printf("\nThere was an error opening files.\n");
+        exit(0);
+    }
+
+    fprintf(fundsFile, "%d\n", fundsTotal);
+
+    for (int i = 0; i < fundsCount; i++) {
+        fprintf(fundsFile, "%s%s%d%s%s\n", fund[i].category, ACCOUNT_DELIMITER, fund[i].amount, ACCOUNT_DELIMITER, fund[i].purpose);
+    }
+    
+    fclose(fundsFile);
+}
 
 // Sign up/ login
 void signUp() {
@@ -857,10 +921,11 @@ void organizationOptions() {
                 announcementsOptions();
                 break;
             case 4:
-                // fundsOption();
+                fundsOptions();
                 break;
             case 5:
                 system("cls");
+                break;
             default:
                 printf("\nInvalid option!\n");
         }
@@ -1354,76 +1419,206 @@ void removeMember(Member array[], int *size, int index) {
         array[i] = array[i + 1];
     }
 
-    strcpy(array[*size - 1].name, "\0");
-    strcpy(array[*size - 1].password, "\0");
-    strcpy(array[*size - 1].studentNumber, "\0");
-    strcpy(array[*size - 1].position, "\0");
-    strcpy(array[*size - 1].program, "\0");
-    strcpy(array[*size - 1].year, "\0");
-    strcpy(array[*size - 1].birthday, "\0");
-
     (*size)--;
     saveMembers();
 }
 
 
-// void enterPassword(Member *member) {
-//     char input;
-//     int i = 0;
+// Options for funds
+void fundsOptions() {
+    int choice;
+    do {
+        printf("\n[FUNDS]\n");
+        printf("[1] Show Funds History\n");
+        printf("[2] Add Funds\n");
+        printf("[3] Add Expenses\n");
+        printf("[4] Delete Fund History\n");
+        printf("[5] Override Funds\n");
+        printf("[6] Return\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        system("cls");
+        switch (choice) {
+            case 1:
+                fundsHistory();
+                break;
+            case 2:
+                addFunds();
+                break;
+            case 3:
+                addExpense();
+                break;
+            case 4:
+                deleteExpense();
+                break;
+            case 5:
+                overrideFunds();
+                break;
+            case 6:
+                system("cls");
+                break;
+            default:
+                printf("\nInvalid option!\n");
+        }
+    } while (choice != 6);
+}
 
-//     printf("Enter your password (press Enter to finish): ");
+void fundsHistory() {
+    printf("\nCurrent Funds: P%d\n", fundsTotal);
 
-//     while (1) {
-//         input = getch();
 
-//         if (input == '\r') { 
-//             break;
-//         } else if (input == '\b') {
-//             if (i > 0) {
-//                 printf("\b \b");
-//                 i--;
-//             }
-//         } else {
-//             if (i < sizeof(member->password) - 1) {
-//                 member->password[i++] = input;
-//                 printf("*");
-//             }
-//         }
-//     }
+    if (fundsCount) {
+        for (int i = 0; i < fundsCount; i++) {
+            if (!strcmp(fund[i].category, "Funding")) {
+                printf("\n%d. [%s]\nAmount: +P%d\nPurpose: %s\n", i+1, fund[i].category, fund[i].amount, fund[i].purpose);
+            } else if (!strcmp(fund[i].category, "Expense")) {
+                printf("\n%d. [%s]\nAmount: -P%d\nPurpose: %s\n", i+1, fund[i].category, fund[i].amount, fund[i].purpose);
+            } else {
+                printf("\n%d. [%s]\nAmount: P%d\nPurpose: %s\n", i+1, fund[i].category, fund[i].amount, fund[i].purpose);
+            }
+        }
+    } else {
+        printf("\nFunds history is currently empty\n");
+    }
+    
+    printf("\nPress Enter to continue...");
+    getchar();
+    getchar();
+    system("cls");
+}
 
-//     member->password[i] = '\0';
-//     printf("\n");
-// }
+void addFunds() {
+    char purpose[MAX_INFO_LENGTH];
 
-// char *inputPassword() {
-//     char password[MAX_INFO_LENGTH];
-//     int index = 0;
-//     char input;
+    printf("\nCurrent Funds: P%d\n", fundsTotal);
 
-//     while (1) {
-//         input = getch(); 
+    strcpy(fund[fundsCount].category, "Funding");
 
-//         if (input == '\r') { 
-//             break;
-//         } else if (input == '\b') {
-//             if (index > 0) {
-//                 printf("\b \b");
-//                 index--;
-//             }
-//         } else {
-//             if (index < MAX_INFO_LENGTH) {
-//                 password[index++] = input;
-//                 printf("*");
-//             }
-//         }
-//     }
+    printf("\nEnter amount: ");
+    scanf("%d", &fund[fundsCount].amount);
+    fundsTotal += fund[fundsCount].amount;
 
-//     password[index] = '\0';
-//     printf("\n");
+    getchar();
+    printf("Enter purpose: ");
+    fgets(purpose, MAX_INFO_LENGTH, stdin);
+    purpose[strcspn(purpose, "\n")] = '\0';    
 
-//     return password;
-// }
+    strcpy(fund[fundsCount].purpose, purpose);
+    
+    fundsCount++;
 
+    saveFunds();
+    printf("\nFunds has been added successfully\n");
+    printf("\nPress Enter to continue...");
+    getchar();
+    system("cls");
+}
+
+void addExpense() {
+    char purpose[MAX_INFO_LENGTH];
+
+    printf("\nCurrent Funds: P%d\n", fundsTotal);
+
+    strcpy(fund[fundsCount].category, "Expense");
+
+    printf("\nEnter amount: ");
+    scanf("%d", &fund[fundsCount].amount);
+    fundsTotal -= fund[fundsCount].amount;
+
+    if (fundsTotal < 0) {
+        printf("\nInsufficient funds!\n");
+        fundsTotal += fund[fundsCount].amount;
+        printf("\nPress Enter to continue...");
+        getchar();
+        getchar();
+        system("cls");
+        return;
+    }
+
+    getchar();
+    printf("Enter purpose: ");
+    fgets(purpose, MAX_INFO_LENGTH, stdin);
+    purpose[strcspn(purpose, "\n")] = '\0';    
+
+    strcpy(fund[fundsCount].purpose, purpose);
+    
+    fundsCount++;
+
+    saveFunds();
+    printf("\nExpenses has been added successfully\n");
+    printf("\nPress Enter to continue...");
+    getchar();
+    system("cls");
+}
+
+void deleteExpense() {
+    int choice;
+    printf("\nCurrent Funds: P%d\n", fundsTotal);
+    if (fundsCount) {
+        for (int i = 0; i < fundsCount; i++) {
+            if (!strcmp(fund[i].category, "Funding")) {
+                printf("\n%d. [%s]\nAmount: +P%d\nPurpose: %s\n", i+1, fund[i].category, fund[i].amount, fund[i].purpose);
+            } else if (!strcmp(fund[i].category, "Expense")) {
+                printf("\n%d. [%s]\nAmount: -P%d\nPurpose: %s\n", i+1, fund[i].category, fund[i].amount, fund[i].purpose);
+            } else {
+                printf("\n%d. [%s]\nAmount: P%d\nPurpose: %s\n", i+1, fund[i].category, fund[i].amount, fund[i].purpose);
+            }
+        }
+    } else {
+        printf("\nFunds history is currently empty\n");
+        printf("\nPress Enter to continue...");
+        getchar();
+        getchar();
+        system("cls");
+        return;
+    }
+
+    printf("\nDelete expense:\n");
+    printf(">> ");
+    scanf("%d", &choice);
+
+
+    for (int i = choice - 1; i < fundsCount - 1; i++) {
+        fund[i] = fund[i + 1];
+    }
+
+    fundsCount--;
+    saveFunds();
+
+    printf("\nFund has been removed successfully\n");
+    
+    printf("\nPress Enter to continue...");
+    getchar();
+    getchar();
+    system("cls");
+}
+
+void overrideFunds() {
+    char purpose[MAX_INFO_LENGTH];
+
+    printf("\nCurrent Funds: P%d\n", fundsTotal);
+
+    strcpy(fund[fundsCount].category, "Override");
+
+    printf("\nEnter total amount: ");
+    scanf("%d", &fundsTotal);
+    fund[fundsCount].amount = fundsTotal;
+
+    getchar();
+    printf("Enter purpose: ");
+    fgets(purpose, MAX_INFO_LENGTH, stdin);
+    purpose[strcspn(purpose, "\n")] = '\0';    
+
+    strcpy(fund[fundsCount].purpose, purpose);
+    
+    fundsCount++;
+
+    saveFunds();
+    printf("\nFunds has been overrided successfully\n");
+    printf("\nPress Enter to continue...");
+    getchar();
+    system("cls");
+}
 
 //Announcements Section
 // void postAnnouncement() {
