@@ -75,7 +75,7 @@ int announcement_counter = 0;
 int sortAlphabetically();
 // char *inputPassword();
 
-// Function Prototypes
+// Function prototypes
 void loadMembers();
 void saveMembers();
 void loadMessages();
