@@ -1,5 +1,6 @@
 // prio: options for each positions, transfer positions
-// minor: potential bugs, specific max values
+// minor: potential bugs, specific max values, back key, consitent UI
+// optional: '*' when entering password
 
 //Members functions: Profile, Messages, See Announcements, About Organization, 
 //President and Vice-President Functions: All
@@ -81,7 +82,6 @@ int fundsTotal = 0;
 // int announcement_counter = 0;
 
 int sortAlphabetically();
-// char *inputPassword();
 
 // Function prototypes
 void loadMembers();
@@ -100,7 +100,11 @@ void saveFunds();
 bool login();
 void signUp();
 
+void mainOptions();
+
 void presidentOptions();
+void secretaryOptions();
+void treasurerOptions();
 void memberOptions();
 
 void profileOptions();
@@ -112,7 +116,6 @@ void messageOptions();
 void showInbox();
 void sendMessage();
 
-void organizationOptions();
 void organizationAbout();
 
 void announcementsOptions();
@@ -160,13 +163,7 @@ int main() {
             case 1: signUp(); break;
             case 2:
                 isLogin = login();
-                if (isLogin) {
-                    if (!strcmp(member[currentUser].position, "President")) {
-                        presidentOptions();
-                    } else {
-                        memberOptions();
-                    }
-                }
+                if (isLogin) mainOptions();
                 break;
             case 3: printf("\nThank you for using the program.\n"); break;
             default: printf("\nInvalid option!\n");
@@ -455,7 +452,7 @@ void signUp() {
 
     bool isTaken;
 
-    getchar();
+    while ((getchar()) != '\n');
     do {
         isTaken = false;
         printf("Enter your student number: ");
@@ -528,7 +525,7 @@ bool login() {
     char studentNumber[MAX_INFO_LENGTH];
     char password[MAX_INFO_LENGTH];
 
-    getchar();
+    while ((getchar()) != '\n');
     for (int i = MAX_PASSWORD_TRIES - 1; i >= 0; i--) {
         isFound = false;
         printf("Enter student number: ");
@@ -574,8 +571,8 @@ bool login() {
 }
 
 
-// Options for each positions
-void presidentOptions() {
+// Main options
+void mainOptions() {
     int choice;
     printf("\nWelcome!\n");
     do {
@@ -592,7 +589,15 @@ void presidentOptions() {
                 profileOptions();
                 break;
             case 2:
-                organizationOptions();
+                if (!strcmp(member[currentUser].position, "President") || !strcmp(member[currentUser].position, "Vice-President")) {
+                    presidentOptions();
+                } else if (!strcmp(member[currentUser].position, "Secretary")) {
+                    secretaryOptions();
+                } else if (!strcmp(member[currentUser].position, "Treasurer") || !strcmp(member[currentUser].position, "Auditior")) {
+                    treasurerOptions();
+                } else {
+                    memberOptions();
+                }
                 break;
             case 3:
                 messageOptions();
@@ -600,7 +605,6 @@ void presidentOptions() {
             case 4:
                 printf("\nLogged out\n");
                 printf("\nPress Enter to continue...");
-                getchar();
                 getchar();
                 system("cls");
                 break;
@@ -610,33 +614,136 @@ void presidentOptions() {
     } while (choice != 4);
 }
 
-void memberOptions() {
+
+// Options for each positions
+void presidentOptions() {
     int choice;
-    printf("\nWelcome!\n");
     do {
-        printf("\nCurrent user: %s\n", member[currentUser].name);
-        printf("[1] Profile\n");
-        printf("[2] Change Password\n");
-        printf("[3] Messages\n");
-        printf("[4] Log out\n");
+        printf("\n[ORGANIZATION OPTIONS]\n");
+        printf("[1] Organization About\n");
+        printf("[2] Members\n");
+        printf("[3] Announcements\n");
+        printf("[4] Funds\n");
+        printf("[5] Return\n");
         printf(">> ");
         scanf("%d", &choice);
         system("cls");
         switch (choice) {
             case 1:
-                profileOptions();
+                organizationAbout();
                 break;
             case 2:
-                changePassword();
+                editMembersOptions();
                 break;
             case 3:
-                messageOptions();
+                announcementsOptions();
                 break;
             case 4:
-                printf("\nLogged out\n");
-                printf("\nPress Enter to continue...");
+                fundsOptions();
+                break;
+            case 5:
+                system("cls");
+                break;
+            default:
+                printf("\nInvalid option!\n");
+        }
+    } while (choice != 5);
+}
+
+void secretaryOptions() {
+    int choice;
+    do {
+        printf("\n[ORGANIZATION OPTIONS]\n");
+        printf("[1] Organization About\n");
+        printf("[2] Members\n");
+        printf("[3] Announcements\n");
+        printf("[4] Return\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        system("cls");
+        switch (choice) {
+            case 1:
+                organizationAbout();
+                break;
+            case 2:
+                editMembersOptions();
+                break;
+            case 3:
+                announcementsOptions();
+                break;
+            case 4:
+                system("cls");
+                break;
+            default:
+                printf("\nInvalid option!\n");
+        }
+    } while (choice != 4);
+}
+ 
+void treasurerOptions() {
+    int choice;
+    do {
+        printf("\n[ORGANIZATION OPTIONS]\n");
+        printf("[1] Organization About\n");
+        printf("[2] Show Members\n");
+        printf("[3] Show Announcements\n");
+        printf("[4] Funds\n");
+        printf("[5] Return\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        system("cls");
+        switch (choice) {
+            case 1:
+                printf("%s", orgAbout);
+                printf("\nPress enter to continue");
                 getchar();
                 getchar();
+                system("cls");
+                break;
+            case 2:
+                showMembers();
+                break;
+            case 3:
+                showAnnouncements();
+                break;
+            case 4:
+                fundsOptions();
+                break;
+            case 5:
+                system("cls");
+                break;
+            default:
+                printf("\nInvalid option!\n");
+        }
+    } while (choice != 5);
+}
+
+void memberOptions() {
+    int choice;
+    do {
+        printf("\n[ORGANIZATION OPTIONS]\n");
+        printf("[1] Organization About\n");
+        printf("[2] Show Members\n");
+        printf("[3] Announcements\n");
+        printf("[4] Return\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        system("cls");
+        switch (choice) {
+            case 1:
+                printf("%s", orgAbout);
+                printf("\nPress enter to continue");
+                getchar();
+                getchar();
+                system("cls");
+                break;
+            case 2:
+                showMembers();
+                break;
+            case 3:
+                showAnnouncements();
+                break;
+            case 4:
                 system("cls");
                 break;
             default:
@@ -694,8 +801,7 @@ void viewProfile(int index) {
 
 void editInformation() {
     int choice;
-    bool isTaken;
-    char newUsername[MAX_INFO_LENGTH];
+    char newName[MAX_INFO_LENGTH];
     char newProgram[MAX_INFO_LENGTH];
     char newYear[MAX_INFO_LENGTH];
     char newBirthday[MAX_INFO_LENGTH];
@@ -711,23 +817,11 @@ void editInformation() {
         system("cls");
         switch (choice) {
             case 1:
-                do {
-                    getchar();
-                    isTaken = false;
-                    printf("Enter your new name: ");
-                    fgets(newUsername, MAX_INFO_LENGTH, stdin);
-                    newUsername[strcspn(newUsername, "\n")] = '\0';
-                    for (int i = 0; i < membersCount; i++) {
-                        if (!strcmp(member[currentUser].name, newUsername)) {
-                            printf("\nUsername is already taken.\n");
-                            isTaken = true;
-                            printf("\nPress Enter to continue...");
-                            getchar();
-                            system("cls");
-                        }
-                    }
-                } while (isTaken);
-                strcpy(member[currentUser].name, newUsername);
+                getchar();
+                printf("Enter your new name: ");
+                fgets(newName, MAX_INFO_LENGTH, stdin);
+                newName[strcspn(newName, "\n")] = '\0';
+                strcpy(member[currentUser].name, newName);
                 printf("\nYour name has been changed successfully...");
                 getchar();
                 system("cls");
@@ -767,6 +861,7 @@ void editInformation() {
             default:
                 printf("\nInvalid option!\n");
         }
+        saveMembers();
     } while (choice != 5);
 }
 
@@ -897,42 +992,6 @@ void sendMessage() {
 
 // OFFICER OPTIONS
 
-// Main options for editing the organization
-void organizationOptions() {
-    int choice;
-    do {
-        printf("\n[ORGANIZATION OPTIONS]\n");
-        printf("[1] Organization About\n");
-        printf("[2] Members\n");
-        printf("[3] Announcements\n");
-        printf("[4] Funds\n");
-        printf("[5] Return\n");
-        printf(">> ");
-        scanf("%d", &choice);
-        system("cls");
-        switch (choice) {
-            case 1:
-                organizationAbout();
-                break;
-            case 2:
-                editMembersOptions();
-                break;
-            case 3:
-                announcementsOptions();
-                break;
-            case 4:
-                fundsOptions();
-                break;
-            case 5:
-                system("cls");
-                break;
-            default:
-                printf("\nInvalid option!\n");
-        }
-    } while (choice != 5);
-}
-
-
 // About the organization
 void organizationAbout() {
     int choice;
@@ -980,7 +1039,6 @@ void organizationAbout() {
         system("cls");
     } while (choice != 2);
 }
-
 
 // Announcements Options
 void announcementsOptions() {
@@ -1231,96 +1289,68 @@ void membersDelete() {
 
 void showPositions() {
     int choice;
-    printf("\n[1] President\n");
-    printf("[2] Vice-President\n");
-    printf("[3] Secretary\n");
-    printf("[4] Treasurer\n");
-    printf("[5] Auditor\n");
-    printf("[6] Event Coordinator\n");
-    printf("[7] Other\n");
-    printf(">> ");
-    scanf("%d", &choice);
-    switch (choice) {
-        case 1:
-            editPositions("President"); break;
-        case 2:
-            editPositions("Vice-President"); break;
-        case 3:
-            editPositions("Secretary"); break;
-        case 4:
-            editPositions("Treasurer"); break;
-        case 5:
-            editPositions("Auditor"); break;
-        case 6:
-            editPositions("Event Coordinator"); break;
-        case 7:
-            editPositions("Other"); break;
-        case 8:
-            break;
-        default:
-            printf("\nInvalid Option!\n");
-            
-    }
-
+    do {
+        printf("\n[1] President\n");
+        printf("[2] Vice-President\n");
+        printf("[3] Secretary\n");
+        printf("[4] Treasurer\n");
+        printf("[5] Auditor\n");
+        printf("[6] Return\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                editPositions("President"); break;
+            case 2:
+                editPositions("Vice-President"); break;
+            case 3:
+                editPositions("Secretary"); break;
+            case 4:
+                editPositions("Treasurer"); break;
+            case 5:
+                editPositions("Auditor"); break;
+            case 6:
+                system("cls"); break;
+            default:
+                printf("\nInvalid Option!\n");
+        }
+    } while (choice != 6);    
 }
 
 void editPositions(char position[]) {
     system("cls");
     int choice;
     bool isVacant = true;
+    bool isLogOut = false;
+    bool isReturn = false;
     int i;
     
-    for (i = 0; i < membersCount; i++) {
-        if (!strcmp(position, member[i].position)) {
-            printf("\n%s: ", position);
-            printf(" %s\n", member[i].name);
-            isVacant = false;
-            break;
+    while (!isReturn) {
+        for (i = 0; i < membersCount; i++) {
+            if (!strcmp(position, member[i].position)) {
+                printf("\n%s: ", position);
+                printf(" %s\n", member[i].name);
+                isVacant = false;
+                break;
+            }
         }
-    }
 
-    if (isVacant || !strcmp(position, "President")) {
         if (isVacant) printf("\nThis position is currently vacant\n");
+
         printf("\n[1] Transfer position\n");
-        printf("[2] Return\n");
+
+        if (isVacant) {
+            printf("[2] Return\n");
+        } else {
+            printf("[2] Remove position\n");
+            printf("[3] Return\n");
+        }
+        
         printf(">> ");
         scanf("%d", &choice);
         system("cls");
-        switch (choice) {
-            case 1: 
-                if (!strcmp(position, "President") && strcmp(member[currentUser].position, "President")) {
-                    printf("\nYou don't have the rights to tranfer this position to a member.\n");
-                    printf("\nPress Enter to continue...");
-                    getchar();
-                    getchar();
-                    system("cls"); 
-                    break;
-                }
-                if (!strcmp(position, "Vice-President") && (strcmp(member[currentUser].position, "President") || strcmp(member[currentUser].position, "Vice-President"))) {
-                    printf("\nYou don't have the rights to tranfer this position to a member.\n");
-                    printf("\nPress Enter to continue...");
-                    getchar();
-                    getchar();
-                    system("cls"); 
-                    break;
-                }
-                transferPosition(position);
-                break;
-            case 2: system("cls"); break;
-            default: 
-                printf("Invalid Option...");
-                getchar();
-                getchar();
-                system("cls");
-        }
-    } else {
-        do {
-            printf("\n[1] Transfer position\n");
-            printf("[2] Remove position\n");
-            printf("[3] Return\n");
-            printf(">> ");
-            scanf("%d", &choice);
-            system("cls");
+
+        if (isVacant || !strcmp(position, "President")) {
             switch (choice) {
                 case 1: 
                     if (!strcmp(position, "President") && strcmp(member[currentUser].position, "President")) {
@@ -1331,7 +1361,38 @@ void editPositions(char position[]) {
                         system("cls"); 
                         break;
                     }
-                    if (!strcmp(position, "Vice-President") && (strcmp(member[currentUser].position, "President") || strcmp(member[currentUser].position, "Vice-President"))) {
+                    if (!strcmp(position, "Vice-President") && (strcmp(member[currentUser].position, "President") && strcmp(member[currentUser].position, "Vice-President"))) {
+                        printf("\nYou don't have the rights to tranfer this officer's position.\n");
+                        printf("\nPress Enter to continue...");
+                        getchar();
+                        getchar();
+                        system("cls"); 
+                        break;
+                    }
+                    transferPosition(position);
+                    break;
+                case 2:
+                    isReturn = true;
+                    system("cls"); 
+                    break;
+                default: 
+                    printf("Invalid Option...");
+                    getchar();
+                    getchar();
+                    system("cls");
+            }
+        } else {
+            switch (choice) {
+                case 1: 
+                    if (!strcmp(position, "President") && strcmp(member[currentUser].position, "President")) {
+                        printf("\nYou don't have the rights to tranfer this officer's position.\n");
+                        printf("\nPress Enter to continue...");
+                        getchar();
+                        getchar();
+                        system("cls"); 
+                        break;
+                    }
+                    if (!strcmp(position, "Vice-President") && (strcmp(member[currentUser].position, "President") && strcmp(member[currentUser].position, "Vice-President"))) {
                         printf("\nYou don't have the rights to tranfer this officer's position.\n");
                         printf("\nPress Enter to continue...");
                         getchar();
@@ -1342,7 +1403,7 @@ void editPositions(char position[]) {
                     transferPosition(position);
                     break;
                 case 2: 
-                    if (!strcmp(position, "Vice-President") && (strcmp(member[currentUser].position, "President") || strcmp(member[currentUser].position, "Vice-President"))) {
+                    if (!strcmp(position, "Vice-President") && (strcmp(member[currentUser].position, "President") && strcmp(member[currentUser].position, "Vice-President"))) {
                         printf("\nYou don't have the rights to remove this officer's position.\n");
                         printf("\nPress Enter to continue...");
                         getchar();
@@ -1350,6 +1411,18 @@ void editPositions(char position[]) {
                         system("cls"); 
                         break;
                     }
+
+                    if (!strcmp(position, member[currentUser].position)) {
+                        printf("\nThis option will log you out, enter '1' you like to proceed?\n");
+                        printf(">> ");
+                        scanf("%d", &choice);
+                        if (choice == 1) {
+                            isLogOut = true;
+                        } else {
+                            break;
+                        }
+                    }
+
                     strcpy(member[i].position, "Member");
 
                     saveMembers();
@@ -1357,24 +1430,29 @@ void editPositions(char position[]) {
                     printf("\nPress Enter to continue...");
                     getchar();
                     getchar();
+                    system("cls");
+                    if (isLogOut) main();
+                    break;
+                case 3: 
+                    isReturn = true;
                     system("cls"); 
                     break;
-                case 3: system("cls"); break;
                 default: 
                     printf("Invalid Option...");
                     getchar();
                     getchar();
                     system("cls");
             }
-        } while (choice != 3);
+        }
     }
-    
+
 }
 
 void transferPosition(char position[]) {
     system("cls");
     int index = 0;
     int choice;
+    bool isLogOut = false;
 
     printf("\n[MEMBERS]\n");
     for (int i = 0; i < membersCount; i++) {
@@ -1402,16 +1480,30 @@ void transferPosition(char position[]) {
         choice++;
     }
 
+    if (!strcmp(position, member[currentUser].position)) {
+        printf("\nThis option will log you out, enter '1' you like to proceed?\n");
+        printf(">> ");
+        scanf("%d", &choice);
+        if (choice == 1) {
+            isLogOut = true;
+        } else {
+            return;
+        }
+    }
+
     for (int i = 0; i < membersCount; i++) {
         if (!strcmp(position, member[i].position)) strcpy(member[i].position, "Member");
     }
     strcpy(member[choice-1].position, position);
 
+    
+
     saveMembers();
-    printf("\nPosition has been transfered successfully\n");
+    printf("\nPosition has been transfered successfully");
     getchar();
     getchar();
     system("cls");
+    if (isLogOut) main();
 }
 
 void removeMember(Member array[], int *size, int index) {
