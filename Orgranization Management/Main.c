@@ -1,4 +1,3 @@
-// prio: options for each positions, transfer positions
 // minor: potential bugs, specific max values, back key, consitent UI
 // optional: '*' when entering password
 
@@ -7,9 +6,6 @@
 //Secretary: Member Access, Announcements, Edit About Oganization
 //Treasurer: Funds Access
 //Auditor: Funds Access
-
-
-// ask for name part,
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -924,11 +920,17 @@ void messageOptions() {
 
 void showInbox() {
     int messageCount = 0;
+
     printf("\n[INBOX]\n");
     for (; messageCount < MAX_MESSAGES && strlen(member[currentUser].inbox[messageCount].sender); messageCount++){}
-    for (int i = 0; i < messageCount; i++) {
-        printf("\n%s: %s\n", member[currentUser].inbox[i].sender, member[currentUser].inbox[i].message);
+    if (!messageCount) {
+        printf("\nYour inbox is currently empty\n");
+    } else {
+        for (int i = 0; i < messageCount; i++) {
+            printf("\n%s: %s\n", member[currentUser].inbox[i].sender, member[currentUser].inbox[i].message);
+        }
     }
+    
     printf("\nPress Enter to continue...");
     getchar();
     getchar();
@@ -953,7 +955,7 @@ void sendMessage() {
     printf("\nSend to: \n");
     printf(">> ");
 
-    if (scanf("%d", &choice) && choice < 0 || choice > membersCount) {
+    if (scanf("%d", &choice) && choice < 0 || choice >= membersCount) {
         printf("\nInvalid option!\n");
         printf("\nPress Enter to continue...");
         getchar();

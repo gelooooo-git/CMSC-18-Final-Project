@@ -1,3 +1,4 @@
-1
+1000
 Funding=10000=WAHOOO!!!!!!! 
 Override=1=sadge :<
+Override=1000=idk
