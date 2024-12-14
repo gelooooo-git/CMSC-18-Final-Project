@@ -1,3 +1,1 @@
 Admin=admin123=2024-12345=President=BS Computer Science=1st year=January 1, 2000
-Johnsol T. Castones=sol123=2024-14838=Member=BS Computer Science=1st year=November 22, 2005
-dummy=test=0000-0000=Member=BSCS=1st year=January 1, 2000

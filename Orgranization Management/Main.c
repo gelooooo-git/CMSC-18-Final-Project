@@ -18,7 +18,7 @@
 #include <conio.h>
 #include <ctype.h>
 #include <windows.h>
-#include <unistd.h>
+// #include <unistd.h>
 
 #define MAX_INFO_LENGTH 100
 #define MAX_MEMBERS 20
@@ -82,6 +82,7 @@ int fundsCount;
 int fundsTotal = 0;
 
 int sortAlphabetically();
+void optionInput(int *choice);
 
 // Function prototypes
 void loadMembers();
@@ -115,6 +116,7 @@ void changePassword();
 void messageOptions();
 void showInbox();
 void sendMessage();
+void deleteMessage();
 
 void organizationAbout();
 
@@ -158,7 +160,7 @@ int main() {
         printf("[2] Login\n");
         printf("[3] Exit\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         printf("\n=====================================\n");
         system("cls");
         switch (choice) {
@@ -194,6 +196,12 @@ int sortAlphabetically(const void *a, const void *b) {
     return strcmp(personA->name, personB->name);
 }
 
+void optionInput(int *choice) {
+    if (scanf("%d", choice) != 1) {
+        *choice = 0;
+        while (getchar() != '\n');
+    }
+}
 
 // FUNCTIONS FOR LOADING AND SAVING
 
@@ -606,7 +614,7 @@ void mainOptions() {
         printf("[3] Messages\n");
         printf("[4] Log out\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -651,7 +659,7 @@ void presidentOptions() {
         printf("[4] Funds\n");
         printf("[5] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -684,7 +692,7 @@ void secretaryOptions() {
         printf("[3] Announcements\n");
         printf("[4] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -715,7 +723,7 @@ void treasurerOptions() {
         printf("[4] Funds\n");
         printf("[5] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -752,7 +760,7 @@ void memberOptions() {
         printf("[3] Announcements\n");
         printf("[4] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -793,7 +801,7 @@ void profileOptions() {
         printf("[3] Change Password\n");
         printf("[4] Return to main menu\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -847,7 +855,7 @@ void editInformation() {
         printf("[4] Birthday\n");
         printf("[5] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -954,10 +962,11 @@ void messageOptions() {
         system("cls");
         printf("\n[MESSAGES]\n");
         printf("[1] Inbox\n");
-        printf("[2] Send Message\n");
-        printf("[3] Back to main menu\n");
+        printf("[2] Delete Message\n");
+        printf("[3] Send Message\n");
+        printf("[4] Back to main menu\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
 
         switch (choice) {
@@ -965,14 +974,17 @@ void messageOptions() {
                 showInbox();
                 break;
             case 2:
-                sendMessage();
+                deleteMessage();
                 break;
             case 3:
+                sendMessage();
+                break;
+            case 4:
                 break;
             default:
                 printf("\nInvalid option!\n");
         }
-    } while (choice != 3);
+    } while (choice != 4);
 }
 // Function for showing inbox of member
 void showInbox() {
@@ -988,6 +1000,36 @@ void showInbox() {
         for (int i = 0; i < messageCount; i++) {
             printf("\n%s: %s\n", member[currentUser].inbox[i].sender, member[currentUser].inbox[i].message);
         }
+    }
+    
+    printf("\nPress Enter to continue...");
+    getchar();
+    getchar();
+    system("cls");
+}
+
+void deleteMessage() {
+    int messageCount = 0;
+    int choice;
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
+    printf("\n[INBOX]\n");
+    for (; messageCount < MAX_MESSAGES && strlen(member[currentUser].inbox[messageCount].sender); messageCount++)
+    if (!messageCount) {
+        printf("\nYour inbox is currently empty\n");
+    } else {
+        for (int i = 0; i < messageCount; i++) {
+            printf("\n%s: %s\n", member[currentUser].inbox[i].sender, member[currentUser].inbox[i].message);
+        }
+    }
+
+    printf("\nDelete message: \n");
+    printf("\n>> \n");
+    scanf("%d", &choice);
+
+    for (int i = choice-1; i < messageCount - 1; i++) {
+        strcpy(announcements[i], announcements[i + 1]);
     }
     
     printf("\nPress Enter to continue...");
@@ -1070,7 +1112,7 @@ void organizationAbout() {
         printf("\n\n[1] Change About\n");
         printf("[2] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1: 
@@ -1118,7 +1160,7 @@ void announcementsOptions() {
         printf("[3] Remove Announcement\n");
         printf("[4] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -1179,7 +1221,6 @@ void removeAnnouncements() {
     sleep(1);
     system("cls");
     bool isNoAnnouncements = true;
-    int index;
     int choice;
 
     for (int i = 0; i < announcementsCount; i++) {
@@ -1189,23 +1230,30 @@ void removeAnnouncements() {
 
     if (isNoAnnouncements) {
         printf("\nThere are no annoucements currently\n");
-        return;
         printf("\nPress Enter to continue...");
         getchar();
         getchar();
         system("cls");
+        return;
     }
-
 
     printf("\nRemove announcement:\n");
     printf(">> ");
-    scanf("%d", &choice);
+    optionInput(&choice);
 
-    index = choice - 1;
-
-    for (int i = index; i < announcementsCount - 1; i++) {
-        strcpy(announcements[i], announcements[i + 1]);
+    if (choice > 0 && choice <= announcementsCount) {
+        for (int i = choice - 1; i < announcementsCount - 1; i++) {
+            strcpy(announcements[i], announcements[i + 1]);
+        }
+    } else {
+        printf("\nInvalid Option\n");
+        printf("\nPress Enter to continue...");
+        getchar();
+        getchar();
+        system("cls");
+        return;
     }
+    
 
     strcpy(announcements[announcementsCount - 1], "\0");
 
@@ -1235,7 +1283,7 @@ void editMembersOptions() {
         printf("[4] Edit positions\n");
         printf("[5] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -1291,7 +1339,7 @@ void pendingRequests() {
             printf("[%d]: %s\n", i+1, pendingAccount[i].name);
         }
         printf("\n>> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         index = choice - 1;
         system("cls");
 
@@ -1304,7 +1352,7 @@ void pendingRequests() {
         printf("[2] Delete request\n");
         printf("[3] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         switch(choice) {
             case 1:
                 strcpy(member[membersCount].name, pendingAccount[index].name);
@@ -1349,9 +1397,18 @@ void membersDelete() {
             printf("[%d]: %s\n", i+1, member[i].name);
         }
         printf("\n>> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         index = choice - 1;
         system("cls");
+
+        if (choice <= 0 && choice > membersCount) {
+            printf("\nInvalid Option\n");
+            printf("\nPress Enter to continue...");
+            getchar();
+            getchar();
+            system("cls");
+            return;
+        }
 
         printf("\nUsername: %s\n", member[index].name);
         printf("Program: %s\n", member[index].program);
@@ -1361,7 +1418,7 @@ void membersDelete() {
         printf("\n[1] Delete member\n");
         printf("[2] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         switch(choice) {
             case 1:
                 removeMember(member, &membersCount, index);
@@ -1392,7 +1449,7 @@ void showPositions() {
         printf("[5] Auditor\n");
         printf("[6] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         switch (choice) {
             case 1:
                 editPositions("President"); break;
@@ -1417,12 +1474,12 @@ void editPositions(char position[]) {
     sleep(1);
     system("cls");
     int choice;
-    bool isVacant = true;
     bool isLogOut = false;
     bool isReturn = false;
     int i;
     
     while (!isReturn) {
+        bool isVacant = true;
         for (i = 0; i < membersCount; i++) {
             if (!strcmp(position, member[i].position)) {
                 printf("\n%s: ", position);
@@ -1444,7 +1501,7 @@ void editPositions(char position[]) {
         }
         
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
 
         if (isVacant || !strcmp(position, "President")) {
@@ -1512,7 +1569,7 @@ void editPositions(char position[]) {
                     if (!strcmp(position, member[currentUser].position)) {
                         printf("\nThis option will log you out, enter '1' you like to proceed?\n");
                         printf(">> ");
-                        scanf("%d", &choice);
+                        optionInput(&choice);
                         if (choice == 1) {
                             isLogOut = true;
                         } else {
@@ -1582,7 +1639,7 @@ void transferPosition(char position[]) {
     if (!strcmp(position, member[currentUser].position)) {
         printf("\nThis option will log you out, enter '1' you like to proceed?\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         if (choice == 1) {
             isLogOut = true;
         } else {
@@ -1631,7 +1688,7 @@ void fundsOptions() {
         printf("[5] Override Funds\n");
         printf("[6] Return\n");
         printf(">> ");
-        scanf("%d", &choice);
+        optionInput(&choice);
         system("cls");
         switch (choice) {
             case 1:
@@ -1782,11 +1839,19 @@ void deleteExpense() {
 
     printf("\nDelete expense:\n");
     printf(">> ");
-    scanf("%d", &choice);
+    optionInput(&choice);
 
-
-    for (int i = choice - 1; i < fundsCount - 1; i++) {
-        fund[i] = fund[i + 1];
+    if (choice > 0 && choice <= fundsCount) {
+        for (int i = choice - 1; i < fundsCount - 1; i++) {
+            fund[i] = fund[i + 1];
+        }
+    } else {
+        printf("\nInvalid Option\n");
+        printf("\nPress Enter to continue...");
+        getchar();
+        getchar();
+        system("cls");
+        return;
     }
 
     fundsCount--;
