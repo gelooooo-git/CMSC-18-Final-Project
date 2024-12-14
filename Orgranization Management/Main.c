@@ -170,7 +170,7 @@ int main() {
             case 2:
                 isLogin = login();
                 printf("Logging in...\n");
-                sleep(1);
+                sleep(2);
                 system("cls");
                 if (isLogin) mainOptions();
                 break;
@@ -1245,6 +1245,9 @@ void showAnnouncements() {
     printf("\nPress Enter to continue...");
     getchar();
     getchar();
+    system("cls");
+    printf("Loading...");
+    sleep(1);
     system("cls");
 }
 // Function for posting announcements

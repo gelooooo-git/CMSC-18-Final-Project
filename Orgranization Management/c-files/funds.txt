@@ -1,3 +1,7 @@
-1000
-Funding=10000=WAHOOO!!!!!!! 
-Override=1=sadge :<
+2150
+Funding=200=Donation
+Funding=500=Gift by Xander
+Funding=300=Gift by Johnsol
+Funding=1000=Donation by Karlo
+Funding=350=Donation by Krystel
+Expense=200=For snacks during CMSC 18 project making 
