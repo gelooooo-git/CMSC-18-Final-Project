@@ -18,7 +18,7 @@
 #include <conio.h>
 #include <ctype.h>
 #include <windows.h>
-// #include <unistd.h>
+#include <unistd.h>
 
 #define MAX_INFO_LENGTH 100
 #define MAX_MEMBERS 20
@@ -159,6 +159,7 @@ int main() {
         printf("[1] Sign Up\n");
         printf("[2] Login\n");
         printf("[3] Exit\n");
+        printf("Enter a number for the options:\n");
         printf(">> ");
         optionInput(&choice);
         printf("\n=====================================\n");
@@ -605,10 +606,12 @@ bool login() {
 // FUNCTIONS FOR MAIN OPTIONS
 void mainOptions() {
     int choice;
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     printf("\n======( Welcome! )======\n");
     do {
         printf("\nCurrent user: %s\n", member[currentUser].name);
-        printf("\nOptions (Choose a number):\n");
         printf("[1] Profile\n");
         printf("[2] Organization Info\n");
         printf("[3] Messages\n");
@@ -621,6 +624,9 @@ void mainOptions() {
                 profileOptions();
                 break;
             case 2:
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 if (!strcmp(member[currentUser].position, "President") || !strcmp(member[currentUser].position, "Vice-President")) {
                     presidentOptions();
                 } else if (!strcmp(member[currentUser].position, "Secretary")) {
@@ -635,6 +641,7 @@ void mainOptions() {
                 messageOptions();
                 break;
             case 4:
+                system("cls");
                 printf("Logging out...\n");
                 sleep(1);
                 system("cls");
@@ -676,6 +683,9 @@ void presidentOptions() {
                 break;
             case 5:
                 system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;
             default:
                 printf("\nInvalid option!\n");
@@ -705,6 +715,9 @@ void secretaryOptions() {
                 announcementsOptions();
                 break;
             case 4:
+                system("cls");
+                printf("Loading...\n");
+                sleep(1);
                 system("cls");
                 break;
             default:
@@ -744,6 +757,9 @@ void treasurerOptions() {
                 break;
             case 5:
                 system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;
             default:
                 printf("\nInvalid option!\n");
@@ -777,6 +793,9 @@ void memberOptions() {
                 showAnnouncements();
                 break;
             case 4:
+                system("cls");
+                printf("Loading...\n");
+                sleep(1);
                 system("cls");
                 break;
             default:
@@ -814,6 +833,9 @@ void profileOptions() {
                 changePassword();
                 break;
             case 4:
+                system("cls");
+                printf("Loading...\n");
+                sleep(1);
                 system("cls");
                 break;
             default:
@@ -870,6 +892,9 @@ void editInformation() {
                 printf("\nYour name has been changed successfully...");
                 getchar();
                 system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;
             case 2:
                 printf("Loading...\n");
@@ -883,6 +908,9 @@ void editInformation() {
                 printf("\nYour program has been changed successfully...");
                 getchar();
                 system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");                                      
                 break;
             case 3:
                 printf("Loading...\n");
@@ -895,6 +923,9 @@ void editInformation() {
                 strcpy(member[currentUser].year, newYear);
                 printf("\nYour year has been changed successfully...");
                 getchar();
+                system("cls");
+                printf("Loading...\n");
+                sleep(1);
                 system("cls");
                 break;
             case 4:
@@ -909,8 +940,15 @@ void editInformation() {
                 printf("\nYour birthday has been changed successfully...");
                 getchar();
                 system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;
             case 5:
+                system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;
             default:
                 printf("\nInvalid option!\n");
@@ -980,6 +1018,10 @@ void messageOptions() {
                 sendMessage();
                 break;
             case 4:
+                system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");                  
                 break;
             default:
                 printf("\nInvalid option!\n");
@@ -1135,11 +1177,15 @@ void organizationAbout() {
                 strcpy(orgAbout, input);
                 saveAbout();
                 printf("\nSaved successfully!\n");
-                printf("\nPress enter to continue");
+                printf("\nPress enter to continue...");
                 getchar();
                 getchar();
                 break;
             case 2:
+                system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;
             default:
                 printf("\nInvalid option!\n");
@@ -1173,6 +1219,10 @@ void announcementsOptions() {
                 removeAnnouncements();
                 break;
             case 4:
+                system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;
             default:
                 printf("\nInvalid option!\n");
@@ -1300,6 +1350,9 @@ void editMembersOptions() {
                 break;
             case 5:
                 system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;
             default:
                 printf("\nInvalid option!\n");
@@ -1375,6 +1428,9 @@ void pendingRequests() {
                 break;
             case 3:
                 system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;
             default:
                 printf("Invalid option!");
@@ -1425,6 +1481,9 @@ void membersDelete() {
                 break;         
             case 2:
                 system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 break;                
             default:
                 printf("Invalid option!");
@@ -1462,7 +1521,11 @@ void showPositions() {
             case 5:
                 editPositions("Auditor"); break;
             case 6:
-                system("cls"); break;
+                system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
+                break;
             default:
                 printf("\nInvalid Option!\n");
         }
@@ -1527,6 +1590,9 @@ void editPositions(char position[]) {
                     break;
                 case 2:
                     isReturn = true;
+                    system("cls");
+                    printf("Loading...\n");
+                    sleep(1);
                     system("cls"); 
                     break;
                 default: 
@@ -1590,6 +1656,9 @@ void editPositions(char position[]) {
                 case 3: 
                     isReturn = true;
                     system("cls"); 
+                    printf("Loading...\n");
+                    sleep(1);
+                    system("cls");  
                     break;
                 default: 
                     printf("Invalid Option...");
@@ -1708,6 +1777,9 @@ void fundsOptions() {
                 break;
             case 6:
                 system("cls");
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");    
                 break;
             default:
                 printf("\nInvalid option!\n");
