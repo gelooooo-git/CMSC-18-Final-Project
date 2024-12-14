@@ -1,5 +1,5 @@
 Admin=admin123=2024-12345=President=BS Computer Science=1st year=January 1, 2000
-Johnsol T. Castones=sol123=2024-14838=Vice-President=BS Computer Science=1st Year=January 1, 2005
+Johnsol T. Castones=sol123=2024-14838=Vice-President=BS Computer Science=1st Year=November 22, 2005
 Karlo Angelo O. Jose=karlo123=2024-60143=Member=BS Computer Science=1st Year=January 2, 2005
 Krystel Mikylla M. Perez=krystel123=2024-03992=Member=BS Computer Science=1st Year=January 3, 2005
 Xander Jay C. Cagang=derder123=2024-14445=Member=BS Computer Science=1st Year=December 2, 2004
