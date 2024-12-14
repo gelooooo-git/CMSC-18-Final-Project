@@ -1,3 +1,7 @@
+// Welcome to "ORGanized", a C Program designed to automate the management system of any school organization.
+// Programmers: Xander Jay Cagang, Johnsol Castones, Karlo Angelo Jose, and Krystel Mikylla Perez
+// CMSC 18 (G) Final Project - Programming Project
+
 // minor: potential bugs, specific max values, back key, consitent UI
 // optional: '*' when entering password
 
@@ -39,11 +43,12 @@
 #define ANNOUNCEMENTS_FILE "c-files/announcements.txt"
 #define FUNDS_FILE "c-files/funds.txt"
 
+// Structure for Message Inbox
 typedef struct {
     char sender[MAX_INFO_LENGTH];
     char message[MAX_INFO_LENGTH];
 } Inbox;
-
+// Structure for Member Information
 typedef struct {
     char name[MAX_INFO_LENGTH];
     char password[MAX_INFO_LENGTH];
@@ -65,7 +70,7 @@ char orgAbout[MAX_ABOUT_LENGTH] = "";
 
 char announcements[MAX_ANNOUNCEMENTS][MAX_MESSAGE_LENGTH];
 int announcementsCount;
-
+// Structure for Funds handling
 typedef struct {
     char category[MAX_INFO_LENGTH];
     int amount;
@@ -75,9 +80,6 @@ typedef struct {
 Funds fund[MAX_FUNDS];
 int fundsCount;
 int fundsTotal = 0;
-
-// char ListPostedAnnouncements[MAX_ANNOUNCEMENTS][MAX_ANNOUNCEMENT_LENGTH];
-// int announcement_counter = 0;
 
 int sortAlphabetically();
 
@@ -137,7 +139,7 @@ void addExpense();
 void deleteExpense();
 void overrideFunds();
 
-// main function
+// Main function
 int main() {
     loadMembers();
     loadPending();
@@ -161,14 +163,8 @@ int main() {
         system("cls");
         switch (choice) {
             case 1: 
-                printf("Loading...\n");
-                sleep(1);
-                system("cls");
                 signUp(); break;
             case 2:
-                printf("Loading...\n");
-                sleep(1);
-                system("cls");
                 isLogin = login();
                 printf("Logging in...\n");
                 sleep(1);
@@ -191,7 +187,7 @@ int main() {
 }
 
 
-// for sorting
+// Function for Sorting Member Names Alphabetically
 int sortAlphabetically(const void *a, const void *b) {
     const Member *personA = (const Member *)a;
     const Member *personB = (const Member *)b;
@@ -199,7 +195,9 @@ int sortAlphabetically(const void *a, const void *b) {
 }
 
 
-// load/save stuff
+// FUNCTIONS FOR LOADING AND SAVING
+
+// Function for loading members
 void loadMembers() {
     FILE *membersFile = fopen(MEMBERS_FILE, "r");
     membersCount = 0;
@@ -233,7 +231,7 @@ void loadMembers() {
     
     fclose(membersFile);
 }
-
+// Function for saving members
 void saveMembers() {
     FILE *membersFile = fopen(MEMBERS_FILE, "w");
 
@@ -250,7 +248,7 @@ void saveMembers() {
 
     fclose(membersFile);
 }
-
+// Function for pending members
 void loadPending() {
     FILE *pendingFile = fopen(PENDING_FILE, "r");
     pendingCount = 0;
@@ -284,7 +282,7 @@ void loadPending() {
     
     fclose(pendingFile);
 }
-
+// Function for saving pending members
 void savePending() {
     FILE *pendingFile = fopen(PENDING_FILE, "w");
 
@@ -301,7 +299,7 @@ void savePending() {
 
     fclose(pendingFile);
 }
-
+// Function for loading about information
 void loadAbout() {
     FILE *aboutFile = fopen(ABOUT_FILE, "r");
 
@@ -317,7 +315,7 @@ void loadAbout() {
     
     fclose(aboutFile);
 }
-
+// Function for saving about information
 void saveAbout() {
     FILE *aboutFile = fopen(ABOUT_FILE, "w");
 
@@ -330,7 +328,7 @@ void saveAbout() {
     
     fclose(aboutFile);
 }
-
+// Function for loading messages
 void loadMessages() {
     FILE *messagesFile = fopen("c-files/message.txt", "r");
 
@@ -355,7 +353,7 @@ void loadMessages() {
     
     fclose(messagesFile);
 }
-
+// Function for saving messages
 void saveMessages() {
     FILE *messagesFile = fopen(MESSAGES_FILE, "w");
 
@@ -376,7 +374,7 @@ void saveMessages() {
 
     fclose(messagesFile);
 }
-
+// Function for Loading Announcements
 void loadAnnouncements() {
     FILE *announcementsFile = fopen(ANNOUNCEMENTS_FILE, "r");
 
@@ -394,7 +392,7 @@ void loadAnnouncements() {
 
     fclose(announcementsFile);
 }
-
+// Function for Saving Announcements
 void saveAnnouncements() {
     FILE *announcementsFile = fopen(ANNOUNCEMENTS_FILE, "w");
 
@@ -409,7 +407,7 @@ void saveAnnouncements() {
     
     fclose(announcementsFile);
 }
-
+// Function for loading funds
 void loadFunds() {
     FILE *fundsFile = fopen(FUNDS_FILE, "r");
 
@@ -440,7 +438,7 @@ void loadFunds() {
     
     fclose(fundsFile);
 }
-
+// Function for saving funds
 void saveFunds() {
     FILE *fundsFile = fopen(FUNDS_FILE, "w");
 
@@ -458,7 +456,9 @@ void saveFunds() {
     fclose(fundsFile);
 }
 
-// Sign up/ login
+// FUNCTIONS FOR SIGN UP AND LOGIN
+
+// Function for Signing up
 void signUp() {
     char name[MAX_INFO_LENGTH];
     char password[MAX_INFO_LENGTH];
@@ -468,7 +468,9 @@ void signUp() {
     char birthday[MAX_INFO_LENGTH];
 
     bool isTaken;
-
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     while ((getchar()) != '\n');
     do {
         isTaken = false;
@@ -536,12 +538,15 @@ void signUp() {
     
     savePending();
 }
-
+// Function for loggin in
 bool login() {
     bool isFound;
     char studentNumber[MAX_INFO_LENGTH];
     char password[MAX_INFO_LENGTH];
 
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     while ((getchar()) != '\n');
     for (int i = MAX_PASSWORD_TRIES - 1; i >= 0; i--) {
         isFound = false;
@@ -589,7 +594,7 @@ bool login() {
 }
 
 
-// Main options
+// FUNCTIONS FOR MAIN OPTIONS
 void mainOptions() {
     int choice;
     printf("\n======( Welcome! )======\n");
@@ -633,7 +638,9 @@ void mainOptions() {
 }
 
 
-// Options for each positions
+// FUNCTIONS FOR OPTIONS OF EACH POSITION
+
+// Function for president options
 void presidentOptions() {
     int choice;
     do {
@@ -667,7 +674,7 @@ void presidentOptions() {
         }
     } while (choice != 5);
 }
-
+// Functions for secretary options
 void secretaryOptions() {
     int choice;
     do {
@@ -697,7 +704,7 @@ void secretaryOptions() {
         }
     } while (choice != 4);
 }
- 
+// Function for treasurer options
 void treasurerOptions() {
     int choice;
     do {
@@ -735,7 +742,7 @@ void treasurerOptions() {
         }
     } while (choice != 5);
 }
-
+// Function for member options
 void memberOptions() {
     int choice;
     do {
@@ -771,9 +778,9 @@ void memberOptions() {
 }
 
 
-// DEFAULT OPTIONS
+// FUNCTIONS FOR DEFAULT OPTIONS
 
-// Profile Options
+// Function for Profile Options
 void profileOptions() {
     int choice;
     do {
@@ -806,7 +813,7 @@ void profileOptions() {
         }
     } while (choice != 4);
 }
-
+// Function for viewing profile
 void viewProfile(int index) {
     printf("Loading...\n");
     sleep(1);
@@ -822,7 +829,7 @@ void viewProfile(int index) {
     getchar();
     system("cls");
 }
-
+// Function for editing member information
 void editInformation() {
     int choice;
     char newName[MAX_INFO_LENGTH];
@@ -903,7 +910,7 @@ void editInformation() {
         saveMembers();
     } while (choice != 5);
 }
-
+// Function for changing password of member
 void changePassword() {
     char oldPassword[MAX_INFO_LENGTH];
     char newPassword[MAX_INFO_LENGTH];
@@ -936,7 +943,9 @@ void changePassword() {
     system("cls");
 }
 
-// Messaging Options
+// FUNCTIONS FOR MESSAGES
+
+// Function for messaging
 void messageOptions() {
     int choice;
     do {
@@ -965,7 +974,7 @@ void messageOptions() {
         }
     } while (choice != 3);
 }
-
+// Function for showing inbox of member
 void showInbox() {
     int messageCount = 0;
     printf("Loading...\n");
@@ -986,7 +995,7 @@ void showInbox() {
     getchar();
     system("cls");
 }
-
+// Function for sending a message
 void sendMessage() {
     int choice;
     char message[MAX_MESSAGE_LENGTH];
@@ -1044,9 +1053,9 @@ void sendMessage() {
 }
 
 
-// OFFICER OPTIONS
+// FUNCTIONS FOR OFFICER OPTIONS
 
-// About the organization
+// Function for the About the organization
 void organizationAbout() {
     int choice;
     char input[MAX_ABOUT_LENGTH];
@@ -1097,7 +1106,7 @@ void organizationAbout() {
     } while (choice != 2);
 }
 
-// Announcements Options
+// Function for Announcements Options
 void announcementsOptions() {
     int choice;
     do {
@@ -1128,7 +1137,7 @@ void announcementsOptions() {
         }
     } while (choice != 4);
 }
-
+// Function for displaying announcements
 void showAnnouncements() {
     printf("Loading...\n");
     sleep(1);
@@ -1146,7 +1155,7 @@ void showAnnouncements() {
     getchar();
     system("cls");
 }
-
+// Function for posting announcements
 void postAnnouncements() {
     printf("Loading...\n");
     sleep(1);
@@ -1164,7 +1173,7 @@ void postAnnouncements() {
     getchar();
     system("cls");
 }
-
+// Function for deleting announcements
 void removeAnnouncements() {
     printf("Loading...\n");
     sleep(1);
@@ -1210,7 +1219,9 @@ void removeAnnouncements() {
 }
 
 
-// Options for editing members 
+// FUNCTIONS FOR EDITING MEMBER OPTIONS
+
+// Function for editing members options
 void editMembersOptions() {
     int choice;
     do {
@@ -1247,7 +1258,7 @@ void editMembersOptions() {
         }
     } while (choice != 5);
 }
-
+// Function for showing members
 void showMembers() {
     printf("Loading...\n");
     sleep(1);
@@ -1260,7 +1271,7 @@ void showMembers() {
     getchar();
     system("cls");
 }
-
+// Function for pending member requests
 void pendingRequests() {
     int choice;
     int index;
@@ -1326,7 +1337,7 @@ void pendingRequests() {
     getchar();
     system("cls");
 }
-
+// Functions for deleting or removing members
 void membersDelete() {
     int choice;
     int index;
@@ -1367,7 +1378,7 @@ void membersDelete() {
     getchar();
     system("cls");
 }
-
+// Function for showing member positions
 void showPositions() {
     int choice;
     do {
@@ -1400,7 +1411,7 @@ void showPositions() {
         }
     } while (choice != 6);    
 }
-
+// Function for editing member positions
 void editPositions(char position[]) {
     printf("Loading...\n");
     sleep(1);
@@ -1533,7 +1544,7 @@ void editPositions(char position[]) {
     }
 
 }
-
+// Function for changing or transfering a position to another member
 void transferPosition(char position[]) {
     printf("Loading...\n");
     sleep(1);
@@ -1593,7 +1604,7 @@ void transferPosition(char position[]) {
     system("cls");
     if (isLogOut) main();
 }
-
+// Function for removing member
 void removeMember(Member array[], int *size, int index) {
     for (int i = index; i < *size - 1; i++) {
         array[i] = array[i + 1];
@@ -1603,8 +1614,9 @@ void removeMember(Member array[], int *size, int index) {
     saveMembers();
 }
 
+// FUNCTIONS FOR FUNDS OPTIONS
 
-// Options for funds
+// Function for options on funds
 void fundsOptions() {
     int choice;
     do {
@@ -1645,7 +1657,7 @@ void fundsOptions() {
         }
     } while (choice != 6);
 }
-
+// Function for the history of funds
 void fundsHistory() {
     printf("Loading...\n");
     sleep(1);
@@ -1672,7 +1684,7 @@ void fundsHistory() {
     getchar();
     system("cls");
 }
-
+// Function for adding new funds
 void addFunds() {
     printf("Loading...\n");
     sleep(1);
@@ -1702,7 +1714,7 @@ void addFunds() {
     getchar();
     system("cls");
 }
-
+// Function for adding expenses
 void addExpense() {
     printf("Loading...\n");
     sleep(1);
@@ -1742,7 +1754,7 @@ void addExpense() {
     getchar();
     system("cls");
 }
-
+// Function for removing or deleting expenses
 void deleteExpense() {
     printf("Loading...\n");
     sleep(1);
@@ -1787,7 +1799,7 @@ void deleteExpense() {
     getchar();
     system("cls");
 }
-
+// Function for overriding funds
 void overrideFunds() {
     printf("Loading...\n");
     sleep(1);
@@ -1817,65 +1829,3 @@ void overrideFunds() {
     getchar();
     system("cls");
 }
-
-//Announcements Section
-// void postAnnouncement() {
-//     printf("What's on your mind?\n");
-//     getchar();
-//     fgets(ListPostedAnnouncements[announcement_counter], MAX_ANNOUNCEMENT_LENGTH, stdin);
-//     printf("Announcement Posted!");
-
-//     FILE *post_announcement;
-//     char ch[100];
-//     int announcement_num = 1;
-
-//     post_announcement = fopen("announcements.txt", "a+");
-//     if(post_announcement == NULL) {
-//         printf("Unable to open file.");
-//         printf("Enter to continue...");
-//         getchar();
-//         return;
-//     }
-
-//     while (fgets(ch, sizeof(ch), post_announcement) != NULL) {
-//         announcement_num++;
-//     }
-
-//     fprintf(post_announcement, "%d. %s", announcement_num, ListPostedAnnouncements[announcement_counter]);
-//     fclose(post_announcement);
-//     announcement_counter++;
-
-//     printf("\n\nEnter to continue...");
-//     getchar();
-//     system("cls");
-//     printf("Returning...");
-//     // sleep(2);
-//     system("cls");
-// }
-
-// void postedAnnouncements() {
-//     FILE *announcements;
-//     char ch[100];
-
-//     announcements = fopen("announcements.txt", "r");
-//     if(announcements == NULL) {
-//         printf("Error in opening file.\n");
-//         printf("Enter to continue...");
-//         getchar();
-//         return;
-//     }
-
-//     printf("Announcements:\n");
-//     while(fgets(ch, sizeof(ch), announcements) != NULL) {
-//         printf("%s", ch);
-//     }
-//     fclose(announcements);
-
-//     printf("\n\nEnter to continue...");
-//     getchar();
-//     getchar();
-//     system("cls");
-//     printf("\nReturning...");
-//     // sleep(2);
-//     system("cls");
-// }
