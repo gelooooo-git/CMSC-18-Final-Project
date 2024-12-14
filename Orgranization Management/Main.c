@@ -13,6 +13,8 @@
 #include <stdbool.h>
 #include <conio.h>
 #include <ctype.h>
+#include <windows.h>
+#include <unistd.h>
 
 #define MAX_INFO_LENGTH 100
 #define MAX_MEMBERS 20
@@ -148,21 +150,40 @@ int main() {
     bool isLogin = false;
 
     do {
-        printf("\n[ORGANIZATION MANAGEMENT]\n");
+        printf("\n======[ Welcome to ORGanized! ]======\n");
+        printf("\n--- \"Organization Name\" ---\n");
         printf("[1] Sign Up\n");
         printf("[2] Login\n");
         printf("[3] Exit\n");
         printf(">> ");
         scanf("%d", &choice);
+        printf("\n=====================================\n");
         system("cls");
         switch (choice) {
-            case 1: signUp(); break;
+            case 1: 
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
+                signUp(); break;
             case 2:
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 isLogin = login();
+                printf("Logging in...\n");
+                sleep(1);
+                system("cls");
                 if (isLogin) mainOptions();
                 break;
-            case 3: printf("\nThank you for using the program.\n"); break;
-            default: printf("\nInvalid option!\n");
+            case 3: 
+                printf("Exiting program...\n");
+                sleep(1);
+                system("cls");
+                printf("\nThank you for using ORGanized!\n");
+                printf("\n============[ ORGanized Closed ]============\n"); 
+                break;
+            default: 
+                printf("\nInvalid option!\n");
         }
     } while (choice != 3);
 
@@ -524,6 +545,7 @@ bool login() {
     while ((getchar()) != '\n');
     for (int i = MAX_PASSWORD_TRIES - 1; i >= 0; i--) {
         isFound = false;
+        printf("=====( Login Account )=====\n");
         printf("Enter student number: ");
         fgets(studentNumber, MAX_INFO_LENGTH, stdin);
         studentNumber[strlen(studentNumber)-1] = '\0';
@@ -570,9 +592,10 @@ bool login() {
 // Main options
 void mainOptions() {
     int choice;
-    printf("\nWelcome!\n");
+    printf("\n======( Welcome! )======\n");
     do {
         printf("\nCurrent user: %s\n", member[currentUser].name);
+        printf("\nOptions (Choose a number):\n");
         printf("[1] Profile\n");
         printf("[2] Organization Info\n");
         printf("[3] Messages\n");
@@ -599,9 +622,8 @@ void mainOptions() {
                 messageOptions();
                 break;
             case 4:
-                printf("\nLogged out\n");
-                printf("\nPress Enter to continue...");
-                getchar();
+                printf("Logging out...\n");
+                sleep(1);
                 system("cls");
                 break;
             default:
@@ -755,6 +777,9 @@ void memberOptions() {
 void profileOptions() {
     int choice;
     do {
+        printf("Loading...\n");
+        sleep(1);
+        system("cls");
         printf("\n[PROFILE]\n");
         printf("[1] View Profile\n");
         printf("[2] Edit Information\n");
@@ -783,6 +808,9 @@ void profileOptions() {
 }
 
 void viewProfile(int index) {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     printf("\nUsername: %s\n", member[index].name);
     printf("Position: %s\n", member[index].position);
     printf("Program: %s\n", member[index].program);
@@ -802,6 +830,9 @@ void editInformation() {
     char newYear[MAX_INFO_LENGTH];
     char newBirthday[MAX_INFO_LENGTH];
     do {
+        printf("Loading...\n");
+        sleep(1);
+        system("cls");
         printf("\n[EDIT INFORMATION]\n");
         printf("[1] Name\n");
         printf("[2] Program\n");
@@ -813,6 +844,9 @@ void editInformation() {
         system("cls");
         switch (choice) {
             case 1:
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 getchar();
                 printf("Enter your new name: ");
                 fgets(newName, MAX_INFO_LENGTH, stdin);
@@ -823,6 +857,9 @@ void editInformation() {
                 system("cls");
                 break;
             case 2:
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 getchar();
                 printf("Enter your new program: ");
                 fgets(newProgram, MAX_INFO_LENGTH, stdin);
@@ -833,6 +870,9 @@ void editInformation() {
                 system("cls");
                 break;
             case 3:
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 getchar();
                 printf("Enter your new year: ");
                 fgets(newYear, MAX_INFO_LENGTH, stdin);
@@ -843,6 +883,9 @@ void editInformation() {
                 system("cls");
                 break;
             case 4:
+                printf("Loading...\n");
+                sleep(1);
+                system("cls");
                 getchar();
                 printf("Enter your new birthday: ");
                 fgets(newBirthday, MAX_INFO_LENGTH, stdin);
@@ -864,7 +907,9 @@ void editInformation() {
 void changePassword() {
     char oldPassword[MAX_INFO_LENGTH];
     char newPassword[MAX_INFO_LENGTH];
-
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     getchar();
     printf("Enter your current password: ");
     fgets(oldPassword, MAX_INFO_LENGTH, stdin);
@@ -895,6 +940,9 @@ void changePassword() {
 void messageOptions() {
     int choice;
     do {
+        printf("Loading...\n");
+        sleep(1);
+        system("cls");
         printf("\n[MESSAGES]\n");
         printf("[1] Inbox\n");
         printf("[2] Send Message\n");
@@ -920,7 +968,9 @@ void messageOptions() {
 
 void showInbox() {
     int messageCount = 0;
-
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     printf("\n[INBOX]\n");
     for (; messageCount < MAX_MESSAGES && strlen(member[currentUser].inbox[messageCount].sender); messageCount++){}
     if (!messageCount) {
@@ -941,7 +991,9 @@ void sendMessage() {
     int choice;
     char message[MAX_MESSAGE_LENGTH];
     int index = 0;
-
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     printf("\n[MEMBERS]\n");
     for (int i = 0; i < membersCount; i++) {
         if (member[i].name == member[currentUser].name) {
@@ -1001,6 +1053,9 @@ void organizationAbout() {
     int index;
     char ch;
     do {
+        printf("Loading...\n");
+        sleep(1);
+        system("cls");
         printf("%s", orgAbout);
 
         printf("\n\n[1] Change About\n");
@@ -1020,7 +1075,7 @@ void organizationAbout() {
                     if (index < MAX_ABOUT_LENGTH - 1) {
                         input[index++] = ch;
                     } else {
-                        printf("Input reached maximum length. Stopping.\n");
+                        printf("Input reached maximum length. Stopping...\n");
                         break;
                     }
                 }
@@ -1046,6 +1101,9 @@ void organizationAbout() {
 void announcementsOptions() {
     int choice;
     do {
+        printf("Loading...\n");
+        sleep(1);
+        system("cls");
         printf("[1] Show Announcement\n");
         printf("[2] Post Announcement\n");
         printf("[3] Remove Announcement\n");
@@ -1072,6 +1130,9 @@ void announcementsOptions() {
 }
 
 void showAnnouncements() {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     bool isNoAnnouncements = true;
     for (int i = 0; i < announcementsCount; i++) {
         printf("\n[%d] %s\n", i+1, announcements[i]);
@@ -1087,6 +1148,9 @@ void showAnnouncements() {
 }
 
 void postAnnouncements() {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     printf("\nPost Announcement\n");
     printf(">> ");
     getchar();
@@ -1102,6 +1166,9 @@ void postAnnouncements() {
 }
 
 void removeAnnouncements() {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     bool isNoAnnouncements = true;
     int index;
     int choice;
@@ -1147,6 +1214,9 @@ void removeAnnouncements() {
 void editMembersOptions() {
     int choice;
     do {
+        printf("Loading...\n");
+        sleep(1);
+        system("cls");
         printf("[MEMBER OPTIONS]\n");
         printf("[1] Show members\n");
         printf("[2] Pending requests\n");
@@ -1179,6 +1249,9 @@ void editMembersOptions() {
 }
 
 void showMembers() {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     for (int i = 0; i < membersCount; i++) {
         printf("[%d]: %s\n", i+1, member[i].name);
     }
@@ -1191,6 +1264,9 @@ void showMembers() {
 void pendingRequests() {
     int choice;
     int index;
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     if (pendingCount == 0) {
         printf("\nThere are no pending requests\n");
         printf("\nPress Enter to continue...");
@@ -1254,6 +1330,9 @@ void pendingRequests() {
 void membersDelete() {
     int choice;
     int index;
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     do {
         for (int i = 0; i < membersCount; i++) {
             printf("[%d]: %s\n", i+1, member[i].name);
@@ -1292,6 +1371,9 @@ void membersDelete() {
 void showPositions() {
     int choice;
     do {
+        printf("Loading...\n");
+        sleep(1);
+        system("cls");
         printf("\n[1] President\n");
         printf("[2] Vice-President\n");
         printf("[3] Secretary\n");
@@ -1320,6 +1402,8 @@ void showPositions() {
 }
 
 void editPositions(char position[]) {
+    printf("Loading...\n");
+    sleep(1);
     system("cls");
     int choice;
     bool isVacant = true;
@@ -1451,6 +1535,8 @@ void editPositions(char position[]) {
 }
 
 void transferPosition(char position[]) {
+    printf("Loading...\n");
+    sleep(1);
     system("cls");
     int index = 0;
     int choice;
@@ -1522,6 +1608,9 @@ void removeMember(Member array[], int *size, int index) {
 void fundsOptions() {
     int choice;
     do {
+        printf("Loading...\n");
+        sleep(1);
+        system("cls");
         printf("\n[FUNDS]\n");
         printf("[1] Show Funds History\n");
         printf("[2] Add Funds\n");
@@ -1558,6 +1647,9 @@ void fundsOptions() {
 }
 
 void fundsHistory() {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     printf("\nCurrent Funds: P%d\n", fundsTotal);
 
 
@@ -1582,6 +1674,9 @@ void fundsHistory() {
 }
 
 void addFunds() {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     char purpose[MAX_INFO_LENGTH];
 
     printf("\nCurrent Funds: P%d\n", fundsTotal);
@@ -1609,6 +1704,9 @@ void addFunds() {
 }
 
 void addExpense() {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     char purpose[MAX_INFO_LENGTH];
 
     printf("\nCurrent Funds: P%d\n", fundsTotal);
@@ -1646,6 +1744,9 @@ void addExpense() {
 }
 
 void deleteExpense() {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     int choice;
     printf("\nCurrent Funds: P%d\n", fundsTotal);
     if (fundsCount) {
@@ -1688,6 +1789,9 @@ void deleteExpense() {
 }
 
 void overrideFunds() {
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
     char purpose[MAX_INFO_LENGTH];
 
     printf("\nCurrent Funds: P%d\n", fundsTotal);
