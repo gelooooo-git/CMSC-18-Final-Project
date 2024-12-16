@@ -2,15 +2,6 @@
 // Programmers: Xander Jay Cagang, Johnsol Castones, Karlo Angelo Jose, and Krystel Mikylla Perez
 // CMSC 18 (G) Final Project - Programming Project
 
-// minor: potential bugs, specific max values, back key, consitent UI
-// optional: '*' when entering password
-
-//Members functions: Profile, Messages, See Announcements, About Organization, 
-//President and Vice-President Functions: All
-//Secretary: Member Access, Announcements, Edit About Oganization
-//Treasurer: Funds Access
-//Auditor: Funds Access
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,10 +9,11 @@
 #include <conio.h>
 #include <ctype.h>
 #include <windows.h>
-#include <unistd.h>
+// #include <unistd.h>
+// use this only if you are running this program on Linux!
 
-#define MAX_INFO_LENGTH 100
-#define MAX_MEMBERS 20
+#define MAX_INFO_LENGTH 200
+#define MAX_MEMBERS 100
 #define MAX_ABOUT_LENGTH 2000
 #define MAX_ANNOUNCEMENTS 100
 #define MAX_ANNOUNCEMENT_LENGTH 256
@@ -631,7 +623,7 @@ void mainOptions() {
                     presidentOptions();
                 } else if (!strcmp(member[currentUser].position, "Secretary")) {
                     secretaryOptions();
-                } else if (!strcmp(member[currentUser].position, "Treasurer") || !strcmp(member[currentUser].position, "Auditior")) {
+                } else if (!strcmp(member[currentUser].position, "Treasurer") || !strcmp(member[currentUser].position, "Auditor")) {
                     treasurerOptions();
                 } else {
                     memberOptions();
@@ -1675,27 +1667,41 @@ void editPositions(char position[]) {
 }
 // Function for changing or transfering a position to another member
 void transferPosition(char position[]) {
-    printf("Loading...\n");
-    sleep(1);
-    system("cls");
+    int validIndices[MAX_MEMBERS];
     int index = 0;
     int choice;
     bool isLogOut = false;
 
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
+
     printf("\n[MEMBERS]\n");
     for (int i = 0; i < membersCount; i++) {
-        if (member[i].name == member[currentUser].name) {
+        if (!strcmp(member[i].name, member[currentUser].name)) {
             continue;
-        } else {
-            index++;
-            printf("[%d]: %s\n", index, member[i].name);
         }
+
+        if (!strcmp(member[currentUser].position, "Secretary") &&
+            (!strcmp(member[i].position, "President") || !strcmp(member[i].position, "Vice-President"))) {
+            continue;
+        }
+        if (!strcmp(member[currentUser].position, "Vice-President") &&
+            !strcmp(member[i].position, "President")) {
+            continue;
+        }
+
+        if (!strcmp(member[i].position, position)) {
+            continue;
+        }
+
+        validIndices[index] = i;
+        index++;
+        printf("[%d]: %s\n", index, member[i].name);
     }
 
-    printf("\nTransfer to: \n");
-    printf(">> ");
-
-    if (scanf("%d", &choice) && choice < 0 || choice > membersCount) {
+    printf("\nTransfer to: \n>> ");
+    if (scanf("%d", &choice) != 1 || choice < 1 || choice > index) {
         printf("\nInvalid option!\n");
         printf("\nPress Enter to continue...");
         getchar();
@@ -1704,34 +1710,31 @@ void transferPosition(char position[]) {
         return;
     }
 
-    if (choice > currentUser) {
-        choice++;
-    }
+    choice = validIndices[choice - 1];
 
     if (!strcmp(position, member[currentUser].position)) {
-        printf("\nThis option will log you out, enter '1' you like to proceed?\n");
-        printf(">> ");
-        optionInput(&choice);
-        if (choice == 1) {
-            isLogOut = true;
-        } else {
+        printf("\nThis option will log you out. Enter '1' to proceed or any other key to cancel:\n>> ");
+        if (scanf("%d", &choice) || choice != 1) {
             return;
         }
+        isLogOut = true;
     }
 
     for (int i = 0; i < membersCount; i++) {
-        if (!strcmp(position, member[i].position)) strcpy(member[i].position, "Member");
+        if (!strcmp(member[i].position, position)) strcpy(member[i].position, "Member");
     }
-    strcpy(member[choice-1].position, position);
-
-    
+    strcpy(member[choice].position, position);
 
     saveMembers();
-    printf("\nPosition has been transfered successfully");
+    printf("\nPosition has been transferred successfully.\n");
+    printf("Press Enter to continue...");
     getchar();
     getchar();
     system("cls");
-    if (isLogOut) main();
+
+    if (isLogOut) {
+        main();
+    }
 }
 // Function for removing member
 void removeMember(Member array[], int *size, int index) {
