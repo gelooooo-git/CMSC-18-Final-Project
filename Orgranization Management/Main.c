@@ -108,7 +108,7 @@ void changePassword();
 void messageOptions();
 void showInbox();
 void sendMessage();
-// void deleteMessage();
+void deleteMessage();
 
 void organizationAbout();
 
@@ -992,8 +992,9 @@ void messageOptions() {
         system("cls");
         printf("\n[MESSAGES]\n");
         printf("[1] Inbox\n");
-        printf("[2] Send Message\n");
-        printf("[3] Back to main menu\n");
+        printf("[2] Delete Message\n");
+        printf("[3] Send Message\n");
+        printf("[4] Back to main menu\n");
         printf(">> ");
         optionInput(&choice);
         system("cls");
@@ -1003,9 +1004,12 @@ void messageOptions() {
                 showInbox();
                 break;
             case 2:
-                sendMessage();
+                deleteMessage();
                 break;
             case 3:
+                sendMessage();
+                break;
+            case 4:
                 system("cls");
                 printf("Loading...\n");
                 sleep(1);
@@ -1014,7 +1018,7 @@ void messageOptions() {
             default:
                 printf("\nInvalid option!\n");
         }
-    } while (choice != 3);
+    } while (choice != 4);
 }
 // Function for showing inbox of member
 void showInbox() {
@@ -1038,40 +1042,46 @@ void showInbox() {
     system("cls");
 }
 
-// void deleteMessage() {
-//     int messageCount = 0;
-//     int choice;
-//     printf("Loading...\n");
-//     sleep(1);
-//     system("cls");
-//     printf("\n[INBOX]\n");
-//     for (; messageCount < MAX_MESSAGES && strlen(member[currentUser].inbox[messageCount].sender); messageCount++){}
-//     if (!messageCount) {
-//         printf("\nYour inbox is currently empty\n");
-//         printf("\nPress Enter to continue...");
-//         getchar();
-//         getchar();
-//         system("cls");
-//         return;
-//     } else {
-//         for (int i = 0; i < messageCount; i++) {
-//             printf("\n[%d] %s: %s\n", i+1, member[currentUser].inbox[i].sender, member[currentUser].inbox[i].message);
-//         }
-//     }
+void deleteMessage() {
+    int messageCount = 0;
+    int choice;
+    printf("Loading...\n");
+    sleep(1);
+    system("cls");
+    printf("\n[INBOX]\n");
+    for (; messageCount < MAX_MESSAGES && strlen(member[currentUser].inbox[messageCount].sender); messageCount++){}
+    if (!messageCount) {
+        printf("\nYour inbox is currently empty\n");
+        printf("\nPress Enter to continue...");
+        getchar();
+        getchar();
+        system("cls");
+        return;
+    } else {
+        for (int i = 0; i < messageCount; i++) {
+            printf("\n[%d] %s: %s\n", i+1, member[currentUser].inbox[i].sender, member[currentUser].inbox[i].message);
+        }
+    }
 
-//     printf("\nDelete message: \n");
-//     printf(">> ");
-//     scanf("%d", &choice);
+    printf("\nDelete message: \n");
+    printf(">> ");
+    scanf("%d", &choice);
 
-//     for (int i = choice-1; i < messageCount - 1; i++) {
-//         member[currentUser].inbox[i] = member[currentUser].inbox[i+1];
-//     }
-//     printf("\nMessage deleted successfully\n");
-//     printf("\nPress Enter to continue...");
-//     getchar();
-//     getchar();
-//     system("cls");
-// }
+    for (int i = choice-1; i < messageCount - 1; i++) {
+        member[currentUser].inbox[i] = member[currentUser].inbox[i+1];
+    }
+
+    strcpy(member[currentUser].inbox[messageCount-1].sender, "\0");
+    strcpy(member[currentUser].inbox[messageCount-1].message, "\0");
+
+    saveMessages();
+
+    printf("\nMessage deleted successfully\n");
+    printf("\nPress Enter to continue...");
+    getchar();
+    getchar();
+    system("cls");
+}
 // Function for sending a message
 void sendMessage() {
     int choice;
