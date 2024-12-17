@@ -28,12 +28,12 @@
 #define MESSAGE_DELIMITER_3 "`"
 #define END_CHARACTER '~'
 
-#define MEMBERS_FILE "c-files/accounts.txt"
-#define MESSAGES_FILE "c-files/message.txt"
-#define PENDING_FILE "c-files/pending-accounts.txt"
-#define ABOUT_FILE "c-files/about.txt"
-#define ANNOUNCEMENTS_FILE "c-files/announcements.txt"
-#define FUNDS_FILE "c-files/funds.txt"
+#define MEMBERS_FILE "accounts.txt"
+#define MESSAGES_FILE "message.txt"
+#define PENDING_FILE "pending-accounts.txt"
+#define ABOUT_FILE "about.txt"
+#define ANNOUNCEMENTS_FILE "announcements.txt"
+#define FUNDS_FILE "funds.txt"
 
 // Structure for Message Inbox
 typedef struct {
