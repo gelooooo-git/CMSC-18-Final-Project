@@ -135,12 +135,19 @@ void overrideFunds();
 
 // Main function
 int main() {
+    printf("Load\n");
     loadMembers();
+    printf("Load\n");
     loadPending();
+    printf("Load\n");
     loadMessages();
+    printf("Load\n");
     loadAbout();
+    printf("Load\n");
     loadAnnouncements();
+    printf("Load\n");
     loadFunds();
+    printf("Load\n");
 
     int choice;
     bool isLogin = false;
@@ -331,7 +338,7 @@ void saveAbout() {
 }
 // Function for loading messages
 void loadMessages() {
-    FILE *messagesFile = fopen("c-files/message.txt", "r");
+    FILE *messagesFile = fopen(MESSAGES_FILE, "r");
 
     if (!messagesFile) {
         printf("\nThere was an error opening files.\n");
